@@ -1,0 +1,9 @@
+@import "../../../../styles/variables.scss";
+@import "../../../../styles/mixins/paddings.scss";
+
+a {
+    font-size: 14px;
+    color: $primary-color;
+    text-decoration: none;
+    @include padding-right-md;
+}

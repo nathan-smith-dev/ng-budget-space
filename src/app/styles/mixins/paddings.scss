@@ -1,0 +1,27 @@
+@import "../variables.scss";
+
+@mixin padding-top-bottom-sm {
+    padding-top: $pm-sm;
+    padding-bottom: $pm-sm;
+}
+
+@mixin padding-left-right-sm {
+    padding-left: $pm-sm;
+    padding-right: $pm-sm;
+}
+
+@mixin padding-right-xs {
+    padding-right: $pm-xs;
+}
+
+@mixin padding-right-sm {
+    padding-right: $pm-sm;
+}
+
+@mixin padding-right-md {
+    padding-right: $pm-md;
+}
+
+@mixin margin-top-md {
+    margin-top: $pm-md;
+}

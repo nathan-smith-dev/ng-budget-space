@@ -1,0 +1,25 @@
+@import "../../styles/mixins/paddings.scss";
+@import "../../styles/mixins/generic.scss";
+@import "../../styles/mixins/shadows.scss";
+@import "../../styles/variables.scss";
+
+.header-wrapper { 
+    @include shadow-sm; 
+
+    &::after {
+        content: "";
+        display: block;
+        height: 2px;
+        width: 100%;
+        
+        @include primary-background-gradient;
+    }
+}
+
+.header-container {
+    @include padding-left-right-sm;
+    background-color: $white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

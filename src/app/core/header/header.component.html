@@ -1,3 +1,11 @@
-<p>
-  header works!
-</p>
+<div class="header-wrapper">
+  <div class="header-container">
+    <app-header-brand></app-header-brand>
+    <app-header-items [isMobile]="isMobile">
+      <app-header-item routerLink="link1">Link 1</app-header-item>
+      <app-header-item routerLink="link2">Link 2</app-header-item>
+      <app-header-item routerLink="link3">Link 3</app-header-item>
+      <app-header-item routerLink="link4">Link 4</app-header-item>
+    </app-header-items>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+<ul class="header-items">
+  <ng-container *ngIf="!isMobile">
+    <ng-container *ngTemplateOutlet="templateOutlet"></ng-container>
+  </ng-container>
+  <app-hamburger-menu 
+    *ngIf="isMobile"
+    [open]="open"
+    (onMenuToggled)="handleToggleMenu()"
+  >
+  </app-hamburger-menu>
+</ul>
+<app-side-drawer 
+  [open]="open && isMobile"
+>
+  <ng-container *ngTemplateOutlet="templateOutlet"></ng-container>
+</app-side-drawer>
+
+
+<ng-template #templateOutlet>
+  <ng-content></ng-content>
+</ng-template>
