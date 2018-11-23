@@ -1,9 +1,15 @@
 @import "../../../../styles/variables.scss";
-@import "../../../../styles/mixins/paddings.scss";
+@import "../../../../styles/mixins/generic.scss";
 
-a {
+.item-container {
     font-size: 14px;
     color: $primary-color;
     text-decoration: none;
-    @include padding-right-md;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &:hover, &:active {
+        @include hoverable-link;
+    }
 }

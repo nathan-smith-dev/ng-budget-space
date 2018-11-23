@@ -1,5 +1,159 @@
 @import "../variables.scss";
 
+.padding {
+    &-right {
+        &__xs {
+            padding-right: $pm-xs;
+        }
+        &__sm {
+            padding-right: $pm-sm;
+        }
+        &__md {
+            padding-right: $pm-md;
+        }
+        &__lg {
+            padding-right: $pm-lg;
+        }
+        &__xl {
+            padding-right: $pm-xl;
+        }
+    }
+
+    &-left {
+        &__xs {
+            padding-left: $pm-xs;
+        }
+        &__sm {
+            padding-left: $pm-sm;
+        }
+        &__md {
+            padding-left: $pm-md;
+        }
+        &__lg {
+            padding-left: $pm-lg;
+        }
+        &__xl {
+            padding-left: $pm-xl;
+        }
+    }
+
+    &-x {
+        &__xs {
+            padding-right: $pm-xs;
+            padding-left: $pm-xs;
+        }
+        &__sm {
+            padding-right: $pm-sm;
+            padding-left: $pm-sm;
+        }
+        &__md {
+            padding-right: $pm-md;
+            padding-left: $pm-md;
+        }
+        &__lg {
+            padding-right: $pm-lg;
+            padding-left: $pm-lg;
+        }
+        &__xl {
+            padding-right: $pm-xl;
+            padding-left: $pm-xl;
+        }
+    }
+    
+    &-y {
+        &__xs {
+            padding-top: $pm-xs;
+            padding-bottom: $pm-xs;
+        }
+        &__sm {
+            padding-top: $pm-sm;
+            padding-bottom: $pm-sm;
+        }
+        &__md {
+            padding-top: $pm-md;
+            padding-bottom: $pm-md;
+        }
+        &__lg {
+            padding-top: $pm-lg;
+            padding-bottom: $pm-lg;
+        }
+        &__xl {
+            padding-top: $pm-xl;
+            padding-bottom: $pm-xl;
+        }
+    }
+}
+
+.margin {
+    &-right {
+        &__sm {
+            margin-right: $pm-sm;
+        }
+        &__md {
+            margin-right: $pm-md;
+        }
+        &__lg {
+            margin-right: $pm-lg;
+        }
+        &__xl {
+            margin-right: $pm-xl;
+        }
+    }
+
+    &-left {
+        &__sm {
+            margin-left: $pm-sm;
+        }
+        &__md {
+            margin-left: $pm-md;
+        }
+        &__lg {
+            margin-left: $pm-lg;
+        }
+        &__xl {
+            margin-left: $pm-xl;
+        }
+    }
+
+    &-x {
+        &__sm {
+            margin-right: $pm-sm;
+            margin-left: $pm-sm;
+        }
+        &__md {
+            margin-right: $pm-md;
+            margin-left: $pm-md;
+        }
+        &__lg {
+            margin-right: $pm-lg;
+            margin-left: $pm-lg;
+        }
+        &__xl {
+            margin-right: $pm-xl;
+            margin-left: $pm-xl;
+        }
+    }
+    
+    &-y {
+        &__sm {
+            margin-top: $pm-sm;
+            margin-bottom: $pm-sm;
+        }
+        &__md {
+            margin-top: $pm-md;
+            margin-bottom: $pm-md;
+        }
+        &__lg {
+            margin-top: $pm-lg;
+            margin-bottom: $pm-lg;
+        }
+        &__xl {
+            margin-top: $pm-xl;
+            margin-bottom: $pm-xl;
+        }
+    }
+}
+
 @mixin padding-top-bottom-sm {
     padding-top: $pm-sm;
     padding-bottom: $pm-sm;

@@ -8,6 +8,8 @@ import { HeaderItemComponent } from './header/header-items/header-item/header-it
 import { HamburgerMenuComponent } from './header/header-items/hamburger-menu/hamburger-menu.component';
 import { SideDrawerComponent } from './header/header-items/side-drawer/side-drawer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SharedModule } from '../shared/shared.module';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -16,12 +18,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HeaderItemsComponent, 
     HeaderItemComponent,
     HamburgerMenuComponent,
-    SideDrawerComponent
+    SideDrawerComponent,
+    HomeComponent
   ],
   imports: [
     CommonModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    SharedModule
   ],
   exports: [
     AppRoutingModule, 

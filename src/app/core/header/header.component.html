@@ -2,10 +2,37 @@
   <div class="header-container">
     <app-header-brand></app-header-brand>
     <app-header-items [isMobile]="isMobile">
-      <app-header-item routerLink="link1">Link 1</app-header-item>
-      <app-header-item routerLink="link2">Link 2</app-header-item>
-      <app-header-item routerLink="link3">Link 3</app-header-item>
-      <app-header-item routerLink="link4">Link 4</app-header-item>
+      <app-header-item routerLink="login">
+          <fa-icon 
+            class="padding-right__xs" 
+            [icon]="faUser" 
+            size="lg"
+          ></fa-icon>Login
+      </app-header-item>
+      <app-header-item routerLink="transactions">
+        <fa-icon
+          class="padding-right__xs"
+          [icon]="faDollarSign"
+          size="lg"
+        >
+        </fa-icon>Expenses/Income
+      </app-header-item>
+      <app-header-item routerLink="month-report">
+          <fa-icon
+            class="padding-right__xs"
+            [icon]="faChartBar"
+            size="lg"
+        >
+        </fa-icon>Month
+      </app-header-item>
+      <app-header-item routerLink="annual-report">
+          <fa-icon
+            class="padding-right__xs"
+            [icon]="faChartLine"
+            size="lg"
+        >
+        </fa-icon>Annual
+      </app-header-item>
     </app-header-items>
   </div>
 </div>

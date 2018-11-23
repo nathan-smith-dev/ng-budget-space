@@ -1,6 +1,5 @@
 @import "../../../../styles/variables.scss";
 @import "../../../../styles/mixins/shadows.scss";
-@import "../../../../styles/mixins/paddings.scss";
 
 .side-drawer {
     position: absolute;
@@ -26,5 +25,5 @@
 }
 
 :host ::ng-deep li {
-    @include margin-top-md;
+    // @include margin-top-md;
 }

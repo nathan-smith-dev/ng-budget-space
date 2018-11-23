@@ -1,19 +1,17 @@
 @import "../../../styles/variables.scss";
-@import "../../../styles/mixins/paddings.scss";
 
 .header-logo {
     display: flex;
     align-items: center;
+    text-decoration: none;
     cursor: pointer;
 
     div {
-        text-decoration: none;
         color: $primary-color;
     }
 
     img {
         max-height: 30px;
-        @include padding-right-xs;
     }
 
     &:hover {

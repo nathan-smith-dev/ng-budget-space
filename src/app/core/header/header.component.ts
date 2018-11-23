@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { 
+  faChartPie, 
+  faDollarSign, 
+  faChartBar, 
+  faChartLine, 
+  faUser
+} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-header',
@@ -10,6 +17,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   isMobile: boolean = false;
+  faCoffee = faChartPie;
+  faDollarSign = faDollarSign;
+  faChartBar = faChartBar;
+  faChartLine = faChartLine;
+  faUser = faUser;
 
   constructor() { }
 
