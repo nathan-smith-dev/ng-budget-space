@@ -1,10 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
-
-import * as fromApp from '../../../../store/app.reducers';
-import { RouterReducerState } from '@ngrx/router-store';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-header-item',
