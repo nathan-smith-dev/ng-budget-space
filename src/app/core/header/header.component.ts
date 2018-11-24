@@ -6,6 +6,11 @@ import {
   faChartLine, 
   faUser
 } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
+
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
+
 
 @Component({
   selector: 'app-header',
@@ -23,13 +28,17 @@ export class HeaderComponent implements OnInit {
   faChartLine = faChartLine;
   faUser = faUser;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onResize(event) {
     this.isMobile = event.target.innerWidth <= 625;
+  }
+
+  async handleLogin() {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth().signInWithRedirect(provider);
   }
 
 }

@@ -2,7 +2,9 @@
   <div class="header-container">
     <app-header-brand></app-header-brand>
     <app-header-items [isMobile]="isMobile">
-      <app-header-item routerLink="login">
+      <app-header-item
+        (click)="handleLogin()"
+      >
           <fa-icon 
             class="padding-right__xs" 
             [icon]="faUser" 
