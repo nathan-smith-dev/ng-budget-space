@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { 
-  faChartPie, 
   faDollarSign, 
   faChartBar, 
   faChartLine, 
@@ -22,7 +21,6 @@ import 'firebase/auth';
 })
 export class HeaderComponent implements OnInit {
   isMobile: boolean = false;
-  faCoffee = faChartPie;
   faDollarSign = faDollarSign;
   faChartBar = faChartBar;
   faChartLine = faChartLine;
