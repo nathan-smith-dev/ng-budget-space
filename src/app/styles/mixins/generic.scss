@@ -8,5 +8,6 @@
 
 @mixin hoverable-link {
     opacity: 0.7;
+    color: $primary-color;
     cursor: pointer;
 }

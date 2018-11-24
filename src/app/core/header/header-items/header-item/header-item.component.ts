@@ -1,5 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+
+import * as fromApp from '../../../../store/app.reducers';
+import { RouterReducerState } from '@ngrx/router-store';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-header-item',
@@ -9,7 +14,7 @@ import { Router } from '@angular/router';
 export class HeaderItemComponent implements OnInit {
   @Input() routerLink: String;
 
-  constructor(private router: Router) { }
+  constructor() { }
 
   ngOnInit() {
   }

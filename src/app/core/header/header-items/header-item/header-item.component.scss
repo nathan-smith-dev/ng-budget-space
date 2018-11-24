@@ -3,7 +3,7 @@
 
 .item-container {
     font-size: 14px;
-    color: $primary-color;
+    color: $secondary-color;
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -12,4 +12,8 @@
     &:hover, &:active {
         @include hoverable-link;
     }
+}
+
+.active {
+    color: $primary-color;
 }
