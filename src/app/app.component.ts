@@ -1,21 +1,36 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import * as firebase from 'firebase/app';
 import { environment } from '../environments/environment';
 import { Store } from '@ngrx/store';
 import { AppState } from './store/app.reducers';
 import * as AuthActions from './auth/store/auth.actions';
+import { AuthGuard } from './auth/auth-guard.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   title = 'ng-budget-space';
+  toastSubscription: Subscription;
+  openToast: boolean = false;
 
-  constructor(private store: Store<AppState>) {}
+  constructor(
+    private store: Store<AppState>,
+    private authGuardService: AuthGuard
+  ) {}
 
   ngOnInit() {
+    this.toastSubscription = this.authGuardService.cannotNavigate
+      .subscribe(() => {
+        this.openToast = true;
+        setTimeout(() => {
+          this.openToast = false;
+        }, 3000);
+      });
+
     firebase.initializeApp({
       apiKey: environment.firebase.apiKey, 
       authDomain: environment.firebase.authDomain
@@ -29,5 +44,9 @@ export class AppComponent implements OnInit {
         this.store.dispatch(new AuthActions.SetToken(null));
       }
     })
+  }
+
+  ngOnDestroy() {
+    this.toastSubscription.unsubscribe();
   }
 }

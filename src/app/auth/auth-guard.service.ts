@@ -6,15 +6,17 @@ import * as fromApp from '../store/app.reducers';
 import * as fromAuth from '../auth/store/auth.reducers';
 import { ActivatedRouteSnapshot, RouterStateSnapshot, Router } from "@angular/router";
 import { Injectable } from "@angular/core";
+import { Subject } from "rxjs";
 
 @Injectable()
 export class AuthGuard implements CanActivate {
     path: ActivatedRouteSnapshot[];
     route: ActivatedRouteSnapshot;
 
+    cannotNavigate = new Subject<void>();
+
     constructor(
         private store: Store<fromApp.AppState>,
-        private router: Router
     ) {}
 
     canActivate() {
@@ -22,7 +24,7 @@ export class AuthGuard implements CanActivate {
             .pipe(take(1), 
                 map((authState: fromAuth.State) => {
                     if(!authState.isAuthenticated) {
-                        this.router.navigate(['/']); // TODO show modal
+                        this.cannotNavigate.next();
                     }
                     return authState.isAuthenticated;
                 }));

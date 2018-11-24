@@ -10,6 +10,7 @@ import { SideDrawerComponent } from './header/header-items/side-drawer/side-draw
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from '../shared/shared.module';
 import { HomeComponent } from './home/home.component';
+import { ToastMessageComponent } from './toast-message/toast-message.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { HomeComponent } from './home/home.component';
     HeaderItemComponent,
     HamburgerMenuComponent,
     SideDrawerComponent,
-    HomeComponent
+    HomeComponent,
+    ToastMessageComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +31,8 @@ import { HomeComponent } from './home/home.component';
   ],
   exports: [
     AppRoutingModule, 
-    HeaderComponent
+    HeaderComponent,
+    ToastMessageComponent
   ]
 })
 export class CoreModule { }

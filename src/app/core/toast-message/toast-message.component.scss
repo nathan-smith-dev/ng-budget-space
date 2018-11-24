@@ -1,0 +1,22 @@
+@import "../../styles/variables.scss";
+@import "../../styles/mixins/shadows.scss";
+
+.container {
+    position: absolute;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+
+    .message {
+        background-color: hsla(0, 0, 0, 0.8);
+        color: $white;
+        border-radius: 15px;
+        padding: $pm-sm;
+        
+        @include shadow-md;
+    }
+}
