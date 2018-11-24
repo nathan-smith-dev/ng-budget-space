@@ -3,12 +3,17 @@ import {
   faDollarSign, 
   faChartBar, 
   faChartLine, 
-  faUser
+  faUser,
+  faSignOutAlt
 } from '@fortawesome/free-solid-svg-icons';
-import { Router } from '@angular/router';
-
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/store/app.reducers';
+import { Observable } from 'rxjs';
+
+import * as fromAuth from '../../auth/store/auth.reducers';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -25,10 +30,17 @@ export class HeaderComponent implements OnInit {
   faChartBar = faChartBar;
   faChartLine = faChartLine;
   faUser = faUser;
+  faSignOutAlt = faSignOutAlt;
+  authState: Observable<fromAuth.State>;
 
-  constructor(private router: Router) { }
+  constructor(
+    private store: Store<AppState>,
+    private router: Router
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.authState = this.store.select('auth');
+  }
 
   onResize(event) {
     this.isMobile = event.target.innerWidth <= 625;
@@ -37,6 +49,11 @@ export class HeaderComponent implements OnInit {
   async handleLogin() {
     const provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithRedirect(provider);
+  }
+
+  async handleLogout() {
+    firebase.auth().signOut();
+    this.router.navigate(['/']);
   }
 
 }
