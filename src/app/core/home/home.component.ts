@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
 
   handleTest() {
     console.log('Handle Test');
-    this.httpClient.get<any>('https://budget-space.com/api/expenses')
+    this.httpClient.get<any>('https://budget-space.com/api/transactions')
       .subscribe(result => {
         console.log(result);
       })

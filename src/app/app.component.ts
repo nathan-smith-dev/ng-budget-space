@@ -4,6 +4,7 @@ import { environment } from '../environments/environment';
 import { Store } from '@ngrx/store';
 import { AppState } from './store/app.reducers';
 import * as AuthActions from './auth/store/auth.actions';
+import * as TransactionActions from './transactions/store/transactions.actions';
 import { AuthGuard } from './auth/auth-guard.service';
 import { Subscription } from 'rxjs';
 import { User } from './auth/auth.model';
@@ -42,6 +43,7 @@ export class AppComponent implements OnInit, OnDestroy {
         const loggedInUser = new User(user.uid, user.displayName.split(' ')[0], user.email);
         this.store.dispatch(new AuthActions.SetUser(loggedInUser));
         this.store.dispatch(new AuthActions.SetToken(user.qa));
+        this.store.dispatch(new TransactionActions.FetchTransactions);
       } else {
         this.store.dispatch(new AuthActions.SetUser(null));
         this.store.dispatch(new AuthActions.SetToken(null));

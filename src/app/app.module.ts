@@ -14,6 +14,8 @@ import { TransactionsModule } from './transactions/transactions.module';
 import { MonthReportModule } from './month-report/month-report.module';
 import { AnnualReportModule } from './annual-report/annual-report.module';
 import { reducers } from './store/app.reducers';
+import { EffectsModule } from '@ngrx/effects';
+import { TransactionEffects } from './transactions/store/transactions.effects';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,7 @@ import { reducers } from './store/app.reducers';
     MonthReportModule, 
     AnnualReportModule,
     StoreModule.forRoot(reducers),
+    EffectsModule.forRoot([TransactionEffects]),
     StoreRouterConnectingModule.forRoot(),
     !environment.production ? StoreDevtoolsModule.instrument() : []
   ],
