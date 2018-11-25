@@ -1,5 +1,6 @@
 @import "../../../../styles/variables.scss";
 @import "../../../../styles/mixins/generic.scss";
+@import "../../../../styles/mixins/paddings.scss";
 
 .item-container {
     font-size: 14px;
@@ -7,10 +8,13 @@
     text-decoration: none;
     display: flex;
     align-items: center;
-    justify-content: space-between;
 
     &:hover, &:active {
         @include hoverable-link;
+    }
+
+    @media only screen and (max-width: 680px) {
+        @include margin-top-md;
     }
 }
 

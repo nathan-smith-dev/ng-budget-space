@@ -25,7 +25,7 @@ import { Router } from '@angular/router';
   }
 })
 export class HeaderComponent implements OnInit {
-  isMobile: boolean = false;
+  isMobile: boolean = true;
   faDollarSign = faDollarSign;
   faChartBar = faChartBar;
   faChartLine = faChartLine;
@@ -40,6 +40,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.authState = this.store.select('auth');
+    this.isMobile = window.innerWidth <= 685;
   }
 
   onResize(event) {
