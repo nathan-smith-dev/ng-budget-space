@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { HeaderService } from '../../header.service';
 
 @Component({
   selector: 'app-header-item',
@@ -8,8 +9,12 @@ import { Component, OnInit, Input } from '@angular/core';
 export class HeaderItemComponent implements OnInit {
   @Input() routerLink: String;
 
-  constructor() { }
+  constructor(private headerService: HeaderService) { }
 
   ngOnInit() {
+  }
+
+  handleCloseDrawer() {
+    this.headerService.setIsOpen(false);
   }
 }

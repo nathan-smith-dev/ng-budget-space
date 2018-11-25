@@ -13,6 +13,7 @@ import { HomeComponent } from './home/home.component';
 import { ToastMessageComponent } from './toast-message/toast-message.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from '../shared/auth.interceptor';
+import { HeaderService } from './header/header.service';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { AuthInterceptor } from '../shared/auth.interceptor';
     ToastMessageComponent
   ],
   providers: [
+    HeaderService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ]
 })

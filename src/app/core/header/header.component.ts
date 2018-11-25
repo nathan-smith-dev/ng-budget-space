@@ -14,6 +14,7 @@ import { Observable } from 'rxjs';
 
 import * as fromAuth from '../../auth/store/auth.reducers';
 import { Router } from '@angular/router';
+import { HeaderService } from './header.service';
 
 
 @Component({
@@ -35,16 +36,16 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private store: Store<AppState>,
-    private router: Router
+    private router: Router,
+    private headerService: HeaderService
   ) { }
 
   ngOnInit() {
     this.authState = this.store.select('auth');
-    this.isMobile = window.innerWidth <= 685;
   }
 
   onResize(event) {
-    this.isMobile = event.target.innerWidth <= 685;
+    this.headerService.setIsMobile(event.target.innerWidth);
   }
 
   async handleLogin() {
