@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
 
   ngOnInit() {
+  }
+
+  handleTest() {
+    console.log('Handle Test');
+    this.httpClient.get<any>('https://budget-space.com/api/expenses')
+      .subscribe(result => {
+        console.log(result);
+      })
   }
 
 }
