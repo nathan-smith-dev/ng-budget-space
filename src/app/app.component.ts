@@ -6,6 +6,7 @@ import { AppState } from './store/app.reducers';
 import * as AuthActions from './auth/store/auth.actions';
 import { AuthGuard } from './auth/auth-guard.service';
 import { Subscription } from 'rxjs';
+import { User } from './auth/auth.model';
 
 @Component({
   selector: 'app-root',
@@ -38,7 +39,8 @@ export class AppComponent implements OnInit, OnDestroy {
 
     firebase.auth().onAuthStateChanged((user: any) => {
       if(user) {
-        console.log(user);
+        const loggedInUser = new User(user.uid, user.displayName.split(' ')[0], user.email);
+        this.store.dispatch(new AuthActions.SetUser(loggedInUser));
         this.store.dispatch(new AuthActions.SetToken(user.qa));
       } else {
         this.store.dispatch(new AuthActions.SetToken(null));
