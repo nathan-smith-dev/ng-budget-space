@@ -1,0 +1,13 @@
+<div 
+  class="table-item row padding-y__sm"
+  [ngClass]="{ 'darker': darker }"
+>
+  <div class="col-3">{{ transaction.date | date:"MM/dd" }}</div>
+  <div 
+    class="col-4 amount"
+    [ngClass]="{ 'expense': !green, 'income': green }"
+  >
+    {{ transaction.amount | currency }}
+  </div>
+  <div class="col-5">{{ transaction.category }}</div>  
+</div>

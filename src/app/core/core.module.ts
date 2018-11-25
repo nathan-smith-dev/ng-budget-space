@@ -14,6 +14,9 @@ import { ToastMessageComponent } from './toast-message/toast-message.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from '../shared/auth.interceptor';
 import { HeaderService } from './header/header.service';
+import { TransactionTableComponent } from './transaction-table/transaction-table.component';
+import { TransactionTableHeaderComponent } from './transaction-table/transaction-table-header/transaction-table-header.component';
+import { TransactionTableItemComponent } from './transaction-table/transaction-table-item/transaction-table-item.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,10 @@ import { HeaderService } from './header/header.service';
     HamburgerMenuComponent,
     SideDrawerComponent,
     HomeComponent,
-    ToastMessageComponent
+    ToastMessageComponent,
+    TransactionTableComponent,
+    TransactionTableHeaderComponent,
+    TransactionTableItemComponent
   ],
   imports: [
     CommonModule,
@@ -36,7 +42,8 @@ import { HeaderService } from './header/header.service';
   exports: [
     AppRoutingModule, 
     HeaderComponent,
-    ToastMessageComponent
+    ToastMessageComponent,
+    TransactionTableComponent
   ],
   providers: [
     HeaderService,

@@ -1,0 +1,21 @@
+@import "../../../styles/variables.scss";
+
+.table-item {
+    font-size: 14px;
+
+    .income {
+        color: green;
+    }
+    
+    .expense {
+        color: red;
+    }
+    
+    .amount {
+        text-align: end;
+    }
+}
+
+.darker {
+    background-color: $light-grey-2;
+}

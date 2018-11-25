@@ -1,6 +1,6 @@
-<div 
-  class="margin-y__md"
-  *ngFor="let transaction of (transactionsState | async).transactions"
->
-  {{ transaction | json }}
+<div class="container-fluid margin-y__md">
+  <app-transaction-table
+    [transactions]="(transactionsState | async).transactions"
+  >
+  </app-transaction-table>
 </div>

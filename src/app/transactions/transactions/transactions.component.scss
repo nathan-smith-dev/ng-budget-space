@@ -1,0 +1,28 @@
+@import "../../styles//variables.scss";
+
+div {
+    font-size: 14px;
+}
+
+.amount {
+    text-align: end;
+}
+
+.header {
+    color: $medium-grey;
+    font-size: 12px;
+    padding-bottom: $pm-sm;
+    border-bottom: 1px solid $light-grey;
+}
+
+.darker {
+    background-color: $light-grey-2;
+}
+
+.income {
+    color: green;
+}
+
+.expense {
+    color: red;
+}
