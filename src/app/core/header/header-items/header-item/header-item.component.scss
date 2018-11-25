@@ -13,7 +13,7 @@
         @include hoverable-link;
     }
 
-    @media only screen and (max-width: 680px) {
+    @media only screen and (max-width: 768px) {
         @include margin-top-md;
     }
 }

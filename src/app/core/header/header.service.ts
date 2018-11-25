@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
-const mobileWidth = 685;
+const mobileWidth = 768;
 
 @Injectable({
   providedIn: 'root'
