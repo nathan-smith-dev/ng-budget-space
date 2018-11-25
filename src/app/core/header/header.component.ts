@@ -43,7 +43,7 @@ export class HeaderComponent implements OnInit {
   }
 
   onResize(event) {
-    this.isMobile = event.target.innerWidth <= 625;
+    this.isMobile = event.target.innerWidth <= 685;
   }
 
   async handleLogin() {

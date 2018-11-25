@@ -3,6 +3,7 @@ $primary-color: #45B649;
 $secondary-color: #b4bc20;
 $tertiary-color: #DCE35B;
 $white: hsla(0, 0, 98%, 1.0);
+$medium-grey: #90917e;
 
 // paddings and margins
 $pm-xs: 4px;
@@ -10,3 +11,9 @@ $pm-sm: 16px;
 $pm-md: 32px;
 $pm-lg: 48px;
 $pm-xl: 64px;
+
+// breakpoints 
+$bp-xl: 1200px;
+$bp-lg: 980px;
+$bp-md: 600px;
+$bp-sm: 450px;
