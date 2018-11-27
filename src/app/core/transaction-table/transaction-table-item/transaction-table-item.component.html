@@ -1,6 +1,7 @@
 <div 
   class="table-item row padding-y__sm"
   [ngClass]="{ 'darker': darker }"
+  (click)="handleTableItemClicked()"
 >
   <div class="col-3">{{ transaction.date | date:"MM/dd" }}</div>
   <div 

@@ -17,6 +17,7 @@ import { HeaderService } from './header/header.service';
 import { TransactionTableComponent } from './transaction-table/transaction-table.component';
 import { TransactionTableHeaderComponent } from './transaction-table/transaction-table-header/transaction-table-header.component';
 import { TransactionTableItemComponent } from './transaction-table/transaction-table-item/transaction-table-item.component';
+import { TransactionTableService } from './transaction-table/transaction-table.service';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { TransactionTableItemComponent } from './transaction-table/transaction-t
   ],
   providers: [
     HeaderService,
+    TransactionTableService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ]
 })

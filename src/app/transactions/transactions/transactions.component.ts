@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import * as fromApp from '../../store/app.reducers';
 import * as fromTransactions from '../store/transactions.reducers';
 import { Observable } from 'rxjs';
+import { Transaction } from '../transaction.model';
 
 @Component({
   selector: 'app-transactions',
@@ -16,6 +17,10 @@ export class TransactionsComponent implements OnInit {
 
   ngOnInit() {
     this.transactionsState = this.store.select('transactions');
+  }
+
+  handleItemClicked(transaction: Transaction) {
+    console.log('Here is the trans', transaction);
   }
 
 }

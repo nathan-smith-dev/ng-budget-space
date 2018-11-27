@@ -1,6 +1,7 @@
 <div class="container-fluid margin-y__md">
   <app-transaction-table
     [transactions]="(transactionsState | async).transactions"
+    (itemClicked)="handleItemClicked($event)"
   >
   </app-transaction-table>
 </div>
