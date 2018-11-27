@@ -20,6 +20,7 @@ import { TransactionTableItemComponent } from './transaction-table/transaction-t
 import { TransactionTableService } from './transaction-table/transaction-table.service';
 import { ModalComponent } from './modal/modal.component';
 import { ClickStopPropagationDirective } from './click-stop-propagation.directive';
+import { ButtonComponent } from './button/button.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { ClickStopPropagationDirective } from './click-stop-propagation.directiv
     TransactionTableHeaderComponent,
     TransactionTableItemComponent,
     ModalComponent,
-    ClickStopPropagationDirective
+    ClickStopPropagationDirective,
+    ButtonComponent
   ],
   imports: [
     CommonModule,
@@ -50,7 +52,8 @@ import { ClickStopPropagationDirective } from './click-stop-propagation.directiv
     ToastMessageComponent,
     TransactionTableComponent,
     ModalComponent,
-    ClickStopPropagationDirective
+    ClickStopPropagationDirective,
+    ButtonComponent
   ],
   providers: [
     HeaderService,

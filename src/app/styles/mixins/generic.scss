@@ -11,3 +11,8 @@
     color: $primary-color;
     cursor: pointer;
 }
+
+@mixin hoverable-link-opacity-only {
+    opacity: 0.7;
+    cursor: pointer;
+}
