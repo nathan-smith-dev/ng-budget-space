@@ -18,6 +18,8 @@ import { TransactionTableComponent } from './transaction-table/transaction-table
 import { TransactionTableHeaderComponent } from './transaction-table/transaction-table-header/transaction-table-header.component';
 import { TransactionTableItemComponent } from './transaction-table/transaction-table-item/transaction-table-item.component';
 import { TransactionTableService } from './transaction-table/transaction-table.service';
+import { ModalComponent } from './modal/modal.component';
+import { ClickStopPropagationDirective } from './click-stop-propagation.directive';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { TransactionTableService } from './transaction-table/transaction-table.s
     ToastMessageComponent,
     TransactionTableComponent,
     TransactionTableHeaderComponent,
-    TransactionTableItemComponent
+    TransactionTableItemComponent,
+    ModalComponent,
+    ClickStopPropagationDirective
   ],
   imports: [
     CommonModule,
@@ -44,7 +48,9 @@ import { TransactionTableService } from './transaction-table/transaction-table.s
     AppRoutingModule, 
     HeaderComponent,
     ToastMessageComponent,
-    TransactionTableComponent
+    TransactionTableComponent,
+    ModalComponent,
+    ClickStopPropagationDirective
   ],
   providers: [
     HeaderService,

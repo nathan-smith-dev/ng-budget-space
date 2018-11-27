@@ -82,6 +82,24 @@
             padding-bottom: $pm-xl;
         }
     }
+    
+    &-all {
+        &__xs {
+            padding: $pm-xs;
+        }
+        &__sm {
+            padding: $pm-sm;
+        }
+        &__md {
+            padding: $pm-md;
+        }
+        &__lg {
+            padding: $pm-lg;
+        }
+        &__xl {
+            padding: $pm-xl;
+        }
+    }
 }
 
 .margin {
@@ -149,6 +167,21 @@
         }
         &__xl {
             margin-top: $pm-xl;
+            margin-bottom: $pm-xl;
+        }
+    }
+
+    &-bottom {
+        &__sm {
+            margin-bottom: $pm-sm;
+        }
+        &__md {
+            margin-bottom: $pm-md;
+        }
+        &__lg {
+            margin-bottom: $pm-lg;
+        }
+        &__xl {
             margin-bottom: $pm-xl;
         }
     }

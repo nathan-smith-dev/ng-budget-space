@@ -1,24 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { ModalService } from '../modal/modal.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
+  providers: [ModalService]
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private modalService: ModalService) { }
 
   ngOnInit() {
   }
 
   handleTest() {
-    console.log('Handle Test');
-    this.httpClient.get<any>('https://budget-space.com/api/transactions')
-      .subscribe(result => {
-        console.log(result);
-      })
+    this.modalService.toggleModal();
   }
 
 }

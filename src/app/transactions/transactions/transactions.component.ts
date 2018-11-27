@@ -4,16 +4,21 @@ import * as fromApp from '../../store/app.reducers';
 import * as fromTransactions from '../store/transactions.reducers';
 import { Observable } from 'rxjs';
 import { Transaction } from '../transaction.model';
+import { ModalService } from 'src/app/core/modal/modal.service';
 
 @Component({
   selector: 'app-transactions',
   templateUrl: './transactions.component.html',
-  styleUrls: ['./transactions.component.scss']
+  styleUrls: ['./transactions.component.scss'],
+  providers: [ModalService]
 })
 export class TransactionsComponent implements OnInit {
   transactionsState: Observable<fromTransactions.State>;
 
-  constructor(private store: Store<fromApp.AppState>) { }
+  constructor(
+    private store: Store<fromApp.AppState>,
+    private modalService: ModalService
+  ) { }
 
   ngOnInit() {
     this.transactionsState = this.store.select('transactions');
@@ -21,6 +26,7 @@ export class TransactionsComponent implements OnInit {
 
   handleItemClicked(transaction: Transaction) {
     console.log('Here is the trans', transaction);
+    this.modalService.toggleModal();
   }
 
 }
