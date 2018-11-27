@@ -14,6 +14,7 @@ import { ModalService } from 'src/app/core/modal/modal.service';
 })
 export class TransactionsComponent implements OnInit {
   transactionsState: Observable<fromTransactions.State>;
+  transaction: Transaction = new Transaction(null, null, null, null, null, null, null);
 
   constructor(
     private store: Store<fromApp.AppState>,
@@ -25,7 +26,7 @@ export class TransactionsComponent implements OnInit {
   }
 
   handleItemClicked(transaction: Transaction) {
-    console.log('Here is the trans', transaction);
+    this.transaction = transaction;
     this.modalService.toggleModal();
   }
 

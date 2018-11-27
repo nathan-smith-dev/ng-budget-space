@@ -2,7 +2,7 @@
 @import "../../styles/mixins/generic.scss";
 
 .wrapper {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     height: 100%;
@@ -17,6 +17,7 @@
     background-color: $white;
     border-radius: 10px;
     max-width: 80%;
+    min-width: 50%;
 
     &-header {
         display: flex;
