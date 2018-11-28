@@ -30,4 +30,12 @@ export class TransactionsComponent implements OnInit {
     this.modalService.toggleModal();
   }
 
+  handleEdit() {
+    console.log('Edit', this.transaction);
+  }
+
+  handleDelete() {
+    console.log('Delete', this.transaction);
+  }
+
 }

@@ -28,11 +28,13 @@
   </div>
   <div class="ng-modal-footer">
     <app-button
+      (click)="handleEdit()"
+      class="margin-right__sm"
       color="primary"
-    >Primary</app-button>
+    >Edit</app-button>
     <app-button
-      color="medium-grey"
-      [outline]="true"
-    >Secondary</app-button>
+      (click)="handleDelete()"
+      color="white"
+    >Delete</app-button>
   </div>
 </app-modal>
