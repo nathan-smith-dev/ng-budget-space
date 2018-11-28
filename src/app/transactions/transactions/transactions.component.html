@@ -7,6 +7,8 @@
 </div>
 <app-modal
   title="Transaction Details"
+  [open]="detailModalOpen"
+  (modalToggled)="handleToggleDetailModal()"
 >
   <div class="ng-modal-content">
     <div class="group margin-y__sm">
@@ -38,3 +40,6 @@
     >Delete</app-button>
   </div>
 </app-modal>
+<app-transaction-form
+  title="Edit Transaction"
+></app-transaction-form>

@@ -1,6 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
-import { ModalService } from './modal.service';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
@@ -27,16 +26,18 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 })
 export class ModalComponent implements OnInit {
   @Input() title: string;
+  @Input() open: boolean = false;
+  @Output() modalToggled = new EventEmitter();
   
   faTimes = faTimes;
 
-  constructor(private modalService: ModalService) { }
+  constructor() { }
 
   ngOnInit() {
   }
 
   handleToggleModal() {
-    this.modalService.toggleModal();
+    this.modalToggled.emit();
   }
 
 }
