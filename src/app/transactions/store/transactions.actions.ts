@@ -25,7 +25,7 @@ export class FetchUserCategories implements Action {
 export class SetUserCategories implements Action {
     readonly type = SET_USER_CATEGORIES;
 
-    constructor(public payload: Category) {}
+    constructor(public payload: Category[]) {}
 }
 
 export type TransactionActions = FetchTransactions |

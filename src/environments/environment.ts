@@ -7,7 +7,8 @@ export const environment = {
   firebase: {
     apiKey: 'AIzaSyBHg0EROkE4LBvIavGbe9qa5KIj3AAtoMw',
     authDomain: 'react-finance-f20df.firebaseapp.com'
-  }
+  },
+  apiBaseUrl: 'https://budget-space.com/api'
 };
 
 /*

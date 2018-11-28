@@ -48,3 +48,14 @@
   (modalToggled)="handleToggleEdit()"
   (formSubmitted)="handleSubmitForm($event)"
 ></app-transaction-form>
+<app-transaction-form
+  title="New Transaction"
+  [transaction]="transaction"
+  [open]="newModalOpen"
+  (modalToggled)="handleToggleNew()"
+  (formSubmitted)="handleSubmitForm($event)"
+></app-transaction-form>
+<app-floating-action
+  (click)="handleToggleNew()"
+  color="primary"
+></app-floating-action>

@@ -21,6 +21,10 @@
         -moz-appearance: none;
         appearance: none;
 
+        &.ng-touched.ng-invalid {
+            border: 1px solid red;
+        }
+
         &:focus {
             outline: none;
             border: 1px solid $primary-color;

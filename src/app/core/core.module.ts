@@ -21,6 +21,7 @@ import { TransactionTableService } from './transaction-table/transaction-table.s
 import { ModalComponent } from './modal/modal.component';
 import { ClickStopPropagationDirective } from './click-stop-propagation.directive';
 import { ButtonComponent } from './button/button.component';
+import { FloatingActionComponent } from './floating-action/floating-action.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { ButtonComponent } from './button/button.component';
     TransactionTableItemComponent,
     ModalComponent,
     ClickStopPropagationDirective,
-    ButtonComponent
+    ButtonComponent,
+    FloatingActionComponent
   ],
   imports: [
     CommonModule,
@@ -53,7 +55,8 @@ import { ButtonComponent } from './button/button.component';
     TransactionTableComponent,
     ModalComponent,
     ClickStopPropagationDirective,
-    ButtonComponent
+    ButtonComponent,
+    FloatingActionComponent
   ],
   providers: [
     HeaderService,

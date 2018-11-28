@@ -6,8 +6,7 @@ import { switchMap, map } from "rxjs/operators";
 import { HttpClient } from "@angular/common/http";
 import { Transaction } from "../transaction.model";
 import { Category } from "../category.model";
-
-const url = 'https://budget-space.com/api';
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class TransactionEffects {
@@ -21,7 +20,7 @@ export class TransactionEffects {
         .ofType(TransactionActions.FETCH_TRANSACTIONS)
         .pipe(
             switchMap((action: TransactionActions.FetchTransactions) => {
-                return this.httpClient.get<Transaction[]>(`${url}/transactions`)
+                return this.httpClient.get<Transaction[]>(`${environment.apiBaseUrl}/transactions`)
             }),
             map(
                 (transactions: Transaction[]) => {
@@ -38,7 +37,7 @@ export class TransactionEffects {
         .ofType(TransactionActions.FETCH_USER_CATEGORIES)
         .pipe(
             switchMap((action: TransactionActions.FetchUserCategories) => {
-                return this.httpClient.get<Category[]>(`${url}/categories`)
+                return this.httpClient.get<Category[]>(`${environment.apiBaseUrl}/categories`)
             }),
             map(
                 (categories: Category[]) => {
