@@ -7,6 +7,7 @@ import * as fromApp from "../../store/app.reducers";
 import * as fromTransactions from "../store/transactions.reducers";
 import { Observable } from 'rxjs';
 import { Category } from '../category.model';
+import { AppValidators } from 'src/app/validators/validators';
 
 @Component({
   selector: 'app-transaction-form',
@@ -42,7 +43,7 @@ export class TransactionFormComponent implements OnInit {
   private initForm() {
     this.transactionForm = new FormGroup({
       date: new FormControl(moment(this.transaction.date).format('YYYY-MM-DD'), [Validators.required]),
-      amount: new FormControl(this.transaction.amount, [Validators.required]),
+      amount: new FormControl(this.transaction.amount, [Validators.required, AppValidators.postiveNumeric]),
       type: new FormControl(this.transaction.type, [Validators.required]),
       category: new FormControl(this.transaction.categoryid, [Validators.required]),
       description: new FormControl(this.transaction.desc)
