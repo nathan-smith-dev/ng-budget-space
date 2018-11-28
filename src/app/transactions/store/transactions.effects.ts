@@ -5,6 +5,7 @@ import * as TransactionActions from './transactions.actions';
 import { switchMap, map } from "rxjs/operators";
 import { HttpClient } from "@angular/common/http";
 import { Transaction } from "../transaction.model";
+import { Category } from "../category.model";
 
 const url = 'https://budget-space.com/api';
 
@@ -27,6 +28,23 @@ export class TransactionEffects {
                     return {
                         type: TransactionActions.SET_TRANSACTIONS,
                         payload: transactions
+                    }
+                }
+            )
+        );
+    
+    @Effect()
+    userCategoriesFetch = this.actions$
+        .ofType(TransactionActions.FETCH_USER_CATEGORIES)
+        .pipe(
+            switchMap((action: TransactionActions.FetchUserCategories) => {
+                return this.httpClient.get<Category[]>(`${url}/categories`)
+            }),
+            map(
+                (categories: Category[]) => {
+                    return {
+                        type: TransactionActions.SET_USER_CATEGORIES,
+                        payload: categories
                     }
                 }
             )

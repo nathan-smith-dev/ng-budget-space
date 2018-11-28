@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { TransactionsComponent } from './transactions/transactions.component';
 import { TransactionsRoutingModule } from './transactions-routing.module';
@@ -16,7 +16,7 @@ import { TransactionFormComponent } from './transaction-form/transaction-form.co
     CommonModule,
     TransactionsRoutingModule,
     CoreModule,
-    FormsModule,
+    ReactiveFormsModule,
     StoreModule.forFeature('transactions', transactionReducer),
     EffectsModule.forFeature([TransactionEffects])
   ]

@@ -44,6 +44,11 @@
             }
         }
     }
+
+    &-content {
+        max-height: 60vh;
+        overflow: scroll;
+    }
     
     &-footer {
         display: flex;

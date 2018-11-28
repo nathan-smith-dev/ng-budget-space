@@ -14,6 +14,7 @@ export class TransactionsComponent implements OnInit {
   transactionsState: Observable<fromTransactions.State>;
   transaction: Transaction = new Transaction(null, null, null, null, null, null, null);
   detailModalOpen: boolean = false;
+  editModalOpen: boolean = false;
 
   constructor(
     private store: Store<fromApp.AppState>
@@ -32,8 +33,13 @@ export class TransactionsComponent implements OnInit {
     this.detailModalOpen = !this.detailModalOpen;
   }
 
+  handleToggleEdit() {
+    this.editModalOpen = !this.editModalOpen;
+  }
+
   handleEdit() {
     console.log('Edit', this.transaction);
+    this.handleToggleEdit();
   }
 
   handleDelete() {

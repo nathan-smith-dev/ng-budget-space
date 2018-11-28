@@ -13,6 +13,11 @@
         transform: translateY(1px);
         @include shadow-sm;
     }
+
+    &:disabled {
+        cursor: not-allowed;
+        opacity: .5;
+    }
 }
 
 .color {

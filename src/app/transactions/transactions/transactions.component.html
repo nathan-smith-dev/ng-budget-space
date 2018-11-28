@@ -41,5 +41,9 @@
   </div>
 </app-modal>
 <app-transaction-form
+  *ngIf="editModalOpen"
   title="Edit Transaction"
+  [transaction]="transaction"
+  [open]="editModalOpen"
+  (modalToggled)="handleToggleEdit()"
 ></app-transaction-form>

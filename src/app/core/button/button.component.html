@@ -1,6 +1,7 @@
 <button
   class="button padding-all__xs"
   [type]="type"
+  [disabled]="disabled"
   [ngClass]="{ 
     'color-primary__outline': outline && color === 'primary',
     'color-primary': !outline && color === 'primary',
