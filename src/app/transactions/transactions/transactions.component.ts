@@ -38,8 +38,11 @@ export class TransactionsComponent implements OnInit {
   }
 
   handleEdit() {
-    console.log('Edit', this.transaction);
     this.handleToggleEdit();
+  }
+
+  handleSubmitForm(submittedValue: { transaction: Transaction, edit: boolean }) {
+    console.log(submittedValue);
   }
 
   handleDelete() {

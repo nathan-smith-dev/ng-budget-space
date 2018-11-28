@@ -46,4 +46,5 @@
   [transaction]="transaction"
   [open]="editModalOpen"
   (modalToggled)="handleToggleEdit()"
+  (formSubmitted)="handleSubmitForm($event)"
 ></app-transaction-form>

@@ -54,8 +54,15 @@ export class TransactionFormComponent implements OnInit {
   }
 
   handleSubmitForm() {
-    console.log(this.transactionForm);
-    this.formSubmitted.emit();
+    const id = this.transaction.id;
+    const amount = this.transactionForm.controls.amount.value;
+    const date = this.transactionForm.controls.date.value;
+    const categoryid = this.transactionForm.controls.category.value;
+    const desc = this.transactionForm.controls.description.value;
+    const type = this.transactionForm.controls.type.value;
+
+    const transaction = new Transaction(id, amount, null, categoryid, date, desc, type);
+    this.formSubmitted.emit({ transaction, edit: id ? true : false });
   }
 
 }
