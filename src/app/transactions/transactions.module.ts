@@ -9,9 +9,14 @@ import { StoreModule } from '@ngrx/store';
 import { transactionReducer } from './store/transactions.reducers';
 import { CoreModule } from '../core/core.module';
 import { TransactionFormComponent } from './transaction-form/transaction-form.component';
+import { MonthYearSelectorComponent } from './month-year-selector/month-year-selector.component';
 
 @NgModule({
-  declarations: [TransactionsComponent, TransactionFormComponent],
+  declarations: [
+    TransactionsComponent,
+    TransactionFormComponent,
+    MonthYearSelectorComponent
+  ],
   imports: [
     CommonModule,
     TransactionsRoutingModule,

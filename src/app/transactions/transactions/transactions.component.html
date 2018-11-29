@@ -4,7 +4,16 @@
     (itemClicked)="handleItemClicked($event)"
   >
   </app-transaction-table>
+  <div
+    class="margin-top__md"
+  >
+    <app-month-year-selector
+    ></app-month-year-selector>
+  </div>
 </div>
+
+
+<!-- Modals -->
 <app-modal
   title="Transaction Details"
   [open]="detailModalOpen"

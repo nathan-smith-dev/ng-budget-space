@@ -7,6 +7,7 @@ export const FETCH_TRANSACTIONS = 'FETCH_TRANSACTIONS';
 export const SET_TRANSACTIONS = 'SET_TRANSACTIONS';
 export const FETCH_USER_CATEGORIES = 'FETCH_USER_CATEGORIES';
 export const SET_USER_CATEGORIES = 'SET_USER_CATEGORIES';
+export const SET_MONTH_YEAR = 'SET_MONTH_YEAR';
 
 export class FetchTransactions implements Action {
     readonly type = FETCH_TRANSACTIONS;
@@ -28,7 +29,14 @@ export class SetUserCategories implements Action {
     constructor(public payload: Category[]) {}
 }
 
+export class SetMonthYear implements Action {
+    readonly type = SET_MONTH_YEAR;
+
+    constructor(public payload: { month: number, year: number }) {}
+}
+
 export type TransactionActions = FetchTransactions |
     SetTransactions |
     FetchUserCategories | 
-    SetUserCategories;
+    SetUserCategories |
+    SetMonthYear;

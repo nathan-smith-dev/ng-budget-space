@@ -185,6 +185,21 @@
             margin-bottom: $pm-xl;
         }
     }
+
+    &-top {
+        &__sm {
+            margin-top: $pm-sm;
+        }
+        &__md {
+            margin-top: $pm-md;
+        }
+        &__lg {
+            margin-top: $pm-lg;
+        }
+        &__xl {
+            margin-top: $pm-xl;
+        }
+    }
 }
 
 @mixin padding-top-bottom-sm {
