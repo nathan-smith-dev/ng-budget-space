@@ -11,11 +11,10 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
 import { TransactionsModule } from './transactions/transactions.module';
-import { MonthReportModule } from './month-report/month-report.module';
-import { AnnualReportModule } from './annual-report/annual-report.module';
 import { reducers } from './store/app.reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { TransactionEffects } from './transactions/store/transactions.effects';
+import { ReportModule } from './report/report.module';
 
 @NgModule({
   declarations: [
@@ -28,8 +27,7 @@ import { TransactionEffects } from './transactions/store/transactions.effects';
     SharedModule,
     AuthModule, 
     TransactionsModule,
-    MonthReportModule, 
-    AnnualReportModule,
+    ReportModule,
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([TransactionEffects]),
     StoreRouterConnectingModule.forRoot(),

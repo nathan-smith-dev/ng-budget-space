@@ -24,6 +24,9 @@ import { MonthYearSelectorComponent } from './month-year-selector/month-year-sel
     ReactiveFormsModule,
     StoreModule.forFeature('transactions', transactionReducer),
     EffectsModule.forFeature([TransactionEffects])
+  ],
+  exports: [
+    MonthYearSelectorComponent
   ]
 })
 export class TransactionsModule { }
