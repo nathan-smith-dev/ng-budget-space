@@ -9,6 +9,7 @@ import { Category } from "../category.model";
 import { environment } from '../../../environments/environment';
 import { Store } from "@ngrx/store";
 import * as fromApp from '../../store/app.reducers';
+import { CategorizedTransaction } from "../CategorizedTransaction.model";
 
 @Injectable()
 export class TransactionEffects {
@@ -57,4 +58,27 @@ export class TransactionEffects {
                 }
             )
         );
+    
+        @Effect()
+        categoryTotalsFetch = this.actions$
+            .ofType(TransactionActions.FETCH_CATEGORIZED_EXPENSES)
+            .pipe(
+                withLatestFrom(this.store),
+                switchMap(([action, storeState]) => {
+                    return this.httpClient.get<CategorizedTransaction[]>(`${environment.apiBaseUrl}/categories/totals`, 
+                        {
+                            params: new HttpParams()
+                                .set('month', (storeState.transactions.monthYear.month + 1).toString())
+                                .set('year', storeState.transactions.monthYear.year.toString())
+                        })
+                }),
+                map(
+                    (categorizedTransactions: CategorizedTransaction[]) => {
+                        return {
+                            type: TransactionActions.SET_CATEGORIZED_EXPENSES,
+                            payload: categorizedTransactions
+                        }
+                    }
+                )
+            );
 }

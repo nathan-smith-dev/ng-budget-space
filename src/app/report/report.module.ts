@@ -4,16 +4,21 @@ import { ReportRoutingModule } from './report-routing.module';
 import { MonthReportComponent } from './month-report/month-report.component';
 import { TransactionsModule } from '../transactions/transactions.module';
 import { AnnualReportComponent } from './annual-report/annual-report.component';
+import { PieChartComponent } from './pie-chart/pie-chart.component';
+import { ChartModule } from 'angular2-chartjs';
+
 
 @NgModule({
   declarations: [
     MonthReportComponent,
-    AnnualReportComponent
+    AnnualReportComponent,
+    PieChartComponent
   ],
   imports: [
     CommonModule,
     ReportRoutingModule,
-    TransactionsModule
+    TransactionsModule,
+    ChartModule
   ]
 })
 export class ReportModule { }

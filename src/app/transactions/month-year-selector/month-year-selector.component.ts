@@ -58,6 +58,7 @@ export class MonthYearSelectorComponent implements OnInit, OnDestroy {
     this.monthYear.month = +event.target.value;
     this.store.dispatch(new TransactionActions.SetMonthYear({ month: this.monthYear.month, year: this.monthYear.year }));
     this.store.dispatch(new TransactionActions.FetchTransactions);
+    this.store.dispatch(new TransactionActions.FetchCategorizedExpenses);
   }
 
 }

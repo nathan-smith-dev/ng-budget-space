@@ -45,6 +45,7 @@ export class AppComponent implements OnInit, OnDestroy {
         this.store.dispatch(new AuthActions.SetToken(user.qa));
         this.store.dispatch(new TransactionActions.FetchTransactions);
         this.store.dispatch(new TransactionActions.FetchUserCategories);
+        this.store.dispatch(new TransactionActions.FetchCategorizedExpenses);
       } else {
         this.store.dispatch(new AuthActions.SetUser(null));
         this.store.dispatch(new AuthActions.SetToken(null));
