@@ -25,6 +25,13 @@
                 [data]="pieData"
                 [labels]="pieLabels"
             ></app-pie-chart>
+            <div class="margin-top__md">
+                <app-percent-category-table
+                    [categorizedExpenses]="(transactionsState | async).categorizedExpenses"
+                    [colors]="colors"
+                    [total]="pieTotals"
+                ></app-percent-category-table>
+            </div>
             <ng-container *ngTemplateOutlet="monthYearSelector"></ng-container>
         </div>
         <div 

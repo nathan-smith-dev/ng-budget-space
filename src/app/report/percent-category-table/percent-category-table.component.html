@@ -1,0 +1,15 @@
+<div class="header row">
+  <div class="col-5">Category</div>
+  <div class="col-4 total">Total</div>
+  <div class="col-3 percent">%</div>
+</div>
+<div 
+  *ngFor="let expense of categorizedExpenses; let i = index;"
+  class="row content padding-y__sm"
+  [ngClass]="{ 'even': i % 2 === 0 }"
+  [ngStyle]="{ 'border-color': colors[i] }"
+>
+  <div class="col-5">{{ expense.category }}</div>
+  <div class="col-4 total">{{ expense.total | currency }}</div>
+  <div class="col-3 percent">{{ expense.total / total | percent }}</div>
+</div>

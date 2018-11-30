@@ -9,6 +9,7 @@ import { ChartModule } from 'angular2-chartjs';
 import { BarChartComponent } from './bar-chart/bar-chart.component';
 import { SharedModule } from '../shared/shared.module';
 import { NetTableComponent } from './net-table/net-table.component';
+import { PercentCategoryTableComponent } from './percent-category-table/percent-category-table.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { NetTableComponent } from './net-table/net-table.component';
     AnnualReportComponent,
     PieChartComponent,
     BarChartComponent,
-    NetTableComponent
+    NetTableComponent,
+    PercentCategoryTableComponent
   ],
   imports: [
     CommonModule,

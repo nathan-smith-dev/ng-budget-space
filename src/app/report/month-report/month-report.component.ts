@@ -4,6 +4,7 @@ import * as fromApp from '../../store/app.reducers';
 import * as fromTransaction from '../../transactions/store/transactions.reducers';
 import { Observable, Subscription } from 'rxjs';
 import { faChartBar, faChartPie } from '@fortawesome/free-solid-svg-icons';
+import { PIE_CHART_COLORS } from '../pie-chart/pie-chart.component';
 
 @Component({
   selector: 'app-month-report',
@@ -15,11 +16,13 @@ export class MonthReportComponent implements OnInit, OnDestroy {
   transactionsStateSubscription: Subscription;
   pieData: number[];
   pieLabels: string[];
+  pieTotals: number = 0;
   barData: number[];
   barLabels: string[];
+  colors: string[] = PIE_CHART_COLORS;
   faChartPie = faChartPie;
   faChartBar = faChartBar;
-  activeChart: string = 'bar';
+  activeChart: string = 'pie';
 
   constructor(
     private store: Store<fromApp.AppState>
@@ -38,6 +41,7 @@ export class MonthReportComponent implements OnInit, OnDestroy {
         } else {
           const sorted = state.categorizedExpenses.sort((a, b) => b.total - a.total);
           this.pieData = sorted.map(t => t.total);
+          this.pieTotals = this.pieData.reduce((a, b) => a + b, 0);
           this.pieLabels = sorted.map(t => t.category);
 
           this.barData = [state.totals.incomes, state.totals.incomes];
