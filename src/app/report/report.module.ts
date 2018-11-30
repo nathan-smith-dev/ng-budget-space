@@ -8,6 +8,7 @@ import { PieChartComponent } from './pie-chart/pie-chart.component';
 import { ChartModule } from 'angular2-chartjs';
 import { BarChartComponent } from './bar-chart/bar-chart.component';
 import { SharedModule } from '../shared/shared.module';
+import { NetTableComponent } from './net-table/net-table.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { SharedModule } from '../shared/shared.module';
     MonthReportComponent,
     AnnualReportComponent,
     PieChartComponent,
-    BarChartComponent
+    BarChartComponent,
+    NetTableComponent
   ],
   imports: [
     CommonModule,

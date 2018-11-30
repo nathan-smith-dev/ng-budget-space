@@ -15,7 +15,7 @@
             [ngClass]="{ 'active': activeChart === 'bar' }"
         ></fa-icon>
     </div>
-    <div class="row-wrapper row row-eq-height">
+    <div class="row">
         <div
             *ngIf="activeChart === 'pie'"
             class="col-12"
@@ -25,6 +25,7 @@
                 [data]="pieData"
                 [labels]="pieLabels"
             ></app-pie-chart>
+            <ng-container *ngTemplateOutlet="monthYearSelector"></ng-container>
         </div>
         <div 
             *ngIf="activeChart === 'bar'"
@@ -35,9 +36,19 @@
                 [data]="barData"
                 [labels]="barLabels"
             ></app-bar-chart>
+            <div class="margin-top__md">
+                <app-net-table
+                    [income]="(transactionsState | async).totals.incomes"
+                    [expense]="(transactionsState | async).totals.expenses"
+                    [net]="(transactionsState | async).totals.incomes - (transactionsState | async).totals.expenses"
+                ></app-net-table>
+            </div>
+            <ng-container *ngTemplateOutlet="monthYearSelector"></ng-container>
         </div>
     </div>
-    <div class="margin-top__lg">
-        <app-month-year-selector></app-month-year-selector>
-    </div>
+    <ng-template #monthYearSelector>
+        <div class="margin-top__lg">
+            <app-month-year-selector></app-month-year-selector>
+        </div>
+    </ng-template>
 </div>

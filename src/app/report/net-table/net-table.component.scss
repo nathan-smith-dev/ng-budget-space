@@ -1,0 +1,18 @@
+@import "../../styles/variables.scss";
+
+.header {
+    font-size: 12px;
+    color: $medium-grey;
+}
+
+.content {
+    margin-top: 4px;
+    
+    .income {
+        color: green;
+    }
+
+    .expense {
+        color: red;
+    }
+}

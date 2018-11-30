@@ -1,0 +1,13 @@
+<div class="row header">
+  <div class="col-4">Incomes</div>
+  <div class="col-4">Expenses</div>
+  <div class="col-4">Net</div>
+</div>
+<div class="content row">
+  <div class="income col-4">{{ income | currency }}</div>
+  <div class="expense col-4">{{ expense | currency }}</div>
+  <div 
+    [ngClass]="{ 'income': net >= 0, 'expense': net < 0 }"
+    class="net col-4"
+  >{{ net | currency }}</div>
+</div>

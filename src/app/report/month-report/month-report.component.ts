@@ -19,7 +19,7 @@ export class MonthReportComponent implements OnInit, OnDestroy {
   barLabels: string[];
   faChartPie = faChartPie;
   faChartBar = faChartBar;
-  activeChart: string = 'pie';
+  activeChart: string = 'bar';
 
   constructor(
     private store: Store<fromApp.AppState>
