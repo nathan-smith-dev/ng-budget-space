@@ -4,8 +4,25 @@
     align-items: flex-end;
 }
 
-.col-md-6 {
-    @media only screen and (max-width: 768px) {
-        margin-top: $pm-md;
+.col-12 {
+    height: 50vh;
+}
+
+.graph-selector {
+    display: flex;
+    justify-content: space-between; 
+
+    .icon {
+        color: $medium-grey;
+
+        &:hover {
+            cursor: pointer;
+            opacity: 0.7;
+            color: $primary-color;
+        }
+    }
+
+    .active {
+        color: $primary-color;
     }
 }

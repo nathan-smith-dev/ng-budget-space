@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import * as fromApp from '../../store/app.reducers';
 import * as fromTransaction from '../../transactions/store/transactions.reducers';
 import { Observable, Subscription } from 'rxjs';
+import { faChartBar, faChartPie } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-month-report',
@@ -16,6 +17,9 @@ export class MonthReportComponent implements OnInit, OnDestroy {
   pieLabels: string[];
   barData: number[];
   barLabels: string[];
+  faChartPie = faChartPie;
+  faChartBar = faChartBar;
+  activeChart: string = 'pie';
 
   constructor(
     private store: Store<fromApp.AppState>
@@ -40,6 +44,10 @@ export class MonthReportComponent implements OnInit, OnDestroy {
           this.barLabels = ['Incomes', 'Expenses'];
         }
       });
+  }
+
+  toggleChart(chart: string) {
+    this.activeChart = chart;
   }
 
   ngOnDestroy() {

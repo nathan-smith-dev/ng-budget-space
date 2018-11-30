@@ -7,6 +7,7 @@ import { AnnualReportComponent } from './annual-report/annual-report.component';
 import { PieChartComponent } from './pie-chart/pie-chart.component';
 import { ChartModule } from 'angular2-chartjs';
 import { BarChartComponent } from './bar-chart/bar-chart.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { BarChartComponent } from './bar-chart/bar-chart.component';
     CommonModule,
     ReportRoutingModule,
     TransactionsModule,
-    ChartModule
+    ChartModule,
+    SharedModule
   ]
 })
 export class ReportModule { }

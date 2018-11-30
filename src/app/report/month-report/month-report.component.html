@@ -1,13 +1,35 @@
 <div class="container-fluid margin-y__md">
+    <div class="graph-selector">
+        <fa-icon 
+            (click)="toggleChart('pie')"
+            [icon]="faChartPie"
+            class="icon"
+            size="2x"
+            [ngClass]="{ 'active': activeChart === 'pie' }"
+        ></fa-icon>
+        <fa-icon 
+            (click)="toggleChart('bar')"
+            [icon]="faChartBar"
+            class="icon"
+            size="2x"
+            [ngClass]="{ 'active': activeChart === 'bar' }"
+        ></fa-icon>
+    </div>
     <div class="row-wrapper row row-eq-height">
-        <div class="col-md-6">
+        <div
+            *ngIf="activeChart === 'pie'"
+            class="col-12"
+        >
             <app-pie-chart
                 title="Monthly Report"
                 [data]="pieData"
                 [labels]="pieLabels"
             ></app-pie-chart>
         </div>
-        <div class="col-md-6">
+        <div 
+            *ngIf="activeChart === 'bar'"
+            class="col-12"
+        >
             <app-bar-chart
                 title="Income VS Spending"
                 [data]="barData"

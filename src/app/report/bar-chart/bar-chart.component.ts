@@ -37,7 +37,8 @@ export class BarChartComponent implements OnInit {
           }
         }
     }, 
-    maintainAspectRatio: false
+    maintainAspectRatio: false,
+    responsive: true
   };
 
   constructor() { }
@@ -66,7 +67,8 @@ export class BarChartComponent implements OnInit {
             }
           }
       }, 
-      maintainAspectRatio: false
+      maintainAspectRatio: false,
+      responsive: true
     };
 
     this.dataConfig = {
