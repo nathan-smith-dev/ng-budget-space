@@ -21,7 +21,7 @@
             class="col-12"
         >
             <app-pie-chart
-                title="Monthly Report"
+                title="Annual Report"
                 [data]="pieData"
                 [labels]="pieLabels"
             ></app-pie-chart>
@@ -32,14 +32,13 @@
                     [total]="pieTotals"
                 ></app-percent-category-table>
             </div>
-            <ng-container *ngTemplateOutlet="monthYearSelector"></ng-container>
         </div>
         <div 
             *ngIf="activeChart === 'bar'"
             class="col-12"
         >
             <app-bar-chart
-                title="Income VS Spending"
+                title="Annual Income VS Spending"
                 [data]="barData"
                 [labels]="barLabels"
             ></app-bar-chart>
@@ -50,12 +49,6 @@
                     [net]="(transactionsState | async).annualTotals.incomes - (transactionsState | async).annualTotals.expenses"
                 ></app-net-table>
             </div>
-            <ng-container *ngTemplateOutlet="monthYearSelector"></ng-container>
         </div>
     </div>
-    <ng-template #monthYearSelector>
-        <div class="margin-top__lg">
-            <app-month-year-selector></app-month-year-selector>
-        </div>
-    </ng-template>
 </div>
