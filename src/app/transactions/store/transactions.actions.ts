@@ -11,6 +11,8 @@ export const SET_USER_CATEGORIES = 'SET_USER_CATEGORIES';
 export const SET_MONTH_YEAR = 'SET_MONTH_YEAR';
 export const FETCH_CATEGORIZED_EXPENSES = 'FETCH_CATEGORIZED_EXPENSES';
 export const SET_CATEGORIZED_EXPENSES = 'SET_CATEGORIZED_EXPENSES';
+export const FETCH_INCOME_AND_EXPENSE_TOALS = 'FETCH_INCOME_AND_EXPENSE_TOALS';
+export const SET_INCOME_AND_EXPENSE_TOALS = 'SET_INCOME_AND_EXPENSE_TOALS';
 
 export class FetchTransactions implements Action {
     readonly type = FETCH_TRANSACTIONS;
@@ -48,10 +50,22 @@ export class SetCategorizedExpenses implements Action {
     constructor(public payload: CategorizedTransaction[]) {}
 }
 
+export class FetchIncomeAndExpenseTotals implements Action {
+    readonly type = FETCH_INCOME_AND_EXPENSE_TOALS;
+}
+
+export class SetIncomeAndExpenseTotals implements Action {
+    readonly type = SET_INCOME_AND_EXPENSE_TOALS;
+
+    constructor(public payload: CategorizedTransaction[]) {}
+}
+
 export type TransactionActions = FetchTransactions |
     SetTransactions |
     FetchUserCategories | 
     SetUserCategories |
     SetMonthYear |
     FetchCategorizedExpenses |
-    SetCategorizedExpenses;
+    SetCategorizedExpenses |
+    FetchIncomeAndExpenseTotals |
+    SetIncomeAndExpenseTotals;

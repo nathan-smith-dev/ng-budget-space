@@ -1,0 +1,11 @@
+@import "../../styles/variables.scss";
+
+.row-wrapper {
+    align-items: flex-end;
+}
+
+.col-md-6 {
+    @media only screen and (max-width: 768px) {
+        margin-top: $pm-md;
+    }
+}

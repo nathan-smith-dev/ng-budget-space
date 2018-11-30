@@ -10,6 +10,7 @@ import { environment } from '../../../environments/environment';
 import { Store } from "@ngrx/store";
 import * as fromApp from '../../store/app.reducers';
 import { CategorizedTransaction } from "../CategorizedTransaction.model";
+import { IncomeAndExpenseTotal } from "../IncomeAndExpenseTotal.model";
 
 @Injectable()
 export class TransactionEffects {
@@ -77,6 +78,29 @@ export class TransactionEffects {
                         return {
                             type: TransactionActions.SET_CATEGORIZED_EXPENSES,
                             payload: categorizedTransactions
+                        }
+                    }
+                )
+            );
+        
+        @Effect()
+        incomesAndExpensesFetch = this.actions$
+            .ofType(TransactionActions.FETCH_INCOME_AND_EXPENSE_TOALS)
+            .pipe(
+                withLatestFrom(this.store),
+                switchMap(([action, storeState]) => {
+                    return this.httpClient.get<IncomeAndExpenseTotal[]>(`${environment.apiBaseUrl}/expenses/totals`, 
+                        {
+                            params: new HttpParams()
+                                .set('month', (storeState.transactions.monthYear.month + 1).toString())
+                                .set('year', storeState.transactions.monthYear.year.toString())
+                        })
+                }),
+                map(
+                    (totals: IncomeAndExpenseTotal[]) => {
+                        return {
+                            type: TransactionActions.SET_INCOME_AND_EXPENSE_TOALS,
+                            payload: totals[0]
                         }
                     }
                 )

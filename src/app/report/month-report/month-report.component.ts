@@ -14,6 +14,8 @@ export class MonthReportComponent implements OnInit, OnDestroy {
   transactionsStateSubscription: Subscription;
   pieData: number[];
   pieLabels: string[];
+  barData: number[];
+  barLabels: string[];
 
   constructor(
     private store: Store<fromApp.AppState>
@@ -27,10 +29,15 @@ export class MonthReportComponent implements OnInit, OnDestroy {
         if(!state.categorizedExpenses) {
           this.pieData = [];
           this.pieLabels = [];
+          this.barData = [];
+          this.barLabels = [];
         } else {
           const sorted = state.categorizedExpenses.sort((a, b) => b.total - a.total);
           this.pieData = sorted.map(t => t.total);
           this.pieLabels = sorted.map(t => t.category);
+
+          this.barData = [state.totals.incomes, state.totals.incomes];
+          this.barLabels = ['Incomes', 'Expenses'];
         }
       });
   }

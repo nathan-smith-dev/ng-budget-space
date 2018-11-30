@@ -46,8 +46,6 @@ export class PieChartComponent implements OnInit, OnChanges {
   @Input() labels: string[];
   @Input() data: number[];
 
-  reload: boolean = false;
-
   type = 'pie';
   dataConfig = {
     labels: [],
@@ -65,7 +63,7 @@ export class PieChartComponent implements OnInit, OnChanges {
     }, 
     legend: {
         display: true,
-        position: 'bottom', 
+        position: 'top', 
         labels: {
           boxWidth: 10
         }, 
@@ -93,7 +91,7 @@ export class PieChartComponent implements OnInit, OnChanges {
       }, 
       legend: {
           display: true,
-          position: 'bottom', 
+          position: 'top', 
           labels: {
             boxWidth: 10
           }, 

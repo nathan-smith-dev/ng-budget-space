@@ -1,10 +1,21 @@
-<div class="row">
-    <div class="col-md-6">
-        <app-pie-chart
-            title="Monthly Report"
-            [data]="pieData"
-            [labels]="pieLabels"
-        ></app-pie-chart>
+<div class="container-fluid margin-y__md">
+    <div class="row-wrapper row row-eq-height">
+        <div class="col-md-6">
+            <app-pie-chart
+                title="Monthly Report"
+                [data]="pieData"
+                [labels]="pieLabels"
+            ></app-pie-chart>
+        </div>
+        <div class="col-md-6">
+            <app-bar-chart
+                title="Income VS Spending"
+                [data]="barData"
+                [labels]="barLabels"
+            ></app-bar-chart>
+        </div>
+    </div>
+    <div class="margin-top__lg">
+        <app-month-year-selector></app-month-year-selector>
     </div>
 </div>
-<app-month-year-selector></app-month-year-selector>
