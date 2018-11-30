@@ -76,8 +76,8 @@ export class BarChartComponent implements OnInit {
       datasets: [{
           data: [...this.data, 0], // needs an added 0 because of chartjs bug
           backgroundColor: [
-            '#F44336',
-            '#4CAF50'
+            '#4CAF50',
+            '#F44336'
           ],
           borderWidth: 1
       }]

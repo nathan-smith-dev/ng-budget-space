@@ -44,7 +44,7 @@ export class MonthReportComponent implements OnInit, OnDestroy {
           this.pieTotals = this.pieData.reduce((a, b) => a + b, 0);
           this.pieLabels = sorted.map(t => t.category);
 
-          this.barData = [state.totals.incomes, state.totals.incomes];
+          this.barData = [state.totals.incomes, state.totals.expenses];
           this.barLabels = ['Incomes', 'Expenses'];
         }
       });

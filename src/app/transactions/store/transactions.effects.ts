@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Effect, Actions } from '@ngrx/effects';
 
 import * as TransactionActions from './transactions.actions';
-import { switchMap, map, withLatestFrom } from "rxjs/operators";
+import { switchMap, map, withLatestFrom, mergeMap } from "rxjs/operators";
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Transaction } from "../transaction.model";
 import { Category } from "../category.model";
@@ -73,14 +73,28 @@ export class TransactionEffects {
                                 .set('year', storeState.transactions.monthYear.year.toString())
                         })
                 }),
-                map(
-                    (categorizedTransactions: CategorizedTransaction[]) => {
-                        return {
-                            type: TransactionActions.SET_CATEGORIZED_EXPENSES,
-                            payload: categorizedTransactions
-                        }
+                withLatestFrom(this.store),
+                mergeMap(
+                    ([categorizedTransactions, storeState]) => {
+                        return this.httpClient.get<CategorizedTransaction[]>(`${environment.apiBaseUrl}/categories/totals`, {
+                            params: new HttpParams()
+                                .set('annual', storeState.transactions.monthYear.year.toString())
+                        }).pipe(
+                            map((annualCategorizedTransactions: CategorizedTransaction[]) => {
+                                return [
+                                    {
+                                        type: TransactionActions.SET_CATEGORIZED_EXPENSES,
+                                        payload: categorizedTransactions
+                                    },
+                                    {
+                                        type: TransactionActions.SET_ANNUAL_CATEGORIZED_EXPENSES,
+                                        payload: annualCategorizedTransactions
+                                    }
+                                ]
+                        }))
                     }
-                )
+                ),
+                mergeMap(array => { return array; })
             );
         
         @Effect()
@@ -96,13 +110,32 @@ export class TransactionEffects {
                                 .set('year', storeState.transactions.monthYear.year.toString())
                         })
                 }),
-                map(
-                    (totals: IncomeAndExpenseTotal[]) => {
-                        return {
-                            type: TransactionActions.SET_INCOME_AND_EXPENSE_TOALS,
-                            payload: totals[0]
-                        }
+                withLatestFrom(this.store),
+                mergeMap(
+                    ([totals, storeState]) => {
+                        return this.httpClient.get<IncomeAndExpenseTotal[]>(`${environment.apiBaseUrl}/expenses/totals`, 
+                        {
+                            params: new HttpParams()
+                                .set('annual', storeState.transactions.monthYear.year.toString())
+                        }).pipe(
+                            map(
+                                (annualIncomeExpenses: IncomeAndExpenseTotal[]) => {
+                                    return [
+                                        {
+                                            type: TransactionActions.SET_ANNUAL_INCOME_AND_EXPENSE_TOALS,
+                                            payload: annualIncomeExpenses[0]
+                                        },
+                                        {
+                                            type: TransactionActions.SET_INCOME_AND_EXPENSE_TOALS,
+                                            payload: totals[0]
+                                        }
+                                    ]
+                                }
+                            )
+                        )
                     }
-                )
+                ), mergeMap((array) => {
+                    return array;
+                })
             );
 }

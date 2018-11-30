@@ -11,7 +11,9 @@ export interface State {
     userCategories: Category[];
     monthYear: { month: number, year: number };
     categorizedExpenses: CategorizedTransaction[];
+    annualCategorizedExpenses: CategorizedTransaction[];
     totals: IncomeAndExpenseTotal;
+    annualTotals: IncomeAndExpenseTotal;
 }
 
 const initialState: State = {
@@ -19,7 +21,9 @@ const initialState: State = {
     userCategories: [],
     monthYear: { month: today.getMonth(), year: today.getFullYear() },
     categorizedExpenses: [],
-    totals: new IncomeAndExpenseTotal(0, 0)
+    annualCategorizedExpenses: [],
+    totals: new IncomeAndExpenseTotal(0, 0),
+    annualTotals: new IncomeAndExpenseTotal(0, 0)
 }
 
 export function transactionReducer(state = initialState, action: TransactionActions.TransactionActions) {
@@ -44,10 +48,20 @@ export function transactionReducer(state = initialState, action: TransactionActi
                 ...state, 
                 categorizedExpenses: action.payload
             }
+        case TransactionActions.SET_ANNUAL_CATEGORIZED_EXPENSES:
+            return {
+                ...state, 
+                annualCategorizedExpenses: action.payload
+            }
         case TransactionActions.SET_INCOME_AND_EXPENSE_TOALS:
             return {
                 ...state, 
                 totals: action.payload
+            }
+        case TransactionActions.SET_ANNUAL_INCOME_AND_EXPENSE_TOALS:
+            return {
+                ...state, 
+                annualTotals: action.payload
             }
         default: 
             return state;

@@ -1,3 +1,61 @@
-<p>
-  annual-report works!
-</p>
+<div class="container-fluid margin-y__md">
+    <div class="graph-selector">
+        <fa-icon 
+            (click)="toggleChart('pie')"
+            [icon]="faChartPie"
+            class="icon"
+            size="2x"
+            [ngClass]="{ 'active': activeChart === 'pie' }"
+        ></fa-icon>
+        <fa-icon 
+            (click)="toggleChart('bar')"
+            [icon]="faChartBar"
+            class="icon"
+            size="2x"
+            [ngClass]="{ 'active': activeChart === 'bar' }"
+        ></fa-icon>
+    </div>
+    <div class="row">
+        <div
+            *ngIf="activeChart === 'pie'"
+            class="col-12"
+        >
+            <app-pie-chart
+                title="Monthly Report"
+                [data]="pieData"
+                [labels]="pieLabels"
+            ></app-pie-chart>
+            <div class="margin-top__md">
+                <app-percent-category-table
+                    [categorizedExpenses]="(transactionsState | async).annualCategorizedExpenses"
+                    [colors]="colors"
+                    [total]="pieTotals"
+                ></app-percent-category-table>
+            </div>
+            <ng-container *ngTemplateOutlet="monthYearSelector"></ng-container>
+        </div>
+        <div 
+            *ngIf="activeChart === 'bar'"
+            class="col-12"
+        >
+            <app-bar-chart
+                title="Income VS Spending"
+                [data]="barData"
+                [labels]="barLabels"
+            ></app-bar-chart>
+            <div class="margin-top__md">
+                <app-net-table
+                    [income]="(transactionsState | async).annualTotals.incomes"
+                    [expense]="(transactionsState | async).annualTotals.expenses"
+                    [net]="(transactionsState | async).annualTotals.incomes - (transactionsState | async).annualTotals.expenses"
+                ></app-net-table>
+            </div>
+            <ng-container *ngTemplateOutlet="monthYearSelector"></ng-container>
+        </div>
+    </div>
+    <ng-template #monthYearSelector>
+        <div class="margin-top__lg">
+            <app-month-year-selector></app-month-year-selector>
+        </div>
+    </ng-template>
+</div>

@@ -3,6 +3,7 @@ import { Action } from '@ngrx/store';
 import { Transaction } from '../transaction.model';
 import { Category } from '../category.model';
 import { CategorizedTransaction } from '../CategorizedTransaction.model';
+import { IncomeAndExpenseTotal } from '../IncomeAndExpenseTotal.model';
 
 export const FETCH_TRANSACTIONS = 'FETCH_TRANSACTIONS';
 export const SET_TRANSACTIONS = 'SET_TRANSACTIONS';
@@ -11,8 +12,10 @@ export const SET_USER_CATEGORIES = 'SET_USER_CATEGORIES';
 export const SET_MONTH_YEAR = 'SET_MONTH_YEAR';
 export const FETCH_CATEGORIZED_EXPENSES = 'FETCH_CATEGORIZED_EXPENSES';
 export const SET_CATEGORIZED_EXPENSES = 'SET_CATEGORIZED_EXPENSES';
+export const SET_ANNUAL_CATEGORIZED_EXPENSES = 'SET_ANNUAL_CATEGORIZED_EXPENSES';
 export const FETCH_INCOME_AND_EXPENSE_TOALS = 'FETCH_INCOME_AND_EXPENSE_TOALS';
 export const SET_INCOME_AND_EXPENSE_TOALS = 'SET_INCOME_AND_EXPENSE_TOALS';
+export const SET_ANNUAL_INCOME_AND_EXPENSE_TOALS = 'SET_ANNUAL_INCOME_AND_EXPENSE_TOALS';
 
 export class FetchTransactions implements Action {
     readonly type = FETCH_TRANSACTIONS;
@@ -50,6 +53,12 @@ export class SetCategorizedExpenses implements Action {
     constructor(public payload: CategorizedTransaction[]) {}
 }
 
+export class SetAnnualCategorizedExpenses implements Action {
+    readonly type = SET_ANNUAL_CATEGORIZED_EXPENSES;
+
+    constructor(public payload: CategorizedTransaction[]) {}
+}
+
 export class FetchIncomeAndExpenseTotals implements Action {
     readonly type = FETCH_INCOME_AND_EXPENSE_TOALS;
 }
@@ -57,7 +66,13 @@ export class FetchIncomeAndExpenseTotals implements Action {
 export class SetIncomeAndExpenseTotals implements Action {
     readonly type = SET_INCOME_AND_EXPENSE_TOALS;
 
-    constructor(public payload: CategorizedTransaction[]) {}
+    constructor(public payload: IncomeAndExpenseTotal) {}
+}
+
+export class SetAnnualIncomeAndExpenseTotals implements Action {
+    readonly type = SET_ANNUAL_INCOME_AND_EXPENSE_TOALS;
+
+    constructor(public payload: IncomeAndExpenseTotal) {}
 }
 
 export type TransactionActions = FetchTransactions |
@@ -68,4 +83,6 @@ export type TransactionActions = FetchTransactions |
     FetchCategorizedExpenses |
     SetCategorizedExpenses |
     FetchIncomeAndExpenseTotals |
-    SetIncomeAndExpenseTotals;
+    SetAnnualCategorizedExpenses |
+    SetIncomeAndExpenseTotals |
+    SetAnnualIncomeAndExpenseTotals;
