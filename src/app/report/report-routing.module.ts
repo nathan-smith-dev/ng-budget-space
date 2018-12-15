@@ -5,8 +5,12 @@ import { MonthReportComponent } from './month-report/month-report.component';
 import { AnnualReportComponent } from './annual-report/annual-report.component';
 
 const routes: Routes = [
-  { path: 'month-report', component: MonthReportComponent },
-  { path: 'annual-report', component: AnnualReportComponent }
+  { path: 'reports', children: [
+      { path: '', redirectTo: '/reports/month', pathMatch: 'full' },
+      { path: 'month', component: MonthReportComponent },
+      { path: 'annual', component: AnnualReportComponent }
+    ] 
+  }
 ];
 
 @NgModule({

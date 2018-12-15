@@ -60,6 +60,24 @@
         }
     }
     
+    &-top {
+        &__xs {
+            padding-top: $pm-xs;
+        }
+        &__sm {
+            padding-top: $pm-sm;
+        }
+        &__md {
+            padding-top: $pm-md;
+        }
+        &__lg {
+            padding-top: $pm-lg;
+        }
+        &__xl {
+            padding-top: $pm-xl;
+        }
+    }
+
     &-y {
         &__xs {
             padding-top: $pm-xs;
