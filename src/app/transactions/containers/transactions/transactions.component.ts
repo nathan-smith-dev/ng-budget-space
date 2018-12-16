@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import * as fromApp from '../../store/app.reducers';
-import * as fromTransactions from '../../store/transactions';
+import * as fromApp from '../../../store/app.reducers';
+import * as fromTransactions from '../../../store/transactions';
 import { Observable } from 'rxjs';
-import { Transaction } from '../../shared/models/transaction.model';
+import { Transaction } from '../../../shared/models/transaction.model';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../environments/environment';
-import { Expense } from '../../shared/models/expense.model';
-import { Income } from '../../shared/models/income.model';
-import * as TransactionActions from '../../store/transactions/actions';
+import { environment } from '../../../../environments/environment';
+import { Expense } from '../../../shared/models/expense.model';
+import { Income } from '../../../shared/models/income.model';
+import * as TransactionActions from '../../../store/transactions/actions';
 
 @Component({
   selector: 'app-transactions',

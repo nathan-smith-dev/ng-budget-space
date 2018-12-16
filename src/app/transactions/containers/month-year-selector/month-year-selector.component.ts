@@ -1,10 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
-import * as fromApp from '../../store/app.reducers';
-import * as fromTransactions from '../../store/transactions';
+import * as fromTransactions from '../../../store/transactions';
 import { Observable, Subscription } from 'rxjs';
 import { FormGroup, FormControl } from '@angular/forms';
-import * as TransactionActions from '../../store/transactions/actions';
+import * as TransactionActions from '../../../store/transactions/actions';
 
 const today = new Date();
 

@@ -1,13 +1,13 @@
 import * as moment from 'moment';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Transaction } from '../../shared/models/transaction.model';
+import { Transaction } from '../../../shared/models/transaction.model';
 import { Store } from '@ngrx/store';
-import * as fromApp from '../../store/app.reducers';
-import * as fromTransactions from '../../store/transactions';
+import * as fromApp from '../../../store/app.reducers';
+import * as fromTransactions from '../../../store/transactions';
 import { Observable } from 'rxjs';
-import { Category } from '../../shared/models/category.model';
-import { AppValidators } from '../../shared/validators/app.validators';
+import { Category } from '../../../shared/models/category.model';
+import { AppValidators } from '../../../shared/validators/app.validators';
 
 @Component({
   selector: 'app-transaction-form',
