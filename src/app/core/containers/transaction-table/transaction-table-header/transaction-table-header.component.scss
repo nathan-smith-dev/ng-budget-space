@@ -1,0 +1,12 @@
+@import '../../../../styles/variables.scss';
+
+.header {
+  color: $medium-grey;
+  font-size: 12px;
+  padding-bottom: $pm-sm;
+  border-bottom: 1px solid $light-grey;
+
+  .amount {
+    text-align: end;
+  }
+}

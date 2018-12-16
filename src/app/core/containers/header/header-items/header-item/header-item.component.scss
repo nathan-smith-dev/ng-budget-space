@@ -1,0 +1,24 @@
+@import '../../../../../styles/variables.scss';
+@import '../../../../../styles/mixins/generic.scss';
+@import '../../../../../styles/mixins/paddings.scss';
+
+.item-container {
+  font-size: 14px;
+  color: $medium-grey;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+
+  &:hover,
+  &:active {
+    @include hoverable-link;
+  }
+
+  @media only screen and (max-width: 768px) {
+    @include margin-top-md;
+  }
+}
+
+.active {
+  color: $primary-color;
+}

@@ -1,0 +1,27 @@
+@import '../../../../styles/variables.scss';
+@import '../../../../styles/mixins/generic.scss';
+
+.table-item {
+  font-size: 14px;
+
+  .income {
+    color: green;
+  }
+
+  .expense {
+    color: red;
+  }
+
+  .amount {
+    text-align: end;
+  }
+
+  &:hover,
+  &:active {
+    @include hoverable-link;
+  }
+}
+
+.darker {
+  background-color: $light-grey-3;
+}
