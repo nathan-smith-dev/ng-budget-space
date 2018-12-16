@@ -2,11 +2,11 @@ import { CanActivate } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { filter, first, switchMap, catchError, zip } from 'rxjs/operators';
 
-import * as fromApp from '../store/app.reducers';
-import * as fromToast from '../store/toast';
+import * as fromApp from '../../store/app.reducers';
+import * as fromToast from '../../store/toast';
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
-import { getAuthState } from '../store/auth';
+import { getAuthState } from '../../store/auth';
 
 @Injectable()
 export class AuthGuard implements CanActivate {

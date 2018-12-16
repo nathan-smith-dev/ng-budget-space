@@ -5,7 +5,6 @@ import { Store } from '@ngrx/store';
 import { AppState } from './store/app.reducers';
 import * as fromAuth from './store/auth';
 import * as TransactionActions from './store/transactions/actions';
-// import { AuthGuard } from './auth/auth-guard.service';
 import { Subscription, Observable } from 'rxjs';
 import { User } from './shared/models/auth.model';
 
@@ -20,9 +19,7 @@ export class AppComponent implements OnInit, OnDestroy {
   openToast: boolean = false;
   isAuthLoading$: Observable<boolean>;
 
-  constructor(
-    private store: Store<AppState> // private authGuardService: AuthGuard
-  ) {}
+  constructor(private store: Store<AppState>) {}
 
   ngOnInit() {
     this.isAuthLoading$ = this.store.select(fromAuth.getLoading);
