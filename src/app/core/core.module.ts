@@ -7,7 +7,6 @@ import { HeaderItemsComponent } from './header/header-items/header-items.compone
 import { HeaderItemComponent } from './header/header-items/header-item/header-item.component';
 import { HamburgerMenuComponent } from './header/header-items/hamburger-menu/hamburger-menu.component';
 import { SideDrawerComponent } from './header/header-items/side-drawer/side-drawer.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from '../shared/shared.module';
 import { HomeComponent } from './home/home.component';
 import { ToastMessageComponent } from './toast-message/toast-message.component';
@@ -22,12 +21,14 @@ import { ModalComponent } from './modal/modal.component';
 import { ClickStopPropagationDirective } from './click-stop-propagation.directive';
 import { ButtonComponent } from './button/button.component';
 import { FloatingActionComponent } from './floating-action/floating-action.component';
+import { RouterModule } from '@angular/router';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
     HeaderComponent,
     HeaderBrandComponent,
-    HeaderItemsComponent, 
+    HeaderItemsComponent,
     HeaderItemComponent,
     HamburgerMenuComponent,
     SideDrawerComponent,
@@ -39,24 +40,19 @@ import { FloatingActionComponent } from './floating-action/floating-action.compo
     ModalComponent,
     ClickStopPropagationDirective,
     ButtonComponent,
-    FloatingActionComponent
+    FloatingActionComponent,
+    LoadingSpinnerComponent
   ],
-  imports: [
-    CommonModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    SharedModule,
-    HttpClientModule
-  ],
+  imports: [CommonModule, RouterModule, SharedModule, HttpClientModule],
   exports: [
-    AppRoutingModule, 
     HeaderComponent,
     ToastMessageComponent,
     TransactionTableComponent,
     ModalComponent,
     ClickStopPropagationDirective,
     ButtonComponent,
-    FloatingActionComponent
+    FloatingActionComponent,
+    LoadingSpinnerComponent
   ],
   providers: [
     HeaderService,
@@ -64,4 +60,4 @@ import { FloatingActionComponent } from './floating-action/floating-action.compo
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ]
 })
-export class CoreModule { }
+export class CoreModule {}

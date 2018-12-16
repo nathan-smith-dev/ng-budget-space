@@ -10,12 +10,14 @@ import { transactionReducer } from './store/transactions.reducers';
 import { CoreModule } from '../core/core.module';
 import { TransactionFormComponent } from './transaction-form/transaction-form.component';
 import { MonthYearSelectorComponent } from './month-year-selector/month-year-selector.component';
+import { TestComponent } from './test/test.component';
 
 @NgModule({
   declarations: [
     TransactionsComponent,
     TransactionFormComponent,
-    MonthYearSelectorComponent
+    MonthYearSelectorComponent,
+    TestComponent
   ],
   imports: [
     CommonModule,
@@ -25,8 +27,6 @@ import { MonthYearSelectorComponent } from './month-year-selector/month-year-sel
     StoreModule.forFeature('transactions', transactionReducer),
     EffectsModule.forFeature([TransactionEffects])
   ],
-  exports: [
-    MonthYearSelectorComponent
-  ]
+  exports: [MonthYearSelectorComponent]
 })
-export class TransactionsModule { }
+export class TransactionsModule {}

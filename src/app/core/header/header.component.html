@@ -4,40 +4,30 @@
     <app-header-items>
       <app-header-item
         (click)="handleLogin()"
-        *ngIf="!(authState | async).isAuthenticated; else logout"
+        *ngIf="!(isAuthenticated$ | async); else: logout"
       >
-          <fa-icon 
-            class="padding-right__xs" 
-            [icon]="faUser" 
-            size="lg"
-          ></fa-icon>Login
+        <fa-icon class="padding-right__xs" [icon]="faUser" size="lg"></fa-icon
+        >Login
       </app-header-item>
       <ng-template #logout>
-        <app-header-item
-          (click)="handleLogout()"
-        >
-            <fa-icon 
-              class="padding-right__xs" 
-              [icon]="faSignOutAlt" 
-              size="lg"
-            ></fa-icon>Logout
+        <app-header-item (click)="handleLogout()">
+          <fa-icon
+            class="padding-right__xs"
+            [icon]="faSignOutAlt"
+            size="lg"
+          ></fa-icon
+          >Logout
         </app-header-item>
       </ng-template>
       <app-header-item routerLink="transactions">
-        <fa-icon
-          class="padding-right__xs"
-          [icon]="faDollarSign"
-          size="lg"
-        >
-        </fa-icon>Expenses/Income
+        <fa-icon class="padding-right__xs" [icon]="faDollarSign" size="lg">
+        </fa-icon
+        >Expenses/Income
       </app-header-item>
       <app-header-item routerLink="reports">
-          <fa-icon
-            class="padding-right__xs"
-            [icon]="faChartLine"
-            size="lg"
-        >
-        </fa-icon>Reports
+        <fa-icon class="padding-right__xs" [icon]="faChartLine" size="lg">
+        </fa-icon
+        >Reports
       </app-header-item>
     </app-header-items>
   </div>

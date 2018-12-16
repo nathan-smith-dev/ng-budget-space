@@ -1,61 +1,60 @@
 <div class="container-fluid margin-y__md">
-    <div class="graph-selector">
-        <fa-icon 
-            (click)="toggleChart('pie')"
-            [icon]="faChartPie"
-            class="icon"
-            size="2x"
-            [ngClass]="{ 'active': activeChart === 'pie' }"
-        ></fa-icon>
-        <fa-icon 
-            (click)="toggleChart('bar')"
-            [icon]="faChartBar"
-            class="icon"
-            size="2x"
-            [ngClass]="{ 'active': activeChart === 'bar' }"
-        ></fa-icon>
+  <div class="graph-selector">
+    <fa-icon
+      (click)="toggleChart('pie')"
+      [icon]="faChartPie"
+      class="icon"
+      size="2x"
+      [ngClass]="{ active: activeChart === 'pie' }"
+    ></fa-icon>
+    <fa-icon
+      (click)="toggleChart('bar')"
+      [icon]="faChartBar"
+      class="icon"
+      size="2x"
+      [ngClass]="{ active: activeChart === 'bar' }"
+    ></fa-icon>
+  </div>
+  <div class="row">
+    <div *ngIf="activeChart === 'pie'" class="col-12">
+      <app-pie-chart
+        title="Monthly Report"
+        [data]="pieData"
+        [labels]="pieLabels"
+      ></app-pie-chart>
+      <div class="margin-top__md">
+        <app-percent-category-table
+          [categorizedExpenses]="
+            (transactionsState | async).categorizedExpenses
+          "
+          [colors]="colors"
+          [total]="pieTotals"
+        ></app-percent-category-table>
+      </div>
+      <ng-container *ngTemplateOutlet="monthYearSelector"></ng-container>
     </div>
-    <div class="row">
-        <div
-            *ngIf="activeChart === 'pie'"
-            class="col-12"
-        >
-            <app-pie-chart
-                title="Monthly Report"
-                [data]="pieData"
-                [labels]="pieLabels"
-            ></app-pie-chart>
-            <div class="margin-top__md">
-                <app-percent-category-table
-                    [categorizedExpenses]="(transactionsState | async).categorizedExpenses"
-                    [colors]="colors"
-                    [total]="pieTotals"
-                ></app-percent-category-table>
-            </div>
-            <ng-container *ngTemplateOutlet="monthYearSelector"></ng-container>
-        </div>
-        <div 
-            *ngIf="activeChart === 'bar'"
-            class="col-12"
-        >
-            <app-bar-chart
-                title="Income VS Spending"
-                [data]="barData"
-                [labels]="barLabels"
-            ></app-bar-chart>
-            <div class="margin-top__md">
-                <app-net-table
-                    [income]="(transactionsState | async).totals.incomes"
-                    [expense]="(transactionsState | async).totals.expenses"
-                    [net]="(transactionsState | async).totals.incomes - (transactionsState | async).totals.expenses"
-                ></app-net-table>
-            </div>
-            <ng-container *ngTemplateOutlet="monthYearSelector"></ng-container>
-        </div>
+    <div *ngIf="activeChart === 'bar'" class="col-12">
+      <app-bar-chart
+        title="Income VS Spending"
+        [data]="barData"
+        [labels]="barLabels"
+      ></app-bar-chart>
+      <div class="margin-top__md">
+        <app-net-table
+          [income]="(transactionsState | async).totals.incomes"
+          [expense]="(transactionsState | async).totals.expenses"
+          [net]="
+            (transactionsState | async).totals.incomes -
+            (transactionsState | async).totals.expenses
+          "
+        ></app-net-table>
+      </div>
+      <ng-container *ngTemplateOutlet="monthYearSelector"></ng-container>
     </div>
-    <ng-template #monthYearSelector>
-        <div class="margin-top__lg">
-            <app-month-year-selector></app-month-year-selector>
-        </div>
-    </ng-template>
+  </div>
+  <ng-template #monthYearSelector>
+    <div class="margin-top__lg">
+      <!-- <app-month-year-selector></app-month-year-selector> -->
+    </div>
+  </ng-template>
 </div>

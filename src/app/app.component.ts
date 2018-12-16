@@ -3,11 +3,11 @@ import * as firebase from 'firebase/app';
 import { environment } from '../environments/environment';
 import { Store } from '@ngrx/store';
 import { AppState } from './store/app.reducers';
-import * as AuthActions from './auth/store/auth.actions';
+import * as fromAuth from './store/auth';
 import * as TransactionActions from './transactions/store/transactions.actions';
-import { AuthGuard } from './auth/auth-guard.service';
-import { Subscription } from 'rxjs';
-import { User } from './auth/auth.model';
+// import { AuthGuard } from './auth/auth-guard.service';
+import { Subscription, Observable } from 'rxjs';
+import { User } from './shared/models/auth.model';
 
 @Component({
   selector: 'app-root',
@@ -18,40 +18,41 @@ export class AppComponent implements OnInit, OnDestroy {
   title = 'ng-budget-space';
   toastSubscription: Subscription;
   openToast: boolean = false;
+  isAuthLoading$: Observable<boolean>;
 
   constructor(
-    private store: Store<AppState>,
-    private authGuardService: AuthGuard
+    private store: Store<AppState> // private authGuardService: AuthGuard
   ) {}
 
   ngOnInit() {
-    this.toastSubscription = this.authGuardService.cannotNavigate
-      .subscribe(() => {
-        this.openToast = true;
-        setTimeout(() => {
-          this.openToast = false;
-        }, 3000);
-      });
+    this.isAuthLoading$ = this.store.select(fromAuth.getLoading);
+    this.store.dispatch(new fromAuth.SetLoading(true));
 
     firebase.initializeApp({
-      apiKey: environment.firebase.apiKey, 
+      apiKey: environment.firebase.apiKey,
       authDomain: environment.firebase.authDomain
     });
 
     firebase.auth().onAuthStateChanged((user: any) => {
-      if(user) {
-        const loggedInUser = new User(user.uid, user.displayName.split(' ')[0], user.email);
-        this.store.dispatch(new AuthActions.SetUser(loggedInUser));
-        this.store.dispatch(new AuthActions.SetToken(user.qa));
-        this.store.dispatch(new TransactionActions.FetchTransactions);
-        this.store.dispatch(new TransactionActions.FetchUserCategories);
-        this.store.dispatch(new TransactionActions.FetchCategorizedExpenses);
-        this.store.dispatch(new TransactionActions.FetchIncomeAndExpenseTotals);
+      if (user) {
+        const loggedInUser = new User(
+          user.uid,
+          user.displayName.split(' ')[0],
+          user.email
+        );
+        this.store.dispatch(new fromAuth.SetUser(loggedInUser));
+        this.store.dispatch(new fromAuth.SetToken(user.qa));
+        this.store.dispatch(new TransactionActions.FetchTransactions());
+        this.store.dispatch(new TransactionActions.FetchUserCategories());
+        this.store.dispatch(new TransactionActions.FetchCategorizedExpenses());
+        this.store.dispatch(
+          new TransactionActions.FetchIncomeAndExpenseTotals()
+        );
       } else {
-        this.store.dispatch(new AuthActions.SetUser(null));
-        this.store.dispatch(new AuthActions.SetToken(null));
+        this.store.dispatch(new fromAuth.SetUser(null));
+        this.store.dispatch(new fromAuth.SetToken(null));
       }
-    })
+    });
   }
 
   ngOnDestroy() {

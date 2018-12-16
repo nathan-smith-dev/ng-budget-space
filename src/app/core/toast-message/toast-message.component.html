@@ -1,7 +1,3 @@
-<div 
-  class="container"
-  *ngIf="show"
-  [@dialog]
->
-  <div class="message">{{ message }}</div>
+<div class="toast-wrapper" *ngIf="(show$ | async)" [@dialog]>
+  <div class="message">{{ message$ | async }}</div>
 </div>
