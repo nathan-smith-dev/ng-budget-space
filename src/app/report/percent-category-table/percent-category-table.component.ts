@@ -1,5 +1,11 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { CategorizedTransaction } from 'src/app/transactions/CategorizedTransaction.model';
+import {
+  Component,
+  OnInit,
+  Input,
+  OnChanges,
+  SimpleChanges
+} from '@angular/core';
+import { CategorizedTransaction } from 'src/app/shared/models/CategorizedTransaction.model';
 
 @Component({
   selector: 'app-percent-category-table',
@@ -11,9 +17,7 @@ export class PercentCategoryTableComponent implements OnInit {
   @Input() categorizedExpenses: CategorizedTransaction[];
   @Input() colors: string[];
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

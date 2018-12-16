@@ -1,17 +1,13 @@
 <div class="container-fluid margin-y__md">
   <app-transaction-table
-    [transactions]="(transactionsState | async).transactions"
+    [transactions]="transactions$ | async"
     (itemClicked)="handleItemClicked($event)"
   >
   </app-transaction-table>
-  <div
-    class="margin-top__md"
-  >
-    <app-month-year-selector
-    ></app-month-year-selector>
+  <div class="margin-top__md">
+    <app-month-year-selector></app-month-year-selector>
   </div>
 </div>
-
 
 <!-- Modals -->
 <app-modal
@@ -30,7 +26,7 @@
     </div>
     <div class="group margin-y__sm">
       <div class="label">Date</div>
-      <div class="content">{{ transaction.date | date:"MM/dd/yyyy" }}</div>
+      <div class="content">{{ transaction.date | date: 'MM/dd/yyyy' }}</div>
     </div>
     <div class="group margin-y__sm">
       <div class="label">Type</div>
@@ -38,15 +34,10 @@
     </div>
   </div>
   <div class="ng-modal-footer">
-    <app-button
-      (click)="handleEdit()"
-      class="margin-right__sm"
-      color="primary"
-    >Edit</app-button>
-    <app-button
-      (click)="handleDelete()"
-      color="white"
-    >Delete</app-button>
+    <app-button (click)="handleEdit()" class="margin-right__sm" color="primary"
+      >Edit</app-button
+    >
+    <app-button (click)="handleDelete()" color="white">Delete</app-button>
   </div>
 </app-modal>
 <app-transaction-form

@@ -1,10 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as fromApp from '../../store/app.reducers';
-import * as fromTransactions from '../store/transactions.reducers';
+import * as fromTransactions from '../../store/transactions';
 import { Observable, Subscription } from 'rxjs';
 import { FormGroup, FormControl } from '@angular/forms';
-import * as TransactionActions from '../store/transactions.actions';
+import * as TransactionActions from '../../store/transactions/actions';
 
 const today = new Date();
 
@@ -14,26 +14,24 @@ const today = new Date();
   styleUrls: ['./month-year-selector.component.scss']
 })
 export class MonthYearSelectorComponent implements OnInit, OnDestroy {
-  years: number[] = [
-    today.getFullYear() - 1,
-    today.getFullYear()
-  ];
-  transactionState: Observable<fromTransactions.State>;
+  years: number[] = [today.getFullYear() - 1, today.getFullYear()];
+  transactionState: Observable<any>;
   transactionStateSubscription: Subscription;
   monthYearForm: FormGroup;
-  monthYear: { month: number, year: number };
+  monthYear: { month: number; year: number };
 
-  constructor(
-    private store: Store<fromApp.AppState>
-  ) { }
+  constructor(private store: Store<any>) {}
 
   ngOnInit() {
-    this.transactionState = this.store.select('transactions');
-    this.transactionStateSubscription = this.transactionState
-      .subscribe((state: fromTransactions.State) => {
-        this.monthYear = state.monthYear;
+    this.transactionState = this.store.select(
+      fromTransactions.getTransactionState
+    );
+    this.transactionStateSubscription = this.transactionState.subscribe(
+      state => {
+        this.monthYear = state.transactions.monthYear;
         this.initForm();
-      });
+      }
+    );
     this.initForm();
   }
 
@@ -50,16 +48,25 @@ export class MonthYearSelectorComponent implements OnInit, OnDestroy {
 
   handleChangeYear(event: any) {
     this.monthYear.year = +event.target.value;
-    this.store.dispatch(new TransactionActions.SetMonthYear({ month: this.monthYear.month, year: this.monthYear.year }));
-    this.store.dispatch(new TransactionActions.FetchTransactions);
-  }
-  
-  handleChangeMonth(event: any) {
-    this.monthYear.month = +event.target.value;
-    this.store.dispatch(new TransactionActions.SetMonthYear({ month: this.monthYear.month, year: this.monthYear.year }));
-    this.store.dispatch(new TransactionActions.FetchTransactions);
-    this.store.dispatch(new TransactionActions.FetchCategorizedExpenses);
-    this.store.dispatch(new TransactionActions.FetchIncomeAndExpenseTotals);
+    this.store.dispatch(
+      new TransactionActions.SetMonthYear({
+        month: this.monthYear.month,
+        year: this.monthYear.year
+      })
+    );
+    this.store.dispatch(new TransactionActions.FetchTransactions());
   }
 
+  handleChangeMonth(event: any) {
+    this.monthYear.month = +event.target.value;
+    this.store.dispatch(
+      new TransactionActions.SetMonthYear({
+        month: this.monthYear.month,
+        year: this.monthYear.year
+      })
+    );
+    this.store.dispatch(new TransactionActions.FetchTransactions());
+    this.store.dispatch(new TransactionActions.FetchCategorizedExpenses());
+    this.store.dispatch(new TransactionActions.FetchIncomeAndExpenseTotals());
+  }
 }

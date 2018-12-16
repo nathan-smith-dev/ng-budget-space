@@ -4,7 +4,7 @@ import { environment } from '../environments/environment';
 import { Store } from '@ngrx/store';
 import { AppState } from './store/app.reducers';
 import * as fromAuth from './store/auth';
-import * as TransactionActions from './transactions/store/transactions.actions';
+import * as TransactionActions from './store/transactions/actions';
 // import { AuthGuard } from './auth/auth-guard.service';
 import { Subscription, Observable } from 'rxjs';
 import { User } from './shared/models/auth.model';

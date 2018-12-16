@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnDestroy, Output, EventEmitter } from '@angular/core';
-import { Transaction } from 'src/app/transactions/transaction.model';
+import { Transaction } from 'src/app/shared/models/transaction.model';
 import { TransactionTableService } from './transaction-table.service';
 import { Subscription } from 'rxjs';
 
