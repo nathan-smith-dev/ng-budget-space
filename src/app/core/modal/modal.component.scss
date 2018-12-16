@@ -1,60 +1,61 @@
-@import "../../styles/variables.scss";
-@import "../../styles/mixins/generic.scss";
-@import "../../styles/mixins/shadows.scss";
+@import '../../styles/variables.scss';
+@import '../../styles/mixins/generic.scss';
+@import '../../styles/mixins/shadows.scss';
 
 .wrapper {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background-color: hsla(0, 0%, 0, 0.4);
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: hsla(0, 0%, 0, 0.4);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
 }
 
 .modal {
-    background-color: $white;
-    border-radius: 10px;
-    max-width: 80%;
-    min-width: 50%;
+  background-color: $white;
+  border-radius: 10px;
+  max-width: 80%;
+  min-width: 50%;
 
-    @include shadow-lg;
+  @include shadow-lg;
 
-    &-header {
-        display: flex;
-        justify-content: space-between;
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
-        background-color: $light-grey-3;    
-        
-        h2 {
-            font-weight: 400;
-            color: $dark-grey;
-            font-size: 18px;
-            margin: 0;
-        }
+  &-header {
+    display: flex;
+    justify-content: space-between;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    background-color: $light-grey-3;
 
-        .close {
-            color: $dark-grey;
-
-            &:active, &:hover {
-                @include hoverable-link;
-            }
-        }
+    h2 {
+      font-weight: 400;
+      color: $dark-grey;
+      font-size: 18px;
+      margin: 0;
     }
 
-    &-content {
-        max-height: 60vh;
-        overflow: scroll;
+    .close {
+      color: $dark-grey;
+
+      &:active,
+      &:hover {
+        @include hoverable-link;
+      }
     }
-    
-    &-footer {
-        display: flex;
-        justify-content: flex-end;
-        border-bottom-left-radius: 10px;
-        border-bottom-right-radius: 10px;
-        background-color: $light-grey-3;    
-    }
+  }
+
+  &-content {
+    max-height: 60vh;
+    overflow: auto;
+  }
+
+  &-footer {
+    display: flex;
+    justify-content: flex-end;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background-color: $light-grey-3;
+  }
 }
