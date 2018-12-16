@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReportRoutingModule } from './report-routing.module';
-import { MonthReportComponent } from './month-report/month-report.component';
+import { MonthReportComponent } from './containers/month-report/month-report.component';
 // import { TransactionsModule } from '../transactions/transactions.module';
-import { AnnualReportComponent } from './annual-report/annual-report.component';
-import { PieChartComponent } from './pie-chart/pie-chart.component';
+import { AnnualReportComponent } from './containers/annual-report/annual-report.component';
+import { PieChartComponent } from './components/pie-chart/pie-chart.component';
 import { ChartModule } from 'angular2-chartjs';
-import { BarChartComponent } from './bar-chart/bar-chart.component';
+import { BarChartComponent } from './components/bar-chart/bar-chart.component';
 import { SharedModule } from '../shared/shared.module';
-import { NetTableComponent } from './net-table/net-table.component';
-import { PercentCategoryTableComponent } from './percent-category-table/percent-category-table.component';
+import { NetTableComponent } from './components/net-table/net-table.component';
+import { PercentCategoryTableComponent } from './components/percent-category-table/percent-category-table.component';
 import { CoreModule } from '../core/core.module';
 
 @NgModule({

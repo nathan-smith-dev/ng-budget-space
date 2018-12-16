@@ -1,0 +1,20 @@
+@import '../../../styles/variables.scss';
+
+.header {
+  color: $medium-grey;
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+
+.even {
+  background-color: $light-grey-3;
+}
+
+.content {
+  border-left: 4px solid;
+}
+
+.total,
+.percent {
+  text-align: right;
+}
