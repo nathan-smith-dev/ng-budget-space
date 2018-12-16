@@ -7,7 +7,7 @@ import * as fromApp from '../../store/app.reducers';
 import * as fromTransactions from '../../store/transactions';
 import { Observable } from 'rxjs';
 import { Category } from '../../shared/models/category.model';
-import { AppValidators } from 'src/app/validators/validators';
+import { AppValidators } from '../../shared/validators/app.validators';
 
 @Component({
   selector: 'app-transaction-form',

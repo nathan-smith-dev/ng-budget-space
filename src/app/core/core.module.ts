@@ -10,7 +10,7 @@ import { SharedModule } from '../shared/shared.module';
 import { HomeComponent } from './components/home/home.component';
 import { ToastMessageComponent } from './containers/toast-message/toast-message.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { AuthInterceptor } from '../shared/auth.interceptor';
+import { AuthInterceptor } from '../shared/interceptors/auth.interceptor';
 import { HeaderService } from './containers/header/header.service';
 import { TransactionTableComponent } from './containers/transaction-table/transaction-table.component';
 import { TransactionTableHeaderComponent } from './containers/transaction-table/transaction-table-header/transaction-table-header.component';

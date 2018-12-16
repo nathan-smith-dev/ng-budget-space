@@ -6,14 +6,12 @@ import { TransactionsRoutingModule } from './transactions-routing.module';
 import { CoreModule } from '../core/core.module';
 import { TransactionFormComponent } from './transaction-form/transaction-form.component';
 import { MonthYearSelectorComponent } from './month-year-selector/month-year-selector.component';
-import { TestComponent } from './test/test.component';
 
 @NgModule({
   declarations: [
     TransactionsComponent,
     TransactionFormComponent,
-    MonthYearSelectorComponent,
-    TestComponent
+    MonthYearSelectorComponent
   ],
   imports: [
     CommonModule,

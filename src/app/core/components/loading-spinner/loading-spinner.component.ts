@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { fadeInOut } from '../../../shared/app.animations';
+import { fadeInOut } from '../../../shared/animations/app.animations';
 
 @Component({
   selector: 'app-loading-spinner',

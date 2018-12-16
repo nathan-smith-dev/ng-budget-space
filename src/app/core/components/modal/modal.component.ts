@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
-import { fadeInOut } from '../../../shared/app.animations';
+import { fadeInOut } from '../../../shared/animations/app.animations';
 
 @Component({
   selector: 'app-modal',

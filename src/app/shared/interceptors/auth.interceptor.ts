@@ -9,8 +9,8 @@ import { Observable } from 'rxjs';
 import { take, switchMap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 
-import * as fromApp from '../store/app.reducers';
-import * as fromAuth from '../store/auth';
+import * as fromApp from '../../store/app.reducers';
+import * as fromAuth from '../../store/auth';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
