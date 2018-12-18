@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import * as fromApp from '../../../store/app.reducers';
 import * as fromTransactions from '../../../store/transactions';
 import { Observable } from 'rxjs';
 import { Transaction } from '../../../shared/models/transaction.model';
@@ -30,10 +29,7 @@ export class TransactionsComponent implements OnInit {
   editModalOpen: boolean = false;
   newModalOpen: boolean = false;
 
-  constructor(
-    private store: Store<fromApp.AppState>,
-    private httpClient: HttpClient
-  ) {}
+  constructor(private store: Store<any>, private httpClient: HttpClient) {}
 
   ngOnInit() {
     this.transactions$ = this.store.select(fromTransactions.getTransactions);

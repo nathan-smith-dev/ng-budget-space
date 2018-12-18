@@ -9,7 +9,6 @@ import {
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/store/app.reducers';
 import { Observable } from 'rxjs';
 
 import * as fromAuth from '../../../store/auth';
@@ -34,7 +33,7 @@ export class HeaderComponent implements OnInit {
   isAuthenticated$: Observable<boolean>;
 
   constructor(
-    private store: Store<AppState>,
+    private store: Store<any>,
     private router: Router,
     private headerService: HeaderService
   ) {}
@@ -48,8 +47,6 @@ export class HeaderComponent implements OnInit {
   }
 
   async handleLogin() {
-    // const provider = new firebase.auth.GoogleAuthProvider();
-    // firebase.auth().signInWithRedirect(provider);
     this.store.dispatch(new fromAuth.LoginUser());
   }
 

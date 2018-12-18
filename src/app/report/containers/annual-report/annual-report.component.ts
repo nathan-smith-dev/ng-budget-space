@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
-import * as fromApp from '../../../store/app.reducers';
 import * as fromTransaction from '../../../store/transactions';
 import { Observable, Subscription } from 'rxjs';
 import { faChartBar, faChartPie } from '@fortawesome/free-solid-svg-icons';
@@ -24,7 +23,7 @@ export class AnnualReportComponent implements OnInit {
   faChartBar = faChartBar;
   activeChart: string = 'pie';
 
-  constructor(private store: Store<fromApp.AppState>) {}
+  constructor(private store: Store<any>) {}
 
   ngOnInit() {
     this.transactionsState = this.store.select(

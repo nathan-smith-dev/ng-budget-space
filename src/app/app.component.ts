@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import * as firebase from 'firebase/app';
 import { environment } from '../environments/environment';
 import { Store } from '@ngrx/store';
-import { AppState } from './store/app.reducers';
 import * as fromAuth from './store/auth';
 import * as TransactionActions from './store/transactions/actions';
 import { Subscription, Observable } from 'rxjs';
@@ -19,7 +18,7 @@ export class AppComponent implements OnInit, OnDestroy {
   openToast: boolean = false;
   isAuthLoading$: Observable<boolean>;
 
-  constructor(private store: Store<AppState>) {}
+  constructor(private store: Store<any>) {}
 
   ngOnInit() {
     this.isAuthLoading$ = this.store.select(fromAuth.getLoading);

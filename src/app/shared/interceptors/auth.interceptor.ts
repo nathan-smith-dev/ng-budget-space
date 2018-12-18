@@ -9,12 +9,11 @@ import { Observable } from 'rxjs';
 import { take, switchMap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 
-import * as fromApp from '../../store/app.reducers';
 import * as fromAuth from '../../store/auth';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  constructor(private store: Store<fromApp.AppState>) {}
+  constructor(private store: Store<any>) {}
 
   intercept(
     req: HttpRequest<any>,

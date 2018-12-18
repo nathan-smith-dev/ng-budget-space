@@ -3,7 +3,6 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Transaction } from '../../../shared/models/transaction.model';
 import { Store } from '@ngrx/store';
-import * as fromApp from '../../../store/app.reducers';
 import * as fromTransactions from '../../../store/transactions';
 import { Observable } from 'rxjs';
 import { Category } from '../../../shared/models/category.model';
@@ -24,7 +23,7 @@ export class TransactionFormComponent implements OnInit {
   transactionState: Observable<any>;
   userCategories: Category[];
 
-  constructor(private store: Store<fromApp.AppState>) {}
+  constructor(private store: Store<any>) {}
 
   ngOnInit() {
     this.initForm();
