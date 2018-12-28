@@ -9,10 +9,12 @@ import {
 import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { UserDataService } from './shared/services/user-data.service';
 
-fdescribe('AppComponent', () => {
+describe('AppComponent', () => {
   let mockStore;
   let mockFireAuthStub;
+  let mockUserDataService;
   let fixture: ComponentFixture<AppComponent>;
   let component: AppComponent;
 
@@ -32,7 +34,8 @@ fdescribe('AppComponent', () => {
       ],
       providers: [
         { provide: Store, useValue: mockStore },
-        { provide: AngularFireAuth, useValue: mockFireAuthStub }
+        { provide: AngularFireAuth, useValue: mockFireAuthStub },
+        { provide: UserDataService, useValue: mockUserDataService }
       ]
     }).compileComponents();
   }));

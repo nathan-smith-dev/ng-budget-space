@@ -7,6 +7,7 @@ import * as TransactionActions from './store/transactions/actions';
 import { Subscription, Observable } from 'rxjs';
 import { User } from './shared/models/auth.model';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { UserDataService } from './shared/services/user-data.service';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +18,11 @@ export class AppComponent implements OnInit {
   openToast: boolean = false;
   isAuthLoading$: Observable<boolean>;
 
-  constructor(private store: Store<any>, private afAuth: AngularFireAuth) {}
+  constructor(
+    private store: Store<any>,
+    private afAuth: AngularFireAuth,
+    private userDataService: UserDataService
+  ) {}
 
   ngOnInit() {
     this.isAuthLoading$ = this.store.select(fromAuth.getLoading);
@@ -37,10 +42,7 @@ export class AppComponent implements OnInit {
       );
       this.store.dispatch(new fromAuth.SetUser(loggedInUser));
       this.store.dispatch(new fromAuth.SetToken(user.qa));
-      this.store.dispatch(new TransactionActions.FetchTransactions());
-      this.store.dispatch(new TransactionActions.FetchUserCategories());
-      this.store.dispatch(new TransactionActions.FetchCategorizedExpenses());
-      this.store.dispatch(new TransactionActions.FetchIncomeAndExpenseTotals());
+      this.userDataService.updateUserData();
     } else {
       this.store.dispatch(new fromAuth.SetUser(null));
       this.store.dispatch(new fromAuth.SetToken(null));
