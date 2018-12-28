@@ -4,7 +4,7 @@ import { UserDataService } from './user-data.service';
 import { Store } from '@ngrx/store';
 import * as fromTransactions from '../../store/transactions';
 
-fdescribe('UserDataService', () => {
+describe('UserDataService', () => {
   let mockStoreService;
   let service: UserDataService;
 
