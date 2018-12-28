@@ -1,35 +1,39 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import {
+  MockAppHeader,
+  MockToastMessage,
+  MockLoadingSpinner
+} from './testing/mock-components';
+import { Store } from '@ngrx/store';
 
 describe('AppComponent', () => {
+  let mockStore;
+  let fixture: ComponentFixture<AppComponent>;
+  let component: AppComponent;
+
   beforeEach(async(() => {
+    mockStore = jasmine.createSpyObj(['dispatch']);
+
     TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
+      imports: [RouterTestingModule],
       declarations: [
-        AppComponent
+        AppComponent,
+        MockAppHeader,
+        MockToastMessage,
+        MockLoadingSpinner
       ],
+      providers: [{ provide: Store, useValue: mockStore }]
     }).compileComponents();
   }));
 
+  beforeEach(() => {
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
+  });
+
   it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
-  });
-
-  it(`should have as title 'ng-budget-space'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('ng-budget-space');
-  });
-
-  it('should render title in a h1 tag', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to ng-budget-space!');
+    expect(component).toBeTruthy();
   });
 });
