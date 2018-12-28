@@ -1,10 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import * as firebase from 'firebase/app';
-import { environment } from '../environments/environment';
 import { Store } from '@ngrx/store';
 import * as fromAuth from './store/auth';
-import * as TransactionActions from './store/transactions/actions';
-import { Subscription, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { User } from './shared/models/auth.model';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { UserDataService } from './shared/services/user-data.service';
