@@ -14,6 +14,7 @@ import { Observable } from 'rxjs';
 import * as fromAuth from '../../../store/auth';
 import { Router } from '@angular/router';
 import { HeaderService } from './header.service';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-header',
@@ -35,7 +36,8 @@ export class HeaderComponent implements OnInit {
   constructor(
     private store: Store<any>,
     private router: Router,
-    private headerService: HeaderService
+    private headerService: HeaderService,
+    private afAuth: AngularFireAuth
   ) {}
 
   ngOnInit() {
@@ -51,7 +53,7 @@ export class HeaderComponent implements OnInit {
   }
 
   async handleLogout() {
-    firebase.auth().signOut();
+    this.afAuth.auth.signOut();
     this.router.navigate(['/']);
   }
 }

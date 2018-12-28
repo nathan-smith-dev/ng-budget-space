@@ -7,14 +7,20 @@ import {
   MockLoadingSpinner
 } from './testing/mock-components';
 import { Store } from '@ngrx/store';
+import { of } from 'rxjs';
+import { AngularFireAuth } from '@angular/fire/auth';
 
-describe('AppComponent', () => {
+fdescribe('AppComponent', () => {
   let mockStore;
+  let mockFireAuthStub;
   let fixture: ComponentFixture<AppComponent>;
   let component: AppComponent;
 
   beforeEach(async(() => {
-    mockStore = jasmine.createSpyObj(['dispatch']);
+    mockStore = jasmine.createSpyObj(['dispatch', 'select']);
+    mockFireAuthStub = {
+      user: of({})
+    };
 
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
@@ -24,7 +30,10 @@ describe('AppComponent', () => {
         MockToastMessage,
         MockLoadingSpinner
       ],
-      providers: [{ provide: Store, useValue: mockStore }]
+      providers: [
+        { provide: Store, useValue: mockStore },
+        { provide: AngularFireAuth, useValue: mockFireAuthStub }
+      ]
     }).compileComponents();
   }));
 
@@ -35,5 +44,12 @@ describe('AppComponent', () => {
 
   it('should create the app', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should call initializeUser onInit', () => {
+    spyOn(component, 'initializeUser');
+    fixture.detectChanges();
+
+    expect(component.initializeUser).toHaveBeenCalledWith({});
   });
 });
