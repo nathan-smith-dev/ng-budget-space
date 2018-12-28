@@ -10,6 +10,8 @@ import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { UserDataService } from './shared/services/user-data.service';
+import * as fromAuth from './store/auth';
+import { User } from './shared/models/auth.model';
 
 describe('AppComponent', () => {
   let mockStore;
@@ -20,6 +22,8 @@ describe('AppComponent', () => {
 
   beforeEach(async(() => {
     mockStore = jasmine.createSpyObj(['dispatch', 'select']);
+    mockUserDataService = jasmine.createSpyObj(['updateUserData']);
+
     mockFireAuthStub = {
       user: of({})
     };
@@ -54,5 +58,37 @@ describe('AppComponent', () => {
     fixture.detectChanges();
 
     expect(component.initializeUser).toHaveBeenCalledWith({});
+  });
+
+  describe('#initializeUser', () => {
+    it('should dispatch a null user and token if user is falsy', () => {
+      component.initializeUser(null);
+
+      expect(mockStore.dispatch).toHaveBeenCalledWith(
+        new fromAuth.SetUser(null)
+      );
+      expect(mockStore.dispatch).toHaveBeenCalledWith(
+        new fromAuth.SetToken(null)
+      );
+    });
+
+    it('should dispatch valid user', () => {
+      const user = {
+        qa: 'token_1234',
+        uid: 'id_123',
+        displayName: 'John Doe',
+        email: 'test@test.com'
+      };
+      component.initializeUser(user);
+
+      expect(mockUserDataService.updateUserData).toHaveBeenCalled();
+      const noTokenUser = new User(user.uid, 'John', user.email);
+      expect(mockStore.dispatch).toHaveBeenCalledWith(
+        new fromAuth.SetUser(noTokenUser)
+      );
+      expect(mockStore.dispatch).toHaveBeenCalledWith(
+        new fromAuth.SetToken(user.qa)
+      );
+    });
   });
 });
