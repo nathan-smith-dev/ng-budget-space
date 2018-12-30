@@ -15,6 +15,7 @@ export const fadeInOut = trigger('fadeInOut', [
     animate(100)
   ]),
   transition('* => void', [
+    style({ opacity: 1 }),
     animate(
       100,
       style({
