@@ -5,8 +5,7 @@ import { fadeInOut } from '../../../shared/animations/app.animations';
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
-  styleUrls: ['./modal.component.scss'],
-  animations: [fadeInOut]
+  styleUrls: ['./modal.component.scss']
 })
 export class ModalComponent implements OnInit {
   @Input() title: string;

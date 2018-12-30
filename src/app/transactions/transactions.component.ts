@@ -9,11 +9,13 @@ import { Expense } from '../shared/models/expense.model';
 import { Income } from '../shared/models/income.model';
 import * as TransactionActions from '../store/transactions/actions';
 import { Router } from '@angular/router';
+import { routerFadeAnimation } from '../shared/animations/app.animations';
 
 @Component({
   selector: 'app-transactions',
   templateUrl: './transactions.component.html',
-  styleUrls: ['./transactions.component.scss']
+  styleUrls: ['./transactions.component.scss'],
+  animations: [routerFadeAnimation]
 })
 export class TransactionsComponent implements OnInit {
   transactions$: Observable<Transaction[]>;
