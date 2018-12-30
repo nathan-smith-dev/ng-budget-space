@@ -1,0 +1,7 @@
+<app-transaction-form
+  title="Edit Transaction"
+  [transaction]="transaction"
+  [open]="true"
+  (modalToggled)="handleToggleEdit()"
+  (formSubmitted)="handleSubmitForm($event)"
+></app-transaction-form>

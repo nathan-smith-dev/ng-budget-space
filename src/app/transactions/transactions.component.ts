@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import * as fromTransactions from '../../../store/transactions';
+import * as fromTransactions from '../store/transactions';
 import { Observable } from 'rxjs';
-import { Transaction } from '../../../shared/models/transaction.model';
+import { Transaction } from '../shared/models/transaction.model';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../../environments/environment';
-import { Expense } from '../../../shared/models/expense.model';
-import { Income } from '../../../shared/models/income.model';
-import * as TransactionActions from '../../../store/transactions/actions';
+import { environment } from '../../environments/environment';
+import { Expense } from '../shared/models/expense.model';
+import { Income } from '../shared/models/income.model';
+import * as TransactionActions from '../store/transactions/actions';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-transactions',
@@ -29,15 +30,20 @@ export class TransactionsComponent implements OnInit {
   editModalOpen: boolean = false;
   newModalOpen: boolean = false;
 
-  constructor(private store: Store<any>, private httpClient: HttpClient) {}
+  constructor(
+    private store: Store<any>,
+    private httpClient: HttpClient,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.transactions$ = this.store.select(fromTransactions.getTransactions);
   }
 
   handleItemClicked(transaction: Transaction) {
-    this.transaction = transaction;
-    this.handleToggleDetailModal();
+    // this.transaction = transaction;
+    // this.handleToggleDetailModal();
+    this.router.navigate(['transactions', transaction.id]);
   }
 
   handleToggleDetailModal() {
@@ -49,7 +55,8 @@ export class TransactionsComponent implements OnInit {
   }
 
   handleToggleNew() {
-    this.newModalOpen = !this.newModalOpen;
+    // this.newModalOpen = !this.newModalOpen;
+    this.router.navigate(['transactions', 'new']);
   }
 
   handleEdit() {

@@ -7,10 +7,11 @@
   <div class="margin-top__md">
     <app-month-year-selector></app-month-year-selector>
   </div>
+  <router-outlet></router-outlet>
 </div>
 
 <!-- Modals -->
-<app-modal
+<!-- <app-modal
   title="Transaction Details"
   [open]="detailModalOpen"
   (modalToggled)="handleToggleDetailModal()"
@@ -39,8 +40,8 @@
     >
     <app-button (click)="handleDelete()" color="white">Delete</app-button>
   </div>
-</app-modal>
-<app-transaction-form
+</app-modal> -->
+<!-- <app-transaction-form
   *ngIf="editModalOpen"
   title="Edit Transaction"
   [transaction]="transaction"
@@ -54,7 +55,7 @@
   [open]="newModalOpen"
   (modalToggled)="handleToggleNew()"
   (formSubmitted)="handleSubmitForm($event)"
-></app-transaction-form>
+></app-transaction-form> -->
 <app-floating-action
   (click)="handleToggleNew()"
   color="primary"
