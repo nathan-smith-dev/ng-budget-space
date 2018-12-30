@@ -6,6 +6,7 @@ import { switchMap, map } from 'rxjs/operators';
 import { getTransactions } from 'src/app/store/transactions';
 import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
+import { TransactionService } from '../../services/transaction.service';
 
 @Component({
   selector: 'app-transaction-edit-view',
@@ -15,7 +16,11 @@ import { Router } from '@angular/router';
 export class TransactionEditViewComponent implements OnInit {
   transaction$: Observable<Transaction>;
 
-  constructor(private store: Store<any>, private router: Router) {}
+  constructor(
+    private store: Store<any>,
+    private router: Router,
+    private transactionService: TransactionService
+  ) {}
 
   ngOnInit() {
     this.transaction$ = this.store.select(getTransactionId).pipe(
@@ -31,5 +36,9 @@ export class TransactionEditViewComponent implements OnInit {
 
   handleToggleEdit() {
     this.router.navigate(['/transactions']);
+  }
+
+  handleSubmitForm(transaction: Transaction) {
+    this.transactionService.putTransaction(transaction);
   }
 }

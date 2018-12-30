@@ -7,6 +7,7 @@ import { getTransactions } from 'src/app/store/transactions';
 import { switchMap, map } from 'rxjs/operators';
 import { Router, ActivatedRoute } from '@angular/router';
 import { routerFadeAnimation } from 'src/app/shared/animations/app.animations';
+import { TransactionService } from '../../services/transaction.service';
 
 @Component({
   selector: 'app-transaction-detail-view',
@@ -20,7 +21,8 @@ export class TransactionDetailViewComponent implements OnInit {
   constructor(
     private store: Store<any>,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private transactionService: TransactionService
   ) {}
 
   ngOnInit() {
@@ -41,5 +43,9 @@ export class TransactionDetailViewComponent implements OnInit {
 
   handleEdit() {
     this.router.navigate(['./edit'], { relativeTo: this.activatedRoute });
+  }
+
+  handleDelete(transaction: Transaction) {
+    this.transactionService.deleteTransaction(transaction);
   }
 }

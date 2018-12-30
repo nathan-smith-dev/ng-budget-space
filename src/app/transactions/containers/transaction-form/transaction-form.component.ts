@@ -83,6 +83,6 @@ export class TransactionFormComponent implements OnInit {
       desc,
       type
     );
-    this.formSubmitted.emit({ transaction, edit: id ? true : false });
+    this.formSubmitted.emit(transaction);
   }
 }

@@ -26,7 +26,9 @@
     <app-button (click)="handleEdit()" class="margin-right__sm" color="primary"
       >Edit</app-button
     >
-    <app-button (click)="handleDelete()" color="white">Delete</app-button>
+    <app-button (click)="handleDelete(transaction)" color="white"
+      >Delete</app-button
+    >
   </div>
 </app-modal>
 <div [@routerFadeAnimation]="o.isActivated ? o.activatedRoute : ''">
