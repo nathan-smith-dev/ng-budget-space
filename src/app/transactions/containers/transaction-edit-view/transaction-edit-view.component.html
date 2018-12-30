@@ -1,6 +1,6 @@
 <app-transaction-form
   title="Edit Transaction"
-  [transaction]="transaction"
+  [transaction]="transaction$ | async"
   [open]="true"
   (modalToggled)="handleToggleEdit()"
   (formSubmitted)="handleSubmitForm($event)"

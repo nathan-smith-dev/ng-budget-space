@@ -6,11 +6,13 @@ import { getTransactionId } from 'src/app/store/router/selectors';
 import { getTransactions } from 'src/app/store/transactions';
 import { switchMap, map } from 'rxjs/operators';
 import { Router, ActivatedRoute } from '@angular/router';
+import { routerFadeAnimation } from 'src/app/shared/animations/app.animations';
 
 @Component({
   selector: 'app-transaction-detail-view',
   templateUrl: './transaction-detail-view.component.html',
-  styleUrls: ['./transaction-detail-view.component.scss']
+  styleUrls: ['./transaction-detail-view.component.scss'],
+  animations: [routerFadeAnimation]
 })
 export class TransactionDetailViewComponent implements OnInit {
   transaction$: Observable<Transaction>;
