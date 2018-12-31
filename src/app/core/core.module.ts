@@ -12,10 +12,10 @@ import { ToastMessageComponent } from './containers/toast-message/toast-message.
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from '../shared/interceptors/auth.interceptor';
 import { HeaderService } from './containers/header/header.service';
-import { TransactionTableComponent } from './containers/transaction-table/transaction-table.component';
-import { TransactionTableHeaderComponent } from './containers/transaction-table/transaction-table-header/transaction-table-header.component';
-import { TransactionTableItemComponent } from './containers/transaction-table/transaction-table-item/transaction-table-item.component';
-import { TransactionTableService } from './containers/transaction-table/transaction-table.service';
+import { TransactionTableComponent } from './components/transaction-table/transaction-table.component';
+import { TransactionTableHeaderComponent } from './components/transaction-table/transaction-table-header/transaction-table-header.component';
+import { TransactionTableItemComponent } from './components/transaction-table/transaction-table-item/transaction-table-item.component';
+import { TransactionTableService } from './components/transaction-table/transaction-table.service';
 import { ModalComponent } from './components/modal/modal.component';
 import { ButtonComponent } from './components/button/button.component';
 import { FloatingActionComponent } from './components/floating-action/floating-action.component';
