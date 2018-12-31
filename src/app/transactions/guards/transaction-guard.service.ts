@@ -1,6 +1,6 @@
 import { CanActivate } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { filter, first, switchMap, catchError } from 'rxjs/operators';
+import { filter, first, switchMap, catchError, tap } from 'rxjs/operators';
 
 import * as fromToast from '../../store/toast';
 import { Injectable } from '@angular/core';
@@ -13,20 +13,9 @@ export class TransactionsGuard implements CanActivate {
 
   canActivate() {
     return this.store.select(getTransactionState).pipe(
-      filter(transactionState => !transactionState.transactions.loading),
+      filter(transactionState => transactionState.transactions.loaded),
       first(),
-      switchMap(transactionState => {
-        if (transactionState.transactions.loaded) {
-          return of(true);
-        } else {
-          this.store.dispatch(
-            new fromToast.OpenToast(
-              'ERROR: Unable to load user transaction data. Please try again'
-            )
-          );
-          return of(false);
-        }
-      }),
+      switchMap(() => of(true)),
       catchError(() => of(false))
     );
   }

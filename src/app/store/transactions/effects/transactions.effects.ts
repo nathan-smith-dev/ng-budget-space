@@ -4,8 +4,9 @@ import { Effect, Actions } from '@ngrx/effects';
 import * as TransactionActions from '../actions';
 import { switchMap, mergeMap, catchError } from 'rxjs/operators';
 import { TransactionEffectService } from 'src/app/store/transactions/effects/transaction.effect.service';
-import { forkJoin, of } from 'rxjs';
+import { forkJoin, of, from } from 'rxjs';
 import { UserDataFail, UserDataSuccess } from '../actions';
+import { OpenToast } from '../../toast';
 
 @Injectable()
 export class TransactionEffects {
@@ -55,6 +56,13 @@ export class TransactionEffects {
       mergeMap((dispatches: any) => {
         return [...dispatches.flat(), new UserDataSuccess()];
       }),
-      catchError(error => of(new UserDataFail()))
+      catchError(error =>
+        from([
+          new UserDataFail(),
+          new OpenToast(
+            'ERROR: Unable to load user transaction data. Please try again'
+          )
+        ])
+      )
     );
 }
