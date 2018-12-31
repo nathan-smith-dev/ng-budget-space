@@ -4,7 +4,7 @@ import * as fromAuth from './store/auth';
 import { Observable } from 'rxjs';
 import { User } from './shared/models/auth.model';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { UserDataService } from './shared/services/user-data.service';
+import { FetchUserData } from './store/transactions';
 
 @Component({
   selector: 'app-root',
@@ -15,11 +15,7 @@ export class AppComponent implements OnInit {
   openToast: boolean = false;
   isAuthLoading$: Observable<boolean>;
 
-  constructor(
-    private store: Store<any>,
-    private afAuth: AngularFireAuth,
-    private userDataService: UserDataService
-  ) {}
+  constructor(private store: Store<any>, private afAuth: AngularFireAuth) {}
 
   ngOnInit() {
     this.isAuthLoading$ = this.store.select(fromAuth.getLoading);
@@ -39,7 +35,7 @@ export class AppComponent implements OnInit {
       );
       this.store.dispatch(new fromAuth.SetUser(loggedInUser));
       this.store.dispatch(new fromAuth.SetToken(user.qa));
-      this.userDataService.updateUserData();
+      this.store.dispatch(new FetchUserData());
     } else {
       this.store.dispatch(new fromAuth.SetUser(null));
       this.store.dispatch(new fromAuth.SetToken(null));
