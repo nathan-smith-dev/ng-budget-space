@@ -30,3 +30,13 @@ export const getAnnualTotals = createSelector(
   fromTransactions.getTransactionState,
   transactionState => transactionState.transactions.annualTotals
 );
+
+export const getTransactionsLoaded = createSelector(
+  fromTransactions.getTransactionState,
+  transactionsState => transactionsState.transactions.loaded
+);
+
+export const getTransactionsLoading = createSelector(
+  fromTransactions.getTransactionState,
+  transactionsState => transactionsState.transactions.loading
+);

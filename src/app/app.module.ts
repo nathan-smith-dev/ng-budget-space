@@ -18,6 +18,7 @@ import { AuthGuard } from './auth/guards/auth-guard.service';
 import { ToastStoreModule } from './store/toast/toast-store.module';
 import { TransactionsStoreModule } from './store/transactions/transactions-store.module';
 import { RouterStoreModule } from './store/router/router-store.module';
+import { TransactionsGuard } from './transactions/guards/transaction-guard.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -38,7 +39,7 @@ import { RouterStoreModule } from './store/router/router-store.module';
     StoreRouterConnectingModule.forRoot(),
     !environment.production ? StoreDevtoolsModule.instrument() : []
   ],
-  providers: [AuthGuard],
+  providers: [AuthGuard, TransactionsGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

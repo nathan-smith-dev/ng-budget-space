@@ -26,7 +26,7 @@ const initialState: State = {
   annualCategorizedExpenses: [],
   totals: new IncomeAndExpenseTotal(0, 0),
   annualTotals: new IncomeAndExpenseTotal(0, 0),
-  loading: false,
+  loading: true,
   loaded: false
 };
 

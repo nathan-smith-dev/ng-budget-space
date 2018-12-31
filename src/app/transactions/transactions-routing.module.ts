@@ -5,12 +5,13 @@ import { AuthGuard } from '../auth/guards/auth-guard.service';
 import { TransactionDetailViewComponent } from './containers/transaction-detail-view/transaction-detail-view.component';
 import { TransactionEditViewComponent } from './containers/transaction-edit-view/transaction-edit-view.component';
 import { TransactionNewViewComponent } from './containers/transaction-new-view/transaction-new-view.component';
+import { TransactionsGuard } from './guards/transaction-guard.service';
 
 const routes: Routes = [
   {
     path: '',
     component: TransactionsComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, TransactionsGuard],
     children: [
       {
         path: 'new',
