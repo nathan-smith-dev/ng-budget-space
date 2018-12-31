@@ -15,3 +15,6 @@
   (click)="handleToggleNew()"
   color="primary"
 ></app-floating-action>
+<app-loading-spinner
+  [open]="isTransactionsLoading$ | async"
+></app-loading-spinner>

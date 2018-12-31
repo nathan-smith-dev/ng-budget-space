@@ -14,11 +14,15 @@ import { routerFadeAnimation } from '../shared/animations/app.animations';
 })
 export class TransactionsComponent implements OnInit {
   transactions$: Observable<Transaction[]>;
+  isTransactionsLoading$: Observable<boolean>;
 
   constructor(private store: Store<any>, private router: Router) {}
 
   ngOnInit() {
     this.transactions$ = this.store.select(fromTransactions.getTransactions);
+    this.isTransactionsLoading$ = this.store.select(
+      fromTransactions.getTransactionsLoading
+    );
   }
 
   handleItemClicked(transaction: Transaction) {
