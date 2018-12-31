@@ -18,6 +18,9 @@ export const FETCH_INCOME_AND_EXPENSE_TOALS = 'FETCH_INCOME_AND_EXPENSE_TOALS';
 export const SET_INCOME_AND_EXPENSE_TOALS = 'SET_INCOME_AND_EXPENSE_TOALS';
 export const SET_ANNUAL_INCOME_AND_EXPENSE_TOALS =
   'SET_ANNUAL_INCOME_AND_EXPENSE_TOALS';
+export const FETCH_USER_DATA = '[Transactions] fetch user data';
+export const USER_DATA_SUCCESS = '[Transactions] fetch user data success';
+export const USER_DATA_FAIL = '[Transactions] fetch user data fail';
 
 export class FetchTransactions implements Action {
   readonly type = FETCH_TRANSACTIONS;
@@ -77,6 +80,18 @@ export class SetAnnualIncomeAndExpenseTotals implements Action {
   constructor(public payload: IncomeAndExpenseTotal) {}
 }
 
+export class FetchUserData implements Action {
+  readonly type = FETCH_USER_DATA;
+}
+
+export class UserDataSuccess implements Action {
+  readonly type = USER_DATA_SUCCESS;
+}
+
+export class UserDataFail implements Action {
+  readonly type = USER_DATA_FAIL;
+}
+
 export type TransactionActions =
   | FetchTransactions
   | SetTransactions
@@ -88,4 +103,7 @@ export type TransactionActions =
   | FetchIncomeAndExpenseTotals
   | SetAnnualCategorizedExpenses
   | SetIncomeAndExpenseTotals
-  | SetAnnualIncomeAndExpenseTotals;
+  | SetAnnualIncomeAndExpenseTotals
+  | FetchUserData
+  | UserDataSuccess
+  | UserDataFail;

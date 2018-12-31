@@ -14,6 +14,8 @@ export interface State {
   annualCategorizedExpenses: CategorizedTransaction[];
   totals: IncomeAndExpenseTotal;
   annualTotals: IncomeAndExpenseTotal;
+  loading: boolean;
+  loaded: boolean;
 }
 
 const initialState: State = {
@@ -23,7 +25,9 @@ const initialState: State = {
   categorizedExpenses: [],
   annualCategorizedExpenses: [],
   totals: new IncomeAndExpenseTotal(0, 0),
-  annualTotals: new IncomeAndExpenseTotal(0, 0)
+  annualTotals: new IncomeAndExpenseTotal(0, 0),
+  loading: false,
+  loaded: false
 };
 
 export function reducer(
@@ -65,6 +69,24 @@ export function reducer(
       return {
         ...state,
         annualTotals: action.payload
+      };
+    case TransactionActions.FETCH_USER_DATA:
+      return {
+        ...state,
+        loading: true,
+        loaded: false
+      };
+    case TransactionActions.USER_DATA_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        loaded: true
+      };
+    case TransactionActions.USER_DATA_FAIL:
+      return {
+        ...state,
+        loading: false,
+        loaded: false
       };
     default:
       return state;

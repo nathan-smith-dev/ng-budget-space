@@ -9,20 +9,17 @@ import {
 import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { UserDataService } from './shared/services/user-data.service';
 import * as fromAuth from './store/auth';
 import { User } from './shared/models/auth.model';
 
 describe('AppComponent', () => {
   let mockStore;
   let mockFireAuthStub;
-  let mockUserDataService;
   let fixture: ComponentFixture<AppComponent>;
   let component: AppComponent;
 
   beforeEach(async(() => {
     mockStore = jasmine.createSpyObj(['dispatch', 'select']);
-    mockUserDataService = jasmine.createSpyObj(['updateUserData']);
 
     mockFireAuthStub = {
       user: of({})
@@ -38,8 +35,7 @@ describe('AppComponent', () => {
       ],
       providers: [
         { provide: Store, useValue: mockStore },
-        { provide: AngularFireAuth, useValue: mockFireAuthStub },
-        { provide: UserDataService, useValue: mockUserDataService }
+        { provide: AngularFireAuth, useValue: mockFireAuthStub }
       ]
     }).compileComponents();
   }));
@@ -81,7 +77,6 @@ describe('AppComponent', () => {
       };
       component.initializeUser(user);
 
-      expect(mockUserDataService.updateUserData).toHaveBeenCalled();
       const noTokenUser = new User(user.uid, 'John', user.email);
       expect(mockStore.dispatch).toHaveBeenCalledWith(
         new fromAuth.SetUser(noTokenUser)
