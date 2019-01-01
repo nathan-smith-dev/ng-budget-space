@@ -50,6 +50,16 @@ export function reducer(
         ...state,
         monthYear: action.payload
       };
+    case TransactionActions.SET_MONTH:
+      return {
+        ...state,
+        monthYear: { ...state.monthYear, month: action.payload }
+      };
+    case TransactionActions.SET_YEAR:
+      return {
+        ...state,
+        monthYear: { ...state.monthYear, year: action.payload }
+      };
     case TransactionActions.SET_CATEGORIZED_EXPENSES:
       return {
         ...state,
