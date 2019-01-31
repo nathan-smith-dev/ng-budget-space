@@ -19,6 +19,8 @@ import { ToastStoreModule } from './store/toast/toast-store.module';
 import { TransactionsStoreModule } from './store/transactions/transactions-store.module';
 import { RouterStoreModule } from './store/router/router-store.module';
 import { TransactionsGuard } from './transactions/guards/transaction-guard.service';
+import { GraphQLModule } from './graphql.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
@@ -37,7 +39,9 @@ import { TransactionsGuard } from './transactions/guards/transaction-guard.servi
     ToastStoreModule,
     TransactionsStoreModule,
     StoreRouterConnectingModule.forRoot(),
-    !environment.production ? StoreDevtoolsModule.instrument() : []
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    GraphQLModule,
+    HttpClientModule
   ],
   providers: [AuthGuard, TransactionsGuard],
   bootstrap: [AppComponent]
