@@ -1,63 +1,40 @@
-<app-modal
-  [title]="title"
-  [open]="open"
-  (modalToggled)="handleToggleModal()"
->
+<app-modal [title]="title" [open]="open" (modalToggled)="handleToggleModal()">
   <div class="ng-modal-content">
-    <form 
-      [formGroup]="transactionForm" 
-      (ngSubmit)="handleSubmitForm()"
-    >
+    <form [formGroup]="transactionForm" (ngSubmit)="handleSubmitForm()">
       <div class="form-group">
         <label for="date">Date</label>
-        <input 
-          type="date" 
-          id="date" 
-          name="date"
-          formControlName="date"
-        >
+        <input type="date" id="date" name="date" formControlName="date" />
       </div>
       <div class="form-group">
         <label for="amount">Amount</label>
-        <input 
-          type="number" 
-          step="0.01" 
-          id="amount" 
+        <input
+          type="number"
+          step="0.01"
+          id="amount"
           name="amount"
           placeholder="0.00"
           formControlName="amount"
-        >
+        />
       </div>
       <div class="form-group">
         <label for="type">Type</label>
-        <select 
-          name="type" 
-          id="type" 
-          formControlName="type"
-        >
+        <select name="type" id="type" formControlName="type">
           <option value="Expense">Expense</option>
           <option value="Income">Income</option>
         </select>
       </div>
       <div class="form-group">
         <label for="category">Category</label>
-        <select 
-          name="category" 
-          id="category" 
-          formControlName="category"
-        >
-          <option 
-            *ngFor="let cat of userCategories"
-            [value]="cat.id"
-          >
-            {{ cat.category }}
+        <select name="category" id="category" formControlName="category">
+          <option *ngFor="let cat of userCategories" [value]="cat.id">
+            {{ cat.name }}
           </option>
         </select>
       </div>
       <div class="form-group">
         <label for="description">Description</label>
         <textarea
-          name="description" 
+          name="description"
           id="description"
           rows="4"
           formControlName="description"

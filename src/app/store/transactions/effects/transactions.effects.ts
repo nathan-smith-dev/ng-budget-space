@@ -5,8 +5,18 @@ import * as TransactionActions from '../actions';
 import { switchMap, mergeMap, catchError } from 'rxjs/operators';
 import { TransactionEffectService } from 'src/app/store/transactions/effects/transaction.effect.service';
 import { forkJoin, of, from } from 'rxjs';
-import { UserDataFail, UserDataSuccess } from '../actions';
+import {
+  UserDataFail,
+  UserDataSuccess,
+  FetchTransactions,
+  FetchUserData,
+  SetTransactions,
+  SetUserCategories,
+  SetCategorizedExpenses,
+  SetIncomeAndExpenseTotals
+} from '../actions';
 import { OpenToast } from '../../toast';
+import { IncomeAndExpenseTotal } from 'src/app/shared/models/IncomeAndExpenseTotal.model';
 
 @Injectable()
 export class TransactionEffects {
@@ -45,16 +55,13 @@ export class TransactionEffects {
   updateUserData = this.actions$
     .ofType(TransactionActions.FETCH_USER_DATA)
     .pipe(
-      switchMap(() => {
-        return forkJoin(
-          this.transactionService.getTransactions(),
-          this.transactionService.getUserCategories(),
-          this.transactionService.getAllCategoryTotals(),
-          this.transactionService.getAllIncomeAndExpenseTotals()
-        );
+      switchMap((action: FetchUserData) => {
+        const { month, year } = action.payload;
+        return this.transactionService.getTransactionData(month, year);
       }),
-      mergeMap((dispatches: any) => {
-        return [...dispatches.flat(), new UserDataSuccess()];
+      mergeMap(transactionData => {
+        console.log(transactionData);
+        return transactionData;
       }),
       catchError(error =>
         from([
@@ -65,4 +72,28 @@ export class TransactionEffects {
         ])
       )
     );
+  // @Effect()
+  // updateUserData = this.actions$
+  //   .ofType(TransactionActions.FETCH_USER_DATA)
+  //   .pipe(
+  //     switchMap(() => {
+  //       return forkJoin(
+  //         this.transactionService.getTransactions(),
+  //         this.transactionService.getUserCategories(),
+  //         this.transactionService.getAllCategoryTotals(),
+  //         this.transactionService.getAllIncomeAndExpenseTotals()
+  //       );
+  //     }),
+  //     mergeMap((dispatches: any) => {
+  //       return [...dispatches.flat(), new UserDataSuccess()];
+  //     }),
+  //     catchError(error =>
+  //       from([
+  //         new UserDataFail(),
+  //         new OpenToast(
+  //           'ERROR: Unable to load user transaction data. Please try again'
+  //         )
+  //       ])
+  //     )
+  //   );
 }

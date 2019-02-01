@@ -96,6 +96,8 @@ export class SetAnnualIncomeAndExpenseTotals implements Action {
 
 export class FetchUserData implements Action {
   readonly type = FETCH_USER_DATA;
+
+  constructor(public payload: { month: number; year: number }) {}
 }
 
 export class UserDataSuccess implements Action {

@@ -6,7 +6,8 @@ import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
 import { Expense } from 'src/app/shared/models/expense.model';
 import { Income } from 'src/app/shared/models/income.model';
-import { FetchUserData } from '../../store/transactions';
+import { FetchUserData, getMonthYear } from '../../store/transactions';
+import { withLatestFrom } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -24,9 +25,10 @@ export class TransactionService {
 
     this.httpClient
       .delete(`${environment.apiBaseUrl}/${postFix}/${id}`)
-      .subscribe(() => {
+      .pipe(withLatestFrom(this.store.select(getMonthYear)))
+      .subscribe(([placeholder, monthYear]) => {
         this.router.navigate(['transactions']);
-        this.store.dispatch(new FetchUserData());
+        this.store.dispatch(new FetchUserData(monthYear));
       });
   }
 
@@ -34,24 +36,27 @@ export class TransactionService {
     const postFix = transaction.type === 'Expense' ? 'expenses' : 'incomes';
 
     if (postFix === 'expenses') {
-      const { amount, date, desc, categoryid } = transaction;
-      const expense = new Expense(amount, new Date(date), desc, categoryid);
+      const { amount, date, desc, category } = transaction;
+      const expense = new Expense(amount, new Date(date), desc, category.id);
 
       this.httpClient
         .post(`${environment.apiBaseUrl}/${postFix}`, expense)
-        .subscribe(() => {
+        .pipe(withLatestFrom(this.store.select(getMonthYear)))
+        .subscribe(([placeholder, monthYear]) => {
           this.router.navigate(['transactions']);
-          this.store.dispatch(new FetchUserData());
+          console.log(placeholder, monthYear);
+          this.store.dispatch(new FetchUserData(monthYear));
         });
     } else if (postFix === 'incomes') {
-      const { amount, date, desc, categoryid } = transaction;
-      const income = new Income(amount, new Date(date), desc, categoryid);
+      const { amount, date, desc, category } = transaction;
+      const income = new Income(amount, new Date(date), desc, category.id);
 
       this.httpClient
         .post(`${environment.apiBaseUrl}/${postFix}`, income)
-        .subscribe(() => {
+        .pipe(withLatestFrom(this.store.select(getMonthYear)))
+        .subscribe(([placeholder, monthYear]) => {
           this.router.navigate(['transactions']);
-          this.store.dispatch(new FetchUserData());
+          this.store.dispatch(new FetchUserData(monthYear));
         });
     }
   }
@@ -61,24 +66,26 @@ export class TransactionService {
     const id = transaction.id;
 
     if (postFix === 'expenses') {
-      const { amount, date, desc, categoryid } = transaction;
-      const expense = new Expense(amount, new Date(date), desc, categoryid);
+      const { amount, date, desc, category } = transaction;
+      const expense = new Expense(amount, new Date(date), desc, category.id);
 
       this.httpClient
         .put(`${environment.apiBaseUrl}/${postFix}/${id}`, expense)
-        .subscribe(() => {
+        .pipe(withLatestFrom(this.store.select(getMonthYear)))
+        .subscribe(([placeholder, monthYear]) => {
           this.router.navigate(['transactions']);
-          this.store.dispatch(new FetchUserData());
+          this.store.dispatch(new FetchUserData(monthYear));
         });
     } else if (postFix === 'incomes') {
-      const { amount, date, desc, categoryid } = transaction;
-      const income = new Income(amount, new Date(date), desc, categoryid);
+      const { amount, date, desc, category } = transaction;
+      const income = new Income(amount, new Date(date), desc, category.id);
 
       this.httpClient
         .put(`${environment.apiBaseUrl}/${postFix}/${id}`, income)
-        .subscribe(() => {
+        .pipe(withLatestFrom(this.store.select(getMonthYear)))
+        .subscribe(([placeholder, monthYear]) => {
           this.router.navigate(['transactions']);
-          this.store.dispatch(new FetchUserData());
+          this.store.dispatch(new FetchUserData(monthYear));
         });
     }
   }

@@ -13,8 +13,7 @@ export class TransactionNewViewComponent implements OnInit {
   transaction: Transaction = new Transaction(
     null,
     null,
-    null,
-    null,
+    { id: null, name: null },
     new Date(),
     '',
     'Expense'

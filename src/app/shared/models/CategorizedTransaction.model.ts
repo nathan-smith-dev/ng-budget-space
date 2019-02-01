@@ -1,6 +1,3 @@
 export class CategorizedTransaction {
-    constructor(
-        public total: number,
-        public category: string
-    ) {}
+  constructor(public total: number, public name: string) {}
 }

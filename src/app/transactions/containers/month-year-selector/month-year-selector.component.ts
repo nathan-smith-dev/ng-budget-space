@@ -4,7 +4,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import * as TransactionActions from '../../../store/transactions/actions';
 import { getMonthYear } from '../../../store/transactions';
 import { ReplaySubject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { takeUntil, first } from 'rxjs/operators';
 
 const today = new Date();
 
@@ -39,11 +39,23 @@ export class MonthYearSelectorComponent implements OnInit, OnDestroy {
 
   handleChangeYear(event: any) {
     this.store.dispatch(new TransactionActions.SetYear(+event.target.value));
-    this.store.dispatch(new TransactionActions.FetchUserData());
+    this.store
+      .select(getMonthYear)
+      .pipe(first())
+      .subscribe(monthYear => {
+        this.store.dispatch(new TransactionActions.FetchUserData(monthYear));
+      });
   }
 
   handleChangeMonth(event: any) {
-    this.store.dispatch(new TransactionActions.SetMonth(+event.target.value));
-    this.store.dispatch(new TransactionActions.FetchUserData());
+    this.store.dispatch(
+      new TransactionActions.SetMonth(+event.target.value + 1)
+    );
+    this.store
+      .select(getMonthYear)
+      .pipe(first())
+      .subscribe(monthYear => {
+        this.store.dispatch(new TransactionActions.FetchUserData(monthYear));
+      });
   }
 }

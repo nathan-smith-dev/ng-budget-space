@@ -1,49 +1,37 @@
 import gql from 'graphql-tag';
 
-export const getTransactionsQuery = () => gql`
-  {
-    monthlyExpenses: transactions(
+export const getTransactionDataQuery = () => gql`
+  query GetTransactionData($month: Int!, $year: Int!) {
+    transactions(transactionType: BOTH, month: $month, year: $year) {
+      id
+      type
+      amount
+      date
+      description
+      category {
+        name
+      }
+    }
+    categories {
+      id
+      name
+    }
+    incomeTotals: totals(month: $month, year: $year, transactionType: INCOME) {
+      total
+      categoryTotals(month: $month, year: $year, transactionType: INCOME) {
+        name
+        total
+      }
+    }
+    expenseTotals: totals(
+      month: $month
+      year: $year
       transactionType: EXPENSE
-      month: 1
-      year: 2019
     ) {
-      id
-      amount
-      date
-      description
-      category {
+      total
+      categoryTotals(month: $month, year: $year, transactionType: EXPENSE) {
         name
-      }
-    }
-    monthlyIncomes: transactions(
-      transactionType: INCOME
-      month: 1
-      year: 2019
-    ) {
-      id
-      amount
-      date
-      description
-      category {
-        name
-      }
-    }
-    annualExpenses: transactions(transactionType: EXPENSE, year: 2019) {
-      id
-      amount
-      date
-      description
-      category {
-        name
-      }
-    }
-    annualIncomes: transactions(transactionType: INCOME, year: 2019) {
-      id
-      amount
-      date
-      description
-      category {
-        name
+        total
       }
     }
   }

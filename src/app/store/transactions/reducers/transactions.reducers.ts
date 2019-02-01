@@ -21,7 +21,7 @@ export interface State {
 const initialState: State = {
   transactions: [],
   userCategories: [],
-  monthYear: { month: today.getMonth(), year: today.getFullYear() },
+  monthYear: { month: today.getMonth() + 1, year: today.getFullYear() },
   categorizedExpenses: [],
   annualCategorizedExpenses: [],
   totals: new IncomeAndExpenseTotal(0, 0),

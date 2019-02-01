@@ -3,26 +3,34 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Store } from '@ngrx/store';
 import { Transaction } from '../../../shared/models/transaction.model';
 import { environment } from 'src/environments/environment';
-import { switchMap, map, first } from 'rxjs/operators';
+import { switchMap, map, first, delay } from 'rxjs/operators';
 import {
   SetTransactions,
   SetUserCategories,
   SetIncomeAndExpenseTotals,
   SetAnnualCategorizedExpenses,
   SetAnnualIncomeAndExpenseTotals,
-  SetCategorizedExpenses
+  SetCategorizedExpenses,
+  UserDataSuccess
 } from '../actions';
 import { getMonthYear } from '../selectors';
 import { Category } from '../../../shared/models/category.model';
 import { IncomeAndExpenseTotal } from '../../../shared/models/IncomeAndExpenseTotal.model';
 import { forkJoin } from 'rxjs';
 import { CategorizedTransaction } from '../../../shared/models/CategorizedTransaction.model';
+import { Apollo } from 'apollo-angular';
+import { getTransactionDataQuery } from '../../../shared/graphql/queries';
+import { TransactionData } from 'src/app/shared/graphql/query.types';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TransactionEffectService {
-  constructor(private httpClient: HttpClient, private store: Store<any>) {}
+  constructor(
+    private httpClient: HttpClient,
+    private store: Store<any>,
+    private apollo: Apollo
+  ) {}
 
   getTransactions() {
     return this.store.select(getMonthYear).pipe(
@@ -41,6 +49,35 @@ export class TransactionEffectService {
         return new SetTransactions(transactions);
       })
     );
+  }
+
+  getTransactionData(month: number, year: number) {
+    return this.apollo
+      .query({
+        query: getTransactionDataQuery(),
+        variables: { month, year },
+        fetchPolicy: 'network-only'
+      })
+      .pipe(
+        first(),
+        map(({ data }) => {
+          const {
+            transactions,
+            categories,
+            incomeTotals,
+            expenseTotals
+          } = data as TransactionData;
+          return [
+            new SetTransactions(transactions),
+            new SetUserCategories(categories),
+            new SetCategorizedExpenses(expenseTotals.categoryTotals),
+            new SetIncomeAndExpenseTotals(
+              new IncomeAndExpenseTotal(incomeTotals.total, expenseTotals.total)
+            ),
+            new UserDataSuccess()
+          ];
+        })
+      );
   }
 
   getUserCategories() {

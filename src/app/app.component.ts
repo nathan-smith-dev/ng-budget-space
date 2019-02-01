@@ -4,7 +4,8 @@ import * as fromAuth from './store/auth';
 import { Observable } from 'rxjs';
 import { User } from './shared/models/auth.model';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { FetchUserData } from './store/transactions';
+import { FetchUserData, getMonthYear } from './store/transactions';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -35,7 +36,12 @@ export class AppComponent implements OnInit {
       );
       this.store.dispatch(new fromAuth.SetUser(loggedInUser));
       this.store.dispatch(new fromAuth.SetToken(user.qa));
-      this.store.dispatch(new FetchUserData());
+      this.store
+        .select(getMonthYear)
+        .pipe(first())
+        .subscribe(monthYear => {
+          this.store.dispatch(new FetchUserData(monthYear));
+        });
     } else {
       this.store.dispatch(new fromAuth.SetUser(null));
       this.store.dispatch(new fromAuth.SetToken(null));

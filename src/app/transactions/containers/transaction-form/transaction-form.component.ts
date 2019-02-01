@@ -34,11 +34,14 @@ export class TransactionFormComponent implements OnInit {
       this.userCategories = state.transactions.userCategories;
       if (
         !this.userCategories
-          .map((cat: Category) => cat.category)
-          .includes(this.transaction.category)
+          .map((cat: Category) => cat.name)
+          .includes(this.transaction.category.name)
       ) {
         this.userCategories.push(
-          new Category(this.transaction.categoryid, this.transaction.category)
+          new Category(
+            this.transaction.category.id,
+            this.transaction.category.name
+          )
         );
       }
     });
@@ -55,7 +58,7 @@ export class TransactionFormComponent implements OnInit {
         AppValidators.postiveNumeric
       ]),
       type: new FormControl(this.transaction.type, [Validators.required]),
-      category: new FormControl(this.transaction.categoryid, [
+      category: new FormControl(this.transaction.category.id, [
         Validators.required
       ]),
       description: new FormControl(this.transaction.desc)
@@ -77,8 +80,7 @@ export class TransactionFormComponent implements OnInit {
     const transaction = new Transaction(
       id,
       amount,
-      null,
-      categoryid,
+      { id: categoryid, name: null },
       date,
       desc,
       type
