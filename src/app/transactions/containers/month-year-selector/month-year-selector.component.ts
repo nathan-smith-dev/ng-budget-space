@@ -48,9 +48,7 @@ export class MonthYearSelectorComponent implements OnInit, OnDestroy {
   }
 
   handleChangeMonth(event: any) {
-    this.store.dispatch(
-      new TransactionActions.SetMonth(+event.target.value + 1)
-    );
+    this.store.dispatch(new TransactionActions.SetMonth(+event.target.value));
     this.store
       .select(getMonthYear)
       .pipe(first())
