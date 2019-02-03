@@ -9,10 +9,14 @@ import { Income } from 'src/app/shared/models/income.model';
 import { FetchUserData, getMonthYear } from '../../store/transactions';
 import { withLatestFrom } from 'rxjs/operators';
 import { Apollo } from 'apollo-angular';
-import { createTransaction } from '../../shared/graphql/queries';
+import {
+  createTransaction,
+  deleteTransaction
+} from '../../shared/graphql/queries';
 import {
   TransactionInput,
-  TransactionTypeEnum
+  TransactionTypeEnum,
+  TransactionInputPartial
 } from '../../shared/graphql/query.types';
 
 @Injectable({
@@ -27,11 +31,23 @@ export class TransactionService {
   ) {}
 
   deleteTransaction(transaction: Transaction) {
-    const postFix = transaction.type === 'Expense' ? 'expenses' : 'incomes';
+    const transactionType =
+      transaction.type === 'Expense'
+        ? TransactionTypeEnum.EXPENSE
+        : TransactionTypeEnum.INCOME;
     const id = transaction.id;
+    const transactionQueryVar: TransactionInputPartial = {
+      id,
+      transactionType
+    };
 
-    this.httpClient
-      .delete(`${environment.apiBaseUrl}/${postFix}/${id}`)
+    this.apollo
+      .mutate({
+        mutation: deleteTransaction(),
+        variables: {
+          transaction: transactionQueryVar
+        }
+      })
       .pipe(withLatestFrom(this.store.select(getMonthYear)))
       .subscribe(([placeholder, monthYear]) => {
         this.router.navigate(['transactions']);

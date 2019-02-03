@@ -25,6 +25,11 @@ export interface TransactionInput {
   transactionType: TransactionTypeEnum;
 }
 
+export interface TransactionInputPartial {
+  id: string;
+  transactionType: TransactionTypeEnum;
+}
+
 export enum TransactionTypeEnum {
   INCOME = 'INCOME',
   EXPENSE = 'EXPENSE',

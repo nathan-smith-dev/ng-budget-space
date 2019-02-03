@@ -50,3 +50,17 @@ export const createTransaction = () => gql`
     }
   }
 `;
+
+export const deleteTransaction = () => gql`
+  mutation DeleteTransaction($transaction: TransactionInputPartial!) {
+    deleteTransaction(transaction: $transaction) {
+      id
+      amount
+      description
+      date
+      category {
+        name
+      }
+    }
+  }
+`;
