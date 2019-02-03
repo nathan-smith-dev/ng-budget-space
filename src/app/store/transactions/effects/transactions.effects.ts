@@ -60,7 +60,6 @@ export class TransactionEffects {
         return this.transactionService.getTransactionData(month, year);
       }),
       mergeMap(transactionData => {
-        console.log(transactionData);
         return transactionData;
       }),
       catchError(error =>

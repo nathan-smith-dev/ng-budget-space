@@ -36,3 +36,17 @@ export const getTransactionDataQuery = () => gql`
     }
   }
 `;
+
+export const createTransaction = () => gql`
+  mutation CreateTransaction($transaction: TransactionInput!) {
+    createTransaction(transaction: $transaction) {
+      id
+      date
+      description
+      type
+      category {
+        name
+      }
+    }
+  }
+`;

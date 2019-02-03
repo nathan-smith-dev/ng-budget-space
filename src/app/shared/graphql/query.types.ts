@@ -17,3 +17,16 @@ export interface CategoryTotal {
   name: string;
   total: number;
 }
+
+export interface TransactionInput {
+  amount: number;
+  categoryId: string;
+  date: Date;
+  transactionType: TransactionTypeEnum;
+}
+
+export enum TransactionTypeEnum {
+  INCOME = 'INCOME',
+  EXPENSE = 'EXPENSE',
+  BOTH = 'BOTH'
+}

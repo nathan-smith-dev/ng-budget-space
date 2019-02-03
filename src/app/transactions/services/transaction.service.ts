@@ -8,6 +8,12 @@ import { Expense } from 'src/app/shared/models/expense.model';
 import { Income } from 'src/app/shared/models/income.model';
 import { FetchUserData, getMonthYear } from '../../store/transactions';
 import { withLatestFrom } from 'rxjs/operators';
+import { Apollo } from 'apollo-angular';
+import { createTransaction } from '../../shared/graphql/queries';
+import {
+  TransactionInput,
+  TransactionTypeEnum
+} from '../../shared/graphql/query.types';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +22,8 @@ export class TransactionService {
   constructor(
     private httpClient: HttpClient,
     private router: Router,
-    private store: Store<any>
+    private store: Store<any>,
+    private apollo: Apollo
   ) {}
 
   deleteTransaction(transaction: Transaction) {
@@ -33,32 +40,30 @@ export class TransactionService {
   }
 
   postTransaction(transaction: Transaction) {
-    const postFix = transaction.type === 'Expense' ? 'expenses' : 'incomes';
+    const transactionType: TransactionTypeEnum =
+      transaction.type === 'Expense'
+        ? TransactionTypeEnum.EXPENSE
+        : TransactionTypeEnum.INCOME;
+    const { amount, date, desc, category } = transaction;
+    const transactionInput: TransactionInput = {
+      transactionType,
+      amount: amount,
+      date: new Date(date),
+      categoryId: category.id
+    };
 
-    if (postFix === 'expenses') {
-      const { amount, date, desc, category } = transaction;
-      const expense = new Expense(amount, new Date(date), desc, category.id);
-
-      this.httpClient
-        .post(`${environment.apiBaseUrl}/${postFix}`, expense)
-        .pipe(withLatestFrom(this.store.select(getMonthYear)))
-        .subscribe(([placeholder, monthYear]) => {
-          this.router.navigate(['transactions']);
-          console.log(placeholder, monthYear);
-          this.store.dispatch(new FetchUserData(monthYear));
-        });
-    } else if (postFix === 'incomes') {
-      const { amount, date, desc, category } = transaction;
-      const income = new Income(amount, new Date(date), desc, category.id);
-
-      this.httpClient
-        .post(`${environment.apiBaseUrl}/${postFix}`, income)
-        .pipe(withLatestFrom(this.store.select(getMonthYear)))
-        .subscribe(([placeholder, monthYear]) => {
-          this.router.navigate(['transactions']);
-          this.store.dispatch(new FetchUserData(monthYear));
-        });
-    }
+    this.apollo
+      .mutate({
+        mutation: createTransaction(),
+        variables: {
+          transaction: transactionInput
+        }
+      })
+      .pipe(withLatestFrom(this.store.select(getMonthYear)))
+      .subscribe(([placeholder, monthYear]) => {
+        this.router.navigate(['transactions']);
+        this.store.dispatch(new FetchUserData(monthYear));
+      });
   }
 
   putTransaction(transaction: Transaction) {
