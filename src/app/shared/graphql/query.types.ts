@@ -22,6 +22,7 @@ export interface TransactionInput {
   amount: number;
   categoryId: string;
   date: Date;
+  description: string;
   transactionType: TransactionTypeEnum;
 }
 

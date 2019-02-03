@@ -21,6 +21,10 @@
       <div class="label">Type</div>
       <div class="content">{{ transaction.type }}</div>
     </div>
+    <div class="group margin-y__sm">
+      <div class="label">Description</div>
+      <div class="content">{{ transaction.description }}</div>
+    </div>
   </div>
   <div class="ng-modal-footer">
     <app-button (click)="handleEdit()" class="margin-right__sm" color="primary"

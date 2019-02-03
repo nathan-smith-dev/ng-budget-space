@@ -65,6 +65,7 @@ export class TransactionService {
       transactionType,
       amount: amount,
       date: new Date(date),
+      description: desc || null,
       categoryId: category.id
     };
 
