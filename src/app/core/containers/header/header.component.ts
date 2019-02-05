@@ -4,7 +4,8 @@ import {
   faChartBar,
   faChartLine,
   faUser,
-  faSignOutAlt
+  faSignOutAlt,
+  faUsers
 } from '@fortawesome/free-solid-svg-icons';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
@@ -30,6 +31,7 @@ export class HeaderComponent implements OnInit {
   faChartBar = faChartBar;
   faChartLine = faChartLine;
   faUser = faUser;
+  faUsers = faUsers;
   faSignOutAlt = faSignOutAlt;
   isAuthenticated$: Observable<boolean>;
 

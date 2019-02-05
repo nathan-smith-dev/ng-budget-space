@@ -4,7 +4,7 @@
     <app-header-items>
       <app-header-item
         (click)="handleLogin()"
-        *ngIf="!(isAuthenticated$ | async); else: logout"
+        *ngIf="!(isAuthenticated$ | async); else logout"
       >
         <fa-icon class="padding-right__xs" [icon]="faUser" size="lg"></fa-icon
         >Login
@@ -28,6 +28,10 @@
         <fa-icon class="padding-right__xs" [icon]="faChartLine" size="lg">
         </fa-icon
         >Reports
+      </app-header-item>
+      <app-header-item routerLink="roommates">
+        <fa-icon class="padding-right__xs" [icon]="faUsers" size="lg"> </fa-icon
+        >Roommates
       </app-header-item>
     </app-header-items>
   </div>
