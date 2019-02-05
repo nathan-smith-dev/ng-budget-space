@@ -17,6 +17,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthGuard } from './auth/guards/auth-guard.service';
 import { ToastStoreModule } from './store/toast/toast-store.module';
 import { TransactionsStoreModule } from './store/transactions/transactions-store.module';
+import { RoommateStoreModule } from './store/roommate/roommate-store.module';
 import { RouterStoreModule } from './store/router/router-store.module';
 import { TransactionsGuard } from './transactions/guards/transaction-guard.service';
 import { GraphQLModule } from './graphql.module';
@@ -38,6 +39,7 @@ import { HttpClientModule } from '@angular/common/http';
     AuthStoreModule,
     ToastStoreModule,
     TransactionsStoreModule,
+    RoommateStoreModule,
     StoreRouterConnectingModule.forRoot(),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     GraphQLModule,

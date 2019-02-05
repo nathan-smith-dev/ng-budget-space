@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { User } from './shared/models/auth.model';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { FetchUserData, getMonthYear } from './store/transactions';
+import { FetchRoommateData } from './store/roommate';
 import { first } from 'rxjs/operators';
 
 @Component({
@@ -36,6 +37,7 @@ export class AppComponent implements OnInit {
       );
       this.store.dispatch(new fromAuth.SetUser(loggedInUser));
       this.store.dispatch(new fromAuth.SetToken(user.qa));
+      this.store.dispatch(new FetchRoommateData());
       this.store
         .select(getMonthYear)
         .pipe(first())

@@ -64,3 +64,23 @@ export const deleteTransaction = () => gql`
     }
   }
 `;
+
+export const getRoommateData = () => gql`
+  query Roommates {
+    roommates {
+      user {
+        firstName
+      }
+      expenses {
+        description
+        amount
+        date
+        acknowledged
+        direction
+        category {
+          name
+        }
+      }
+    }
+  }
+`;
