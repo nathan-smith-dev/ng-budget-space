@@ -9,6 +9,11 @@ const routes: Routes = [
     path: 'transactions',
     loadChildren: './transactions/transactions.module#TransactionsModule',
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'roommates',
+    loadChildren: './roommate/roommate.module#RoommateModule',
+    canActivate: [AuthGuard]
   }
 ];
 
