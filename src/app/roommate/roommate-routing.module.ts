@@ -14,12 +14,12 @@ const routes: Routes = [
       //   path: 'new',
       //   component: TODO
       // },
-      {
-        path: ':id',
-        component: RoommateDetailComponent
-        // children: [{ path: 'edit', component: TODO }]
-      }
     ]
+  },
+  {
+    path: ':id',
+    component: RoommateDetailComponent
+    // children: [{ path: 'edit', component: TODO }]
   }
 ];
 

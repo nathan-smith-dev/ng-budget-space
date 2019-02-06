@@ -1,18 +1,39 @@
-@import "../variables.scss";
+@import '../variables.scss';
+
+.border {
+  &-bottom {
+    border-bottom: 1px solid $light-grey;
+  }
+}
 
 @mixin primary-background-gradient {
-    background: $primary-color;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to left, $secondary-color, $primary-color);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to left, $secondary-color, $primary-color); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: $primary-color; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to left,
+    $secondary-color,
+    $primary-color
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to left,
+    $secondary-color,
+    $primary-color
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 @mixin hoverable-link {
-    opacity: 0.7;
-    color: $primary-color;
-    cursor: pointer;
+  opacity: 0.7;
+  color: $primary-color;
+  cursor: pointer;
+}
+
+@mixin hoverable-link-with-background {
+  opacity: 0.7;
+  color: $primary-color;
+  background-color: $light-grey-2;
+  cursor: pointer;
 }
 
 @mixin hoverable-link-opacity-only {
-    opacity: 0.7;
-    cursor: pointer;
+  opacity: 0.7;
+  cursor: pointer;
 }

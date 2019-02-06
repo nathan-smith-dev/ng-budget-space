@@ -18,8 +18,8 @@ export class RoommateEffectsService {
         query: getRoommateData()
       })
       .pipe(
-        map(value => {
-          return new SetRoommateData(value.data as Roommate[]);
+        map((value: any) => {
+          return new SetRoommateData(value.data.roommates as Roommate[]);
         })
       );
   }

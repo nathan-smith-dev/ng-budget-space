@@ -1,0 +1,18 @@
+@import '../../../styles/mixins/paddings.scss';
+@import '../../../styles/mixins/generic.scss';
+@import '../../../styles/variables.scss';
+
+ul {
+  list-style: none;
+
+  li {
+    &:not(:last-child) {
+      border-bottom: 1px solid $light-grey;
+    }
+
+    &:hover,
+    &:active {
+      @include hoverable-link-with-background;
+    }
+  }
+}

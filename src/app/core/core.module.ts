@@ -21,6 +21,7 @@ import { ButtonComponent } from './components/button/button.component';
 import { FloatingActionComponent } from './components/floating-action/floating-action.component';
 import { RouterModule } from '@angular/router';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
+import { ListComponent } from './components/list/list.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
     ModalComponent,
     ButtonComponent,
     FloatingActionComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    ListComponent
   ],
   imports: [CommonModule, RouterModule, SharedModule, HttpClientModule],
   exports: [
@@ -48,7 +50,8 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
     ModalComponent,
     ButtonComponent,
     FloatingActionComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    ListComponent
   ],
   providers: [
     HeaderService,

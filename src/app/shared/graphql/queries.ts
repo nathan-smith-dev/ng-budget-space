@@ -69,7 +69,9 @@ export const getRoommateData = () => gql`
   query Roommates {
     roommates {
       user {
+        id
         firstName
+        lastName
       }
       expenses {
         description

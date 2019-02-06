@@ -1,0 +1,9 @@
+<ul>
+  <li
+    *ngFor="let item of items; let i = index"
+    class="padding-y__sm padding-x__sm"
+    (click)="handleOnClick(i)"
+  >
+    {{ item }}
+  </li>
+</ul>

@@ -1,4 +1,7 @@
 <div class="container margin-top__md">
-  roommates-view works!
-  <router-outlet></router-outlet>
+  <app-list
+    *ngIf="(roommates$ | async) as roommates"
+    [items]="getNames(roommates)"
+    (itemClicked)="handleRoomateClicked(roommates[$event])"
+  ></app-list>
 </div>

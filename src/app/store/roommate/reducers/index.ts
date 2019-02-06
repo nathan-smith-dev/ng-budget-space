@@ -9,6 +9,6 @@ export const reducers: ActionReducerMap<RoommateState> = {
   roommates: reducer
 };
 
-export const getTransactionState = createFeatureSelector<RoommateState>(
-  'Roommates'
+export const getRoommateState = createFeatureSelector<RoommateState>(
+  'Roommate'
 );
