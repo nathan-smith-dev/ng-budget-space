@@ -22,6 +22,7 @@ import { FloatingActionComponent } from './components/floating-action/floating-a
 import { RouterModule } from '@angular/router';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { ListComponent } from './components/list/list.component';
+import { TransactionDetailComponent } from './components/transaction-detail/transaction-detail.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { ListComponent } from './components/list/list.component';
     ButtonComponent,
     FloatingActionComponent,
     LoadingSpinnerComponent,
-    ListComponent
+    ListComponent,
+    TransactionDetailComponent
   ],
   imports: [CommonModule, RouterModule, SharedModule, HttpClientModule],
   exports: [
@@ -51,7 +53,8 @@ import { ListComponent } from './components/list/list.component';
     ButtonComponent,
     FloatingActionComponent,
     LoadingSpinnerComponent,
-    ListComponent
+    ListComponent,
+    TransactionDetailComponent
   ],
   providers: [
     HeaderService,

@@ -74,6 +74,7 @@ export const getRoommateData = () => gql`
         lastName
       }
       expenses {
+        id
         description
         amount
         date

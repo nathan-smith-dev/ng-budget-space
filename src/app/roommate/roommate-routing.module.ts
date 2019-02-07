@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from '../auth/guards/auth-guard.service';
 import { RoommateDetailComponent } from '../roommate/containers/roommate-detail/roommate-detail.component';
 import { RoommatesViewComponent } from './containers/roommates-view/roommates-view.component';
+import { RoommateExpenseViewComponent } from './containers/roommate-expense-view/roommate-expense-view.component';
 
 const routes: Routes = [
   {
@@ -18,8 +19,18 @@ const routes: Routes = [
   },
   {
     path: ':id',
-    component: RoommateDetailComponent
-    // children: [{ path: 'edit', component: TODO }]
+    component: RoommateDetailComponent,
+    children: [
+      {
+        path: 'expense',
+        children: [
+          {
+            path: ':id',
+            component: RoommateExpenseViewComponent
+          }
+        ]
+      }
+    ]
   }
 ];
 

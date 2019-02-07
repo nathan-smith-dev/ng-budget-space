@@ -25,6 +25,6 @@ import { TransactionNewViewComponent } from './containers/transaction-new-view/t
     CoreModule,
     ReactiveFormsModule
   ],
-  exports: [MonthYearSelectorComponent]
+  exports: [MonthYearSelectorComponent, TransactionFormComponent]
 })
 export class TransactionsModule {}

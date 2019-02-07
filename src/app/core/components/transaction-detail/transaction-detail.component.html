@@ -1,0 +1,41 @@
+<app-modal
+  [title]="title"
+  [open]="true"
+  (modalToggled)="handleToggleDetailModal()"
+  *ngIf="transaction"
+>
+  <div class="ng-modal-content">
+    <div class="group margin-y__sm">
+      <div class="label margin-bottom__xs">Amount</div>
+      <div class="content">{{ transaction.amount | currency }}</div>
+    </div>
+    <div class="group margin-y__sm">
+      <div class="label margin-bottom__xs">Category</div>
+      <div class="content">{{ transaction.category.name }}</div>
+    </div>
+    <div class="group margin-y__sm">
+      <div class="label margin-bottom__xs">Date</div>
+      <div class="content">{{ transaction.date | date: 'MM/dd/yyyy' }}</div>
+    </div>
+    <div *ngIf="transaction.type" class="group margin-y__sm">
+      <div class="label margin-bottom__xs">Type</div>
+      <div class="content">{{ transaction.type }}</div>
+    </div>
+    <div class="group margin-y__sm">
+      <div class="label margin-bottom__xs">Description</div>
+      <div class="content">{{ transaction.description }}</div>
+    </div>
+  </div>
+  <div class="ng-modal-footer">
+    <app-button
+      *ngIf="canEdit"
+      (click)="handleEdit()"
+      class="margin-right__sm"
+      color="primary"
+      >Edit</app-button
+    >
+    <app-button *ngIf="canEdit" (click)="handleDelete()" color="white"
+      >Delete</app-button
+    >
+  </div>
+</app-modal>

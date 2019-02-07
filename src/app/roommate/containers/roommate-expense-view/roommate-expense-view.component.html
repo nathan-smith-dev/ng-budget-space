@@ -1,0 +1,8 @@
+<app-transaction-detail
+  [transaction]="expense$ | async"
+  title="Roommate Expense"
+  (edit)="handleEdit($event)"
+  (delete)="handleDelete($event)"
+  (toggle)="handleToggle($event)"
+></app-transaction-detail>
+<!-- <div>{{ expense$ | async | json }}</div> -->

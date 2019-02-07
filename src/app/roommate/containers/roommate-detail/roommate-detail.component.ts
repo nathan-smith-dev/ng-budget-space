@@ -5,6 +5,8 @@ import { getRoommateId } from 'src/app/store/router/selectors';
 import { getRoommates } from 'src/app/store/roommate';
 import { map, switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { Router, ActivatedRoute } from '@angular/router';
+import { RoommateExpense } from 'src/app/shared/models/roomate-expense.model';
 
 @Component({
   selector: 'app-roommate-detail',
@@ -14,7 +16,11 @@ import { Observable } from 'rxjs';
 export class RoommateDetailComponent implements OnInit {
   roommate$: Observable<Roommate>;
 
-  constructor(private store: Store<any>) {}
+  constructor(
+    private store: Store<any>,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) {}
 
   ngOnInit() {
     this.roommate$ = this.store.select(getRoommateId).pipe(
@@ -26,7 +32,9 @@ export class RoommateDetailComponent implements OnInit {
     );
   }
 
-  handleItemClicked(event: any) {
-    console.log(event);
+  handleItemClicked(roommateExpense: RoommateExpense) {
+    this.router.navigate([`./expense/${roommateExpense.id}`], {
+      relativeTo: this.activatedRoute
+    });
   }
 }
