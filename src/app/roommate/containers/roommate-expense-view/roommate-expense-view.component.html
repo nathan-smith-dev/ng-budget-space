@@ -1,6 +1,8 @@
 <app-transaction-detail
-  [transaction]="expense$ | async"
+  *ngIf="(expense$ | async) as expense"
+  [transaction]="expense"
   title="Roommate Expense"
+  [canEdit]="expense.direction === 'To'"
   (edit)="handleEdit($event)"
   (delete)="handleDelete($event)"
   (toggle)="handleToggle($event)"
