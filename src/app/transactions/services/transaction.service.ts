@@ -60,12 +60,12 @@ export class TransactionService {
       transaction.type === 'Expense'
         ? TransactionTypeEnum.EXPENSE
         : TransactionTypeEnum.INCOME;
-    const { amount, date, desc, category } = transaction;
+    const { amount, date, description, category } = transaction;
     const transactionInput: TransactionInput = {
       transactionType,
       amount: amount,
       date: new Date(date),
-      description: desc || null,
+      description: description || null,
       categoryId: category.id
     };
 
@@ -88,8 +88,13 @@ export class TransactionService {
     const id = transaction.id;
 
     if (postFix === 'expenses') {
-      const { amount, date, desc, category } = transaction;
-      const expense = new Expense(amount, new Date(date), desc, category.id);
+      const { amount, date, description, category } = transaction;
+      const expense = new Expense(
+        amount,
+        new Date(date),
+        description,
+        category.id
+      );
 
       this.httpClient
         .put(`${environment.apiBaseUrl}/${postFix}/${id}`, expense)
@@ -99,8 +104,13 @@ export class TransactionService {
           this.store.dispatch(new FetchUserData(monthYear));
         });
     } else if (postFix === 'incomes') {
-      const { amount, date, desc, category } = transaction;
-      const income = new Income(amount, new Date(date), desc, category.id);
+      const { amount, date, description, category } = transaction;
+      const income = new Income(
+        amount,
+        new Date(date),
+        description,
+        category.id
+      );
 
       this.httpClient
         .put(`${environment.apiBaseUrl}/${postFix}/${id}`, income)

@@ -61,7 +61,7 @@ export class TransactionFormComponent implements OnInit {
       category: new FormControl(this.transaction.category.id, [
         Validators.required
       ]),
-      description: new FormControl(this.transaction.desc)
+      description: new FormControl(this.transaction.description)
     });
   }
 
@@ -74,7 +74,7 @@ export class TransactionFormComponent implements OnInit {
     const amount = this.transactionForm.controls.amount.value;
     const date = this.transactionForm.controls.date.value;
     const categoryid = this.transactionForm.controls.category.value;
-    const desc = this.transactionForm.controls.description.value;
+    const description = this.transactionForm.controls.description.value;
     const type = this.transactionForm.controls.type.value;
 
     const transaction = new Transaction(
@@ -82,7 +82,7 @@ export class TransactionFormComponent implements OnInit {
       amount,
       { id: categoryid, name: null },
       date,
-      desc,
+      description,
       type
     );
     this.formSubmitted.emit(transaction);

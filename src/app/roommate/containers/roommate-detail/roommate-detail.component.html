@@ -1,0 +1,9 @@
+<div class="container margin-y__md">
+  <div *ngIf="(roommate$ | async) as roommate">
+    <app-transaction-table
+      [transactions]="roommate.expenses"
+      (itemClicked)="handleItemClicked($event)"
+    >
+    </app-transaction-table>
+  </div>
+</div>

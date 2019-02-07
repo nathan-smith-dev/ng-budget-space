@@ -1,8 +1,8 @@
 <app-transaction-table-header></app-transaction-table-header>
 <app-transaction-table-item
-  *ngFor="let transaction of transactions; let i = index;"
+  *ngFor="let transaction of transactions; let i = index"
   [darker]="i % 2 === 0"
-  [green]="transaction.type === 'Income'"
+  [green]="transaction.type === 'Income' || transaction.direction === 'To'"
   [transaction]="transaction"
 >
 </app-transaction-table-item>

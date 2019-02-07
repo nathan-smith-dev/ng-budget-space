@@ -13,3 +13,8 @@ export const getTransactionId = createSelector(
     return found as string;
   }
 );
+
+export const getRoommateId = createSelector(
+  getRouterState,
+  router => router.state.root.firstChild.firstChild.params.id
+);

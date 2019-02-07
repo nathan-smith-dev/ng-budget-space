@@ -6,7 +6,7 @@ export class Transaction {
     public amount: number,
     public category: Category,
     public date: Date,
-    public desc: string,
-    public type: string
+    public description: string,
+    public type?: string
   ) {}
 }
