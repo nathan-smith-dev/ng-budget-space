@@ -1,21 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { Roommate } from 'src/app/shared/models/roommate.model';
 import { Observable } from 'rxjs';
+import { User } from 'src/app/shared/models/user.model';
+import { Store } from '@ngrx/store';
+import { Router } from '@angular/router';
 import {
   getRoommatesAsUsers,
   getRoommatesLoading
-} from '../../../store/roommate';
-import { map } from 'rxjs/operators';
-import { User } from 'src/app/shared/models/user.model';
-import { Router } from '@angular/router';
+} from 'src/app/store/roommate';
 
 @Component({
-  selector: 'app-roommates-view',
-  templateUrl: './roommates-view.component.html',
-  styleUrls: ['./roommates-view.component.scss']
+  selector: 'app-roommate-list-view',
+  templateUrl: './roommate-list-view.component.html',
+  styleUrls: ['./roommate-list-view.component.scss']
 })
-export class RoommatesViewComponent implements OnInit {
+export class RoommateListViewComponent implements OnInit {
   roommates$: Observable<User[]>;
   roommatesLoading$: Observable<boolean>;
 

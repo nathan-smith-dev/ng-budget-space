@@ -1,0 +1,8 @@
+<div class="container margin-top__md">
+  <app-list
+    *ngIf="(roommates$ | async) as roommates"
+    [items]="getNames(roommates)"
+    (itemClicked)="handleRoomateClicked(roommates[$event])"
+  ></app-list>
+  <app-loading-spinner [open]="roommatesLoading$ | async"></app-loading-spinner>
+</div>
