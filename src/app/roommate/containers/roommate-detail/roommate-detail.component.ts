@@ -47,4 +47,10 @@ export class RoommateDetailComponent implements OnInit {
       relativeTo: this.activatedRoute
     });
   }
+
+  handleToggleNew() {
+    this.router.navigate(['./expense', 'new'], {
+      relativeTo: this.activatedRoute
+    });
+  }
 }

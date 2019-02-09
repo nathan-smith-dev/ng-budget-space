@@ -7,12 +7,14 @@ import { RoommateExpenseViewComponent } from './containers/roommate-expense-view
 import { TransactionsModule } from '../transactions/transactions.module';
 import { RoommateGuard } from './guards/roommate-guard.service';
 import { RoommateListViewComponent } from './containers/roommate-list-view/roommate-list-view.component';
+import { NewRoommateExpenseViewComponent } from './containers/new-roommate-expense-view/new-roommate-expense-view.component';
 
 @NgModule({
   declarations: [
     RoommateDetailComponent,
     RoommateExpenseViewComponent,
-    RoommateListViewComponent
+    RoommateListViewComponent,
+    NewRoommateExpenseViewComponent
   ],
   imports: [
     CommonModule,

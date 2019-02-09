@@ -5,6 +5,7 @@ import { RoommateDetailComponent } from '../roommate/containers/roommate-detail/
 import { RoommateExpenseViewComponent } from './containers/roommate-expense-view/roommate-expense-view.component';
 import { RoommateGuard } from './guards/roommate-guard.service';
 import { RoommateListViewComponent } from './containers/roommate-list-view/roommate-list-view.component';
+import { NewRoommateExpenseViewComponent } from './containers/new-roommate-expense-view/new-roommate-expense-view.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
       {
         path: 'expense',
         children: [
+          {
+            path: 'new',
+            component: NewRoommateExpenseViewComponent
+          },
           {
             path: ':id',
             component: RoommateExpenseViewComponent
