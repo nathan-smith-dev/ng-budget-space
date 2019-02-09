@@ -23,7 +23,7 @@ import { RouterModule } from '@angular/router';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { ListComponent } from './components/list/list.component';
 import { TransactionDetailComponent } from './components/transaction-detail/transaction-detail.component';
-import { TotallerComponent } from './totaller/totaller.component';
+import { TotallerComponent } from './components/totaller/totaller.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +56,8 @@ import { TotallerComponent } from './totaller/totaller.component';
     FloatingActionComponent,
     LoadingSpinnerComponent,
     ListComponent,
-    TransactionDetailComponent
+    TransactionDetailComponent,
+    TotallerComponent
   ],
   providers: [
     HeaderService,

@@ -1,0 +1,16 @@
+<div class="row header">
+  <div class="col-4 amount">{{ positiveHeader }}</div>
+  <div class="col-4 amount">{{ negativeHeader }}</div>
+  <div class="col-4 amount">{{ totalHeader }}</div>
+</div>
+<div class="row values">
+  <div class="col-4 amount positive">{{ positiveAmount | currency }}</div>
+  <div class="col-4 amount negative">{{ negativeAmount | currency }}</div>
+  <div
+    class="col-4 amount"
+    [class.positive]="totalAmount >= 0"
+    [class.negative]="totalAmount < 0"
+  >
+    {{ totalAmount | currency }}
+  </div>
+</div>
