@@ -1,3 +1,8 @@
-<p>
-  new-roommate-expense-view works!
-</p>
+<app-transaction-form
+  title="New Roommate Expense"
+  [transaction]="transaction"
+  [open]="true"
+  (modalToggled)="handleToggle()"
+  (formSubmitted)="handleSubmitForm($event)"
+  [disableType]="true"
+></app-transaction-form>

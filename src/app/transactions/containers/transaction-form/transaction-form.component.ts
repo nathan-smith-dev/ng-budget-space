@@ -17,6 +17,7 @@ export class TransactionFormComponent implements OnInit {
   @Input() title: string;
   @Input() open: boolean = false;
   @Input() transaction: Transaction;
+  @Input() disableType: boolean = false;
   @Output() modalToggled = new EventEmitter();
   @Output() formSubmitted = new EventEmitter();
   transactionForm: FormGroup;
@@ -57,7 +58,10 @@ export class TransactionFormComponent implements OnInit {
         Validators.required,
         AppValidators.postiveNumeric
       ]),
-      type: new FormControl(this.transaction.type, [Validators.required]),
+      type: new FormControl(
+        { value: this.transaction.type, disabled: this.disableType },
+        [Validators.required]
+      ),
       category: new FormControl(this.transaction.category.id, [
         Validators.required
       ]),
