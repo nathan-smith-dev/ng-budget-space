@@ -1,7 +1,7 @@
 import { createSelector } from '@ngrx/store';
 import { getRoommateState } from '../reducers';
 import { Roommate } from 'src/app/shared/models/roommate.model';
-import { RoommateEntity } from '../reducers/roommate.reducers';
+import { RoommateEntity } from 'src/app/shared/models/entities';
 
 export const getRoommates = createSelector(
   getRoommateState,

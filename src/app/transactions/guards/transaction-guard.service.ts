@@ -13,7 +13,6 @@ export class TransactionsGuard implements CanActivate {
 
   canActivate() {
     return this.store.select(getTransactionState).pipe(
-      tap(loaded => console.log(loaded)),
       filter(transactionState => transactionState.transactions.loaded),
       first(),
       switchMap(() => of(true)),

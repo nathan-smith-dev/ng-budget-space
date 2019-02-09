@@ -5,15 +5,12 @@ import {
   FETCH_ROOMMATE_DATA
 } from '../actions';
 import { mapArrayOfObjectsToEntity } from 'src/app/utilties';
+import { RoommateEntity } from 'src/app/shared/models/entities/roommate.entity';
 
 export interface State {
   roommates: RoommateEntity;
   loading: boolean;
   loaded: boolean;
-}
-
-export interface RoommateEntity {
-  [key: string]: Roommate;
 }
 
 const initialState: State = {
