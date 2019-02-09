@@ -26,7 +26,7 @@ export class RoommateExpenseViewComponent implements OnInit {
       switchMap(([transactionId, roommateId]) =>
         this.store.select(getRoommates).pipe(
           map(roommates => {
-            return roommates.find(r => r.user.id === roommateId);
+            return roommates[roommateId];
           }),
           map(roommate => roommate.expenses.find(e => e.id === transactionId))
         )

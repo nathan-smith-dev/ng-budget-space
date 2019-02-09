@@ -1,6 +1,7 @@
 import { createSelector } from '@ngrx/store';
 import { getRoommateState } from '../reducers';
 import { Roommate } from 'src/app/shared/models/roommate.model';
+import { RoommateEntity } from '../reducers/roommate.reducers';
 
 export const getRoommates = createSelector(
   getRoommateState,
@@ -9,7 +10,7 @@ export const getRoommates = createSelector(
 
 export const getRoommatesAsUsers = createSelector(
   getRoommates,
-  roommates => roommates.map(u => u.user)
+  roommates => Object.keys(roommates).map(k => roommates[k].user)
 );
 
 export const getRoommatesLoaded = createSelector(
@@ -24,5 +25,5 @@ export const getRoommatesLoading = createSelector(
 
 export const getRoommateById = createSelector(
   getRoommates,
-  (roommates, props) => roommates.find(r => (r.user.id = props.id)) as Roommate
+  (roommates: RoommateEntity, { id }) => roommates[id]
 );
