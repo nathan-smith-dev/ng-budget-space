@@ -21,3 +21,8 @@ export const getRoommatesLoading = createSelector(
   getRoommateState,
   roommateState => roommateState.roommates.loading
 );
+
+export const getRoommateById = createSelector(
+  getRoommates,
+  (roommates, props) => roommates.find(r => (r.user.id = props.id)) as Roommate
+);
