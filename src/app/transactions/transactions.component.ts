@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Transaction } from '../shared/models/transaction.model';
 import { Router } from '@angular/router';
 import { routerFadeAnimation } from '../shared/animations/app.animations';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-transactions',
@@ -19,7 +20,13 @@ export class TransactionsComponent implements OnInit {
   constructor(private store: Store<any>, private router: Router) {}
 
   ngOnInit() {
-    this.transactions$ = this.store.select(fromTransactions.getTransactions);
+    this.transactions$ = this.store
+      .select(fromTransactions.getTransactions)
+      .pipe(
+        map(transactions =>
+          Object.keys(transactions).map(key => transactions[key])
+        )
+      );
     this.isTransactionsLoading$ = this.store.select(
       fromTransactions.getTransactionsLoading
     );

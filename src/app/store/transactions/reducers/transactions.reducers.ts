@@ -3,11 +3,13 @@ import { Transaction } from '../../../shared/models/transaction.model';
 import { Category } from '../../../shared/models/category.model';
 import { CategorizedTransaction } from '../../../shared/models/CategorizedTransaction.model';
 import { IncomeAndExpenseTotal } from '../../../shared/models/IncomeAndExpenseTotal.model';
+import { TransactionEntity } from 'src/app/shared/models/entities';
+import { mapArrayOfObjectsToEntity } from 'src/app/utilties';
 
 const today = new Date();
 
 export interface State {
-  transactions: Transaction[];
+  transactions: TransactionEntity;
   userCategories: Category[];
   monthYear: { month: number; year: number };
   categorizedExpenses: CategorizedTransaction[];
@@ -19,7 +21,7 @@ export interface State {
 }
 
 const initialState: State = {
-  transactions: [],
+  transactions: {},
   userCategories: [],
   monthYear: { month: today.getMonth() + 1, year: today.getFullYear() },
   categorizedExpenses: [],
@@ -38,7 +40,7 @@ export function reducer(
     case TransactionActions.SET_TRANSACTIONS:
       return {
         ...state,
-        transactions: action.payload
+        transactions: mapArrayOfObjectsToEntity(action.payload, t => t.id)
       };
     case TransactionActions.SET_USER_CATEGORIES:
       return {

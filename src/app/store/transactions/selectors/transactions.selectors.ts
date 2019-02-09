@@ -1,9 +1,15 @@
 import { createSelector } from '@ngrx/store';
 import * as fromTransactions from '../reducers';
+import { TransactionEntity } from 'src/app/shared/models/entities';
 
 export const getTransactions = createSelector(
   fromTransactions.getTransactionState,
   transactionState => transactionState.transactions.transactions
+);
+
+export const getTransactionById = createSelector(
+  getTransactions,
+  (transactions: TransactionEntity, { id }) => transactions[id]
 );
 
 export const getMonthYear = createSelector(

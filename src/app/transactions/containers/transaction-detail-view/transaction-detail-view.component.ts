@@ -3,7 +3,10 @@ import { Store } from '@ngrx/store';
 import { Transaction } from 'src/app/shared/models/transaction.model';
 import { Observable } from 'rxjs';
 import { getTransactionId } from 'src/app/store/router/selectors';
-import { getTransactions } from 'src/app/store/transactions';
+import {
+  getTransactions,
+  getTransactionById
+} from 'src/app/store/transactions';
 import { switchMap, map } from 'rxjs/operators';
 import { Router, ActivatedRoute } from '@angular/router';
 import { routerFadeAnimation } from 'src/app/shared/animations/app.animations';
@@ -26,15 +29,9 @@ export class TransactionDetailViewComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.transaction$ = this.store.select(getTransactionId).pipe(
-      switchMap(id => {
-        return this.store.select(getTransactions).pipe(
-          map(transactions => {
-            return transactions.find(trans => trans.id === id);
-          })
-        );
-      })
-    );
+    this.transaction$ = this.store
+      .select(getTransactionId)
+      .pipe(switchMap(id => this.store.select(getTransactionById, { id })));
   }
 
   handleToggleDetailModal() {
