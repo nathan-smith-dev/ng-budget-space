@@ -5,12 +5,14 @@ import { getRoommateId } from 'src/app/store/router/selectors';
 import {
   getRoommates,
   getRoommatesLoading,
-  getRoommateById
+  getRoommateById,
+  getRoommateTotals
 } from 'src/app/store/roommate';
 import { map, switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
 import { RoommateExpense } from 'src/app/shared/models/roomate-expense.model';
+import { Totaller } from 'src/app/shared/models/totaller.model';
 
 @Component({
   selector: 'app-roommate-detail',
@@ -20,6 +22,7 @@ import { RoommateExpense } from 'src/app/shared/models/roomate-expense.model';
 export class RoommateDetailComponent implements OnInit {
   roommate$: Observable<Roommate>;
   roommatesLoading$: Observable<boolean>;
+  roommateTotals$: Observable<Totaller>;
 
   constructor(
     private store: Store<any>,
@@ -31,6 +34,10 @@ export class RoommateDetailComponent implements OnInit {
     this.roommate$ = this.store
       .select(getRoommateId)
       .pipe(switchMap(id => this.store.select(getRoommateById, { id })));
+
+    this.roommateTotals$ = this.store
+      .select(getRoommateId)
+      .pipe(switchMap(id => this.store.select(getRoommateTotals, { id })));
 
     this.roommatesLoading$ = this.store.select(getRoommatesLoading);
   }

@@ -1,16 +1,26 @@
 <div class="container margin-y__md">
   <div *ngIf="(roommate$ | async) as roommate">
-    <app-transaction-table
-      [transactions]="roommate.expenses"
-      (itemClicked)="handleItemClicked($event)"
-    >
-    </app-transaction-table>
-    <app-totaller
-      positiveHeader="To"
-      negativeHeader="From"
-      totalHeader="Total"
-    ></app-totaller>
-    <div>{{ roommateTotals$ | async | json }}</div>
+    <div class="margin-bottom__lg">
+      <h2>Totals</h2>
+      <div *ngIf="(roommateTotals$ | async) as totals">
+        <app-totaller
+          positiveHeader="To"
+          negativeHeader="From"
+          totalHeader="Total"
+          [positiveAmount]="totals.to"
+          [negativeAmount]="totals.from"
+          [totalAmount]="totals.total"
+        ></app-totaller>
+      </div>
+    </div>
+    <div>
+      <h2>Charges</h2>
+      <app-transaction-table
+        [transactions]="roommate.expenses"
+        (itemClicked)="handleItemClicked($event)"
+      >
+      </app-transaction-table>
+    </div>
   </div>
 </div>
 <router-outlet></router-outlet>

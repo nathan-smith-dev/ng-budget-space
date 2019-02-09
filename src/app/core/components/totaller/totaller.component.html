@@ -3,13 +3,17 @@
   <div class="col-4 amount">{{ negativeHeader }}</div>
   <div class="col-4 amount">{{ totalHeader }}</div>
 </div>
-<div class="row values">
-  <div class="col-4 amount positive">{{ positiveAmount | currency }}</div>
-  <div class="col-4 amount negative">{{ negativeAmount | currency }}</div>
+<div class="row table-item">
+  <div class="col-4 amount padding-top__xs income">
+    {{ positiveAmount | currency }}
+  </div>
+  <div class="col-4 amount padding-top__xs expense">
+    {{ negativeAmount | currency }}
+  </div>
   <div
-    class="col-4 amount"
-    [class.positive]="totalAmount >= 0"
-    [class.negative]="totalAmount < 0"
+    class="col-4 amount padding-top__xs"
+    [class.income]="totalAmount >= 0"
+    [class.expense]="totalAmount < 0"
   >
     {{ totalAmount | currency }}
   </div>
