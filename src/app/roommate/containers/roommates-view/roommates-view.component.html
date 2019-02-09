@@ -4,4 +4,5 @@
     [items]="getNames(roommates)"
     (itemClicked)="handleRoomateClicked(roommates[$event])"
   ></app-list>
+  <app-loading-spinner [open]="roommatesLoading$ | async"></app-loading-spinner>
 </div>

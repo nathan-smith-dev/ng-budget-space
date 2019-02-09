@@ -11,3 +11,13 @@ export const getRoommatesAsUsers = createSelector(
   getRoommates,
   roommates => roommates.map(u => u.user)
 );
+
+export const getRoommatesLoaded = createSelector(
+  getRoommateState,
+  roommateState => roommateState.roommates.loaded
+);
+
+export const getRoommatesLoading = createSelector(
+  getRoommateState,
+  roommateState => roommateState.roommates.loading
+);

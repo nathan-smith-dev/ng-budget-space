@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Roommate } from 'src/app/shared/models/roommate.model';
 import { getRoommateId } from 'src/app/store/router/selectors';
-import { getRoommates } from 'src/app/store/roommate';
+import { getRoommates, getRoommatesLoading } from 'src/app/store/roommate';
 import { map, switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -15,6 +15,7 @@ import { RoommateExpense } from 'src/app/shared/models/roomate-expense.model';
 })
 export class RoommateDetailComponent implements OnInit {
   roommate$: Observable<Roommate>;
+  roommatesLoading$: Observable<boolean>;
 
   constructor(
     private store: Store<any>,
@@ -30,6 +31,7 @@ export class RoommateDetailComponent implements OnInit {
           .pipe(map(roommates => roommates.find(r => r.user.id === id)));
       })
     );
+    this.roommatesLoading$ = this.store.select(getRoommatesLoading);
   }
 
   handleItemClicked(roommateExpense: RoommateExpense) {

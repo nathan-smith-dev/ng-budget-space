@@ -23,6 +23,7 @@ import { RouterModule } from '@angular/router';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { ListComponent } from './components/list/list.component';
 import { TransactionDetailComponent } from './components/transaction-detail/transaction-detail.component';
+import { TotallerComponent } from './totaller/totaller.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { TransactionDetailComponent } from './components/transaction-detail/tran
     FloatingActionComponent,
     LoadingSpinnerComponent,
     ListComponent,
-    TransactionDetailComponent
+    TransactionDetailComponent,
+    TotallerComponent
   ],
   imports: [CommonModule, RouterModule, SharedModule, HttpClientModule],
   exports: [

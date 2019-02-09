@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Roommate } from 'src/app/shared/models/roommate.model';
 import { Observable } from 'rxjs';
-import { getRoommatesAsUsers } from '../../../store/roommate';
+import {
+  getRoommatesAsUsers,
+  getRoommatesLoading
+} from '../../../store/roommate';
 import { map } from 'rxjs/operators';
 import { User } from 'src/app/shared/models/user.model';
 import { Router } from '@angular/router';
@@ -14,10 +17,13 @@ import { Router } from '@angular/router';
 })
 export class RoommatesViewComponent implements OnInit {
   roommates$: Observable<User[]>;
+  roommatesLoading$: Observable<boolean>;
+
   constructor(private store: Store<any>, private router: Router) {}
 
   ngOnInit() {
     this.roommates$ = this.store.select(getRoommatesAsUsers);
+    this.roommatesLoading$ = this.store.select(getRoommatesLoading);
   }
 
   getNames(roommates: User[]) {
