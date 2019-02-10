@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Transaction } from 'src/app/shared/models/transaction.model';
 import { Router, ActivatedRoute } from '@angular/router';
+import { RoommateService } from '../../services/roommate.service';
+import { Store } from '@ngrx/store';
+import { getRoommateId } from 'src/app/store/router/selectors';
+import { first, switchMap, tap } from 'rxjs/operators';
+import { FetchRoommateData } from 'src/app/store/roommate';
 
 @Component({
   selector: 'app-new-roommate-expense-view',
@@ -17,7 +22,12 @@ export class NewRoommateExpenseViewComponent implements OnInit {
     'Expense'
   );
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
+  constructor(
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private roommateService: RoommateService,
+    private store: Store<any>
+  ) {}
 
   ngOnInit() {}
 
@@ -26,6 +36,16 @@ export class NewRoommateExpenseViewComponent implements OnInit {
   }
 
   handleSubmitForm(transaction: Transaction) {
-    console.log('handleSubmitForm', transaction);
+    this.store
+      .select(getRoommateId)
+      .pipe(
+        switchMap(id =>
+          this.roommateService.createRoommateExpense(transaction, id)
+        )
+      )
+      .subscribe(res => {
+        this.router.navigate(['../../'], { relativeTo: this.activatedRoute });
+        this.store.dispatch(new FetchRoommateData());
+      });
   }
 }

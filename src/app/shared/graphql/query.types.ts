@@ -36,3 +36,11 @@ export enum TransactionTypeEnum {
   EXPENSE = 'EXPENSE',
   BOTH = 'BOTH'
 }
+
+export interface RoommateExpenseType {
+  amount: number;
+  description: string;
+  date: Date;
+  categoryId: string;
+  roommateId: string;
+}

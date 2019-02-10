@@ -15,7 +15,8 @@ export class RoommateEffectsService {
   getRoommateData() {
     return this.apollo
       .query({
-        query: getRoommateData()
+        query: getRoommateData(),
+        fetchPolicy: 'network-only'
       })
       .pipe(
         map((value: any) => {

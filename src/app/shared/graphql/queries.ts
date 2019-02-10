@@ -87,3 +87,19 @@ export const getRoommateData = () => gql`
     }
   }
 `;
+
+export const createRoommateExpense = () => gql`
+  mutation CreateRoommateExpense($expense: RoommateExpenseInput!) {
+    createRoommateExpense(expense: $expense) {
+      id
+    }
+  }
+`;
+
+export const deleteRoommateExpense = () => gql`
+  mutation DeleteRoommateExpense($expense: RoommateExpenseInputPartial!) {
+    deleteRoommateExpense(expense: $expense) {
+      id
+    }
+  }
+`;

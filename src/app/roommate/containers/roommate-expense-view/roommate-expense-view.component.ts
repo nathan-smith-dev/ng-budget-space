@@ -7,8 +7,10 @@ import {
   getRoommateId
 } from 'src/app/store/router/selectors';
 import { switchMap, withLatestFrom, map } from 'rxjs/operators';
-import { getRoommates } from 'src/app/store/roommate';
+import { getRoommates, FetchRoommateData } from 'src/app/store/roommate';
 import { Location } from '@angular/common';
+import { RoommateService } from '../../services/roommate.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-roommate-expense-view',
@@ -18,7 +20,13 @@ import { Location } from '@angular/common';
 export class RoommateExpenseViewComponent implements OnInit {
   expense$: Observable<RoommateExpense>;
 
-  constructor(private store: Store<any>, private location: Location) {}
+  constructor(
+    private store: Store<any>,
+    private location: Location,
+    private roommateService: RoommateService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.expense$ = this.store.select(getTransactionId).pipe(
@@ -39,7 +47,10 @@ export class RoommateExpenseViewComponent implements OnInit {
   }
 
   handleDelete(expense: RoommateExpense) {
-    console.log('Handle delete', expense);
+    this.roommateService.deleteRoommateExpense(expense.id).subscribe(res => {
+      this.router.navigate(['../../'], { relativeTo: this.activatedRoute });
+      this.store.dispatch(new FetchRoommateData());
+    });
   }
 
   handleToggle(expense: RoommateExpense) {
