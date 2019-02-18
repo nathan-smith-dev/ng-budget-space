@@ -76,7 +76,9 @@ export class TransactionFormComponent implements OnInit {
   handleSubmitForm() {
     const id = this.transaction.id;
     const amount = this.transactionForm.controls.amount.value;
-    const date = this.transactionForm.controls.date.value;
+    const date = moment(this.transactionForm.controls.date.value)
+      .startOf('day')
+      .toDate();
     const categoryid = this.transactionForm.controls.category.value;
     const description = this.transactionForm.controls.description.value;
     const type = this.transactionForm.controls.type.value;
