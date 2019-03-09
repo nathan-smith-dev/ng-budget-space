@@ -9,7 +9,7 @@
   [ngClass]="{ even: i % 2 === 0 }"
   [ngStyle]="{ 'border-color': colors[i] }"
 >
-  <div class="col-5">{{ expense.category.name }}</div>
+  <div class="col-5">{{ expense.name }}</div>
   <div class="col-4 total">{{ expense.total | currency }}</div>
   <div class="col-3 percent">{{ expense.total / total | percent }}</div>
 </div>

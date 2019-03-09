@@ -14,6 +14,11 @@ const routes: Routes = [
     path: 'roommates',
     loadChildren: './roommate/roommate.module#RoommateModule',
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'reports',
+    loadChildren: './report/report.module#ReportModule',
+    canActivate: [AuthGuard]
   }
 ];
 

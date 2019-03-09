@@ -1,4 +1,4 @@
-<div class="container-fluid margin-y__md">
+<div class="container margin-y__md">
   <div class="graph-selector">
     <fa-icon
       (click)="toggleChart('pie')"
@@ -24,9 +24,7 @@
       ></app-pie-chart>
       <div class="margin-top__md">
         <app-percent-category-table
-          [categorizedExpenses]="
-            (transactionsState | async).categorizedExpenses
-          "
+          [categorizedExpenses]="categorizedExpenses$ | async"
           [colors]="colors"
           [total]="pieTotals"
         ></app-percent-category-table>
@@ -39,14 +37,11 @@
         [data]="barData"
         [labels]="barLabels"
       ></app-bar-chart>
-      <div class="margin-top__md">
+      <div class="margin-top__md" *ngIf="(total$ | async) as totals">
         <app-net-table
-          [income]="(transactionsState | async).totals.incomes"
-          [expense]="(transactionsState | async).totals.expenses"
-          [net]="
-            (transactionsState | async).totals.incomes -
-            (transactionsState | async).totals.expenses
-          "
+          [income]="totals.incomes"
+          [expense]="totals.expenses"
+          [net]="totals.incomes - totals.expenses"
         ></app-net-table>
       </div>
       <ng-container *ngTemplateOutlet="monthYearSelector"></ng-container>

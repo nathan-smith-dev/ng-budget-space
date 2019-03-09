@@ -6,12 +6,8 @@ import { AnnualReportComponent } from './containers/annual-report/annual-report.
 
 const routes: Routes = [
   {
-    path: 'reports',
-    children: [
-      { path: '', redirectTo: '/reports/month', pathMatch: 'full' },
-      { path: 'month', component: MonthReportComponent },
-      { path: 'annual', component: AnnualReportComponent }
-    ]
+    path: '',
+    component: MonthReportComponent
   }
 ];
 
