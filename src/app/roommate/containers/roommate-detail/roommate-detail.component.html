@@ -24,8 +24,10 @@
   </div>
 </div>
 <router-outlet></router-outlet>
-<app-loading-spinner [open]="roommatesLoading$ | async"></app-loading-spinner>
-<app-floating-action
-  (click)="handleToggleNew()"
-  color="primary"
-></app-floating-action>
+<div class="wrapper">
+  <app-loading-spinner [open]="roommatesLoading$ | async"></app-loading-spinner>
+  <app-floating-action
+    (click)="handleToggleNew()"
+    color="primary"
+  ></app-floating-action>
+</div>
